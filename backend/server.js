@@ -9,6 +9,10 @@ const YOUTUBE_KEY =
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("RUMI BACKEND ONLINE");
+});
+
 app.use(cors());
 
 const server = http.createServer(app);

@@ -381,6 +381,7 @@ return (
   iv_load_policy: 3,
   fs: 1,
   playsinline: 1,
+  disablekb: 1,
 
   controls: 1,
 },

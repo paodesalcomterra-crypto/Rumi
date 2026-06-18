@@ -6,6 +6,8 @@ import microfoneativo from "./assets/microfoneativo.png";
 import helokat from "./assets/helokat.jfif";
 import fechar from "./assets/fechar.png";
 import lupa from "./assets/lupa.png";
+import helloKittyYoutube from "./assets/hello kitty youtube.jpg";
+import cinamoroll from "./assets/cinamoroll.jpg";
 import Rumi from "./assets/Rumi.png";
 import pessoas from "./assets/pessoas.png";
 import manete from "./assets/manete.png";
@@ -866,27 +868,80 @@ overflowY: "auto",
       />
     </div>
 
-    <div style={{ padding: "20px" }}>
-      <button
-        onClick={() => setYoutubeAberto(true)}
-        style={{
-          width: "100%",
-          height: "60px",
-          border: "none",
-          borderRadius: "15px",
-          background: "#882525",
-          color: "white",
-          fontSize: "18px",
-          cursor: "pointer",
-        }}
-      >
-        ▶ YouTube
-      </button>
-    </div>
+    <div
+  style={{
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+  }}
+>
+  <button
+  onClick={() => setYoutubeAberto(true)}
+  style={{
+    width: "100%",
+    height: "60px",
+    border: "none",
+    borderRadius: "15px",
+    background: "#e38796",
+    color: "white",
+    fontSize: "18px",
+    cursor: "pointer",
+
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    paddingLeft: "15px",
+  }}
+>
+  <img
+    src={helloKittyYoutube}
+    alt=""
+    style={{
+      width: "35px",
+      height: "35px",
+      objectFit: "contain",
+    }}
+  />
+
+  <span>YouTube</span>
+</button>
+
+<button
+  onClick={() => {
+    alert("Google Drive em desenvolvimento");
+  }}
+  style={{
+    width: "100%",
+    height: "60px",
+    border: "none",
+    borderRadius: "15px",
+    background: "#cfe4ff",
+    color: "#d7d7d7",
+    fontSize: "18px",
+    cursor: "pointer",
+
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    paddingLeft: "15px",
+  }}
+>
+  <img
+    src={cinamoroll}
+    alt=""
+    style={{
+      width: "35px",
+      height: "35px",
+      objectFit: "contain",
+    }}
+  />
+
+  <span>Google Drive</span>
+</button>
+</div>
   </>
 )}
-
-
 
   </div>
 )}

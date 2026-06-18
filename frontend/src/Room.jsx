@@ -601,7 +601,7 @@ return (
     width: "289px",
     maxWidth: "85vw",
 
-    height: "90%",
+    height: "90.6%",
 
     zIndex: 500,
 

@@ -931,8 +931,8 @@ overflowY: "auto",
     src={cinamoroll}
     alt=""
     style={{
-      width: "42px",
-      height: "42px",
+      width: "50px",
+      height: "50px",
       objectFit: "contain",
     }}
   />

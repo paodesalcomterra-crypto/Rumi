@@ -1026,9 +1026,9 @@ overflowY: "auto",
       filter: microfoneLigado
         ? `
           drop-shadow(0 0 3px #ff91de)
-          drop-shadow(0 0 6px #f383d2)
-          drop-shadow(0 0 11px #f9819b)
-          drop-shadow(0 0 18px #421220)
+          drop-shadow(0 0 6px #f588bf)
+          drop-shadow(0 0 11px #f07099)
+          drop-shadow(0 0 16px #421220)
         `
         : "none",
 

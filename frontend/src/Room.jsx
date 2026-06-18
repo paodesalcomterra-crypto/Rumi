@@ -351,7 +351,7 @@ return (
   <div
     style={{
       position: "absolute",
-      top: "80px",
+      top: "75px",
       left: "50%",
       transform: "translateX(-50%)",
       width: "100%",

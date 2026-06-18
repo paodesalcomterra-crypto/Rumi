@@ -904,7 +904,14 @@ overflowY: "auto",
     }}
   />
 
-  <span>YouTube</span>
+  <span
+  style={{
+    textShadow:
+      "0 0 4px rgba(255,255,255,0.15)",
+  }}
+>
+  YouTube
+</span>
 </button>
 
 <button
@@ -937,7 +944,14 @@ overflowY: "auto",
     }}
   />
 
-  <span>Google Drive</span>
+  <span
+    style={{
+      textShadow:
+        "0 0 4px rgba(255,255,255,0.15)",
+    }}
+  >
+    Google Drive
+  </span>
 </button>
 </div>
   </>

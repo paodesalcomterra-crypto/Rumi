@@ -374,8 +374,16 @@ return (
     width: "100%",
     height: "100%",
     playerVars: {
-      autoplay: 1,
-    },
+  autoplay: 1,
+
+  modestbranding: 1,
+  rel: 0,
+  iv_load_policy: 3,
+  fs: 1,
+  playsinline: 1,
+
+  controls: 1,
+},
   }}
   onReady={(event) => {
     playerRef.current = event.target;

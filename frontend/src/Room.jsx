@@ -9,7 +9,7 @@ import lupa from "./assets/lupa.png";
 import Rumi from "./assets/Rumi.png";
 import pessoas from "./assets/pessoas.png";
 import manete from "./assets/manete.png";
-const socket = io("https://rumi-4zwi.onrender.com");
+const socket = io("https://rumi-backend-6j0l.onrender.com");
 
 socket.on("connect", () => {
   console.log("SOCKET CONECTADO:", socket.id);
@@ -278,7 +278,7 @@ async function pesquisarYoutube() {
     setCarregandoYoutube(true);
 
   const resposta = await fetch(
-  `https://rumi-4zwi.onrender.com/youtube/search?q=${encodeURIComponent(
+  `https://rumi-backend-6j0l.onrender.com/youtube/search?q=${encodeURIComponent(
     pesquisaYoutube
   )}`
 );

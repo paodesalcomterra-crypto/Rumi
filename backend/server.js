@@ -17,11 +17,15 @@ app.use(cors());
 
 const server = http.createServer(app);
 
+console.log("SOCKET.IO INICIALIZANDO...");
+
 const io = new Server(server, {
   cors: {
     origin: "*",
   },
 });
+
+console.log("SOCKET.IO CRIADO");
 
 const salas = {};
 

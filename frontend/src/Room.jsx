@@ -1027,8 +1027,8 @@ overflowY: "auto",
         ? `
           drop-shadow(0 0 3px #ff91de)
           drop-shadow(0 0 6px #f588bf)
-          drop-shadow(0 0 11px #f07099)
-          drop-shadow(0 0 16px #421220)
+          drop-shadow(0 0 11px #fc89ae)
+          drop-shadow(0 0 14px #42121c)
         `
         : "none",
 

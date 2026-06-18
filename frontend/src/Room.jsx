@@ -907,7 +907,7 @@ overflowY: "auto",
   <span
   style={{
     textShadow:
-      "0 0 4px rgba(255,255,255,0.15)",
+      "0 0 4px rgba(255,255,255,0.13)",
   }}
 >
   YouTube
@@ -947,7 +947,7 @@ overflowY: "auto",
   <span
     style={{
       textShadow:
-        "0 0 4px rgba(255,255,255,0.15)",
+        "0 0 4px rgba(255,255,255,0.21)",
     }}
   >
     Google Drive

@@ -1,6 +1,25 @@
 * {
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
+}
+
+img,
+button,
+a,
+div {
+  outline: none;
+}
+
+img:focus,
+button:focus,
+a:focus,
+div:focus {
+  outline: none;
+}
+
+img:active,
+button:active,
+a:active {
+  background: transparent;
 }
 
 :root {

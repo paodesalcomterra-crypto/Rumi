@@ -494,16 +494,6 @@ return (
     }}
   />
 
-  <div
-    style={{
-      color: "white",
-      fontSize: "12px",
-      marginTop: "-25px",
-      textShadow: "0 0 8px rgba(0,0,0,.8)",
-    }}
-  >
-    Sala: {salaAtual}
-  </div>
 </div>
 
   <img
@@ -1031,14 +1021,14 @@ overflowY: "auto",
     style={{
       width: "60px",
       height: "60px",
-      borderRadius: "50%",
+      borderRadius: "20%",
 
       filter: microfoneLigado
         ? `
-          drop-shadow(0 0 8px #ff91de)
-          drop-shadow(0 0 18px #ff91de)
-          drop-shadow(0 0 35px #ff91de)
-          drop-shadow(0 0 60px #ff91de)
+          drop-shadow(0 0 3px #ff91de)
+          drop-shadow(0 0 6px #f383d2)
+          drop-shadow(0 0 11px #f9819b)
+          drop-shadow(0 0 18px #421220)
         `
         : "none",
 

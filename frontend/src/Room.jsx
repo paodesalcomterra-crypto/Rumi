@@ -917,7 +917,7 @@ overflowY: "auto",
     border: "none",
     borderRadius: "15px",
     background: "#cfe4ff",
-    color: "#d7d7d7",
+    color: "#ffffff",
     fontSize: "18px",
     cursor: "pointer",
 

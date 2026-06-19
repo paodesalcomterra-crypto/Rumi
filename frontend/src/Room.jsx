@@ -959,15 +959,22 @@ overflowY: "auto",
   <div
     key={arquivo.id}
     onClick={() => {
-      setTipoVideo("drive");
+  console.log("VIDEO CLICADO:", arquivo);
 
-      setVideoDriveUrl(
-        arquivo.webContentLink
-      );
+  setTipoVideo("drive");
 
-      setDriveAberto(false);
-      setBuscaAberta(false);
-    }}
+  setVideoDriveUrl(
+    arquivo.webContentLink
+  );
+
+  console.log(
+    "URL:",
+    arquivo.webContentLink
+  );
+
+  setDriveAberto(false);
+  setBuscaAberta(false);
+}}
     style={{
       background: "rgba(255,255,255,.08)",
       padding: "15px",

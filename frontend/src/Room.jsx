@@ -913,6 +913,59 @@ overflowY: "auto",
   ))}
 </div>
   </>
+) : driveAberto ? (
+  <>
+    <div
+      style={{
+        height: "80px",
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        padding: "0 15px",
+      }}
+    >
+      <img
+        src={fechar}
+        alt=""
+        onClick={() => setDriveAberto(false)}
+        style={{
+          width: "40px",
+          height: "40px",
+          cursor: "pointer",
+        }}
+      />
+
+      <h2
+        style={{
+          color: "white",
+        }}
+      >
+        Meu Drive
+      </h2>
+    </div>
+
+    <div
+      style={{
+        padding: "20px",
+        overflowY: "auto",
+      }}
+    >
+      {arquivosDrive.map((arquivo) => (
+        <div
+          key={arquivo.id}
+          style={{
+            background: "rgba(255,255,255,.08)",
+            padding: "15px",
+            borderRadius: "12px",
+            marginBottom: "10px",
+            color: "white",
+          }}
+        >
+          🎬 {arquivo.name}
+        </div>
+      ))}
+    </div>
+  </>
 ) : (
   <>
     <div

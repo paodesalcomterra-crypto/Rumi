@@ -64,6 +64,10 @@ const [videoDriveUrl, setVideoDriveUrl] = useState("");
 
 const [googleToken, setGoogleToken] = useState("");
 
+const [arquivosDrive, setArquivosDrive] = useState([]);
+const [driveAberto, setDriveAberto] = useState(false);
+const [carregandoDrive, setCarregandoDrive] = useState(false);
+
 const CLIENT_ID =
   "517167715767-t49svli06l2fg3gnrh3d3q29akfou2cc.apps.googleusercontent.com";
 
@@ -234,14 +238,36 @@ function loginGoogleDrive() {
       scope:
         "https://www.googleapis.com/auth/drive.readonly",
 
-      callback: (response) => {
+      callback: async (response) => {
         setGoogleToken(
           response.access_token
         );
 
-        alert(
-          "Google Drive conectado com sucesso!"
-        );
+        try {
+          setCarregandoDrive(true);
+
+          const resposta = await fetch(
+            "https://www.googleapis.com/drive/v3/files?q=mimeType contains 'video/'&fields=files(id,name,mimeType)",
+            {
+              headers: {
+                Authorization: `Bearer ${response.access_token}`,
+              },
+            }
+          );
+
+          const dados =
+            await resposta.json();
+
+          setArquivosDrive(
+            dados.files || []
+          );
+
+          setDriveAberto(true);
+        } catch (erro) {
+          console.log(erro);
+        } finally {
+          setCarregandoDrive(false);
+        }
       },
     });
 
@@ -342,6 +368,25 @@ async function pesquisarYoutube() {
   } finally {
     setCarregandoYoutube(false);
   }
+}
+
+async function loginGoogleDrive() {
+  alert("Drive conectado!");
+
+  setGoogleToken("teste");
+
+  setArquivosDrive([
+    {
+      id: "1",
+      name: "Video Teste 1.mp4",
+    },
+    {
+      id: "2",
+      name: "Video Teste 2.mp4",
+    },
+  ]);
+
+  setDriveAberto(true);
 }
 
 return (
@@ -880,6 +925,59 @@ overflowY: "auto",
     </div>
   ))}
 </div>
+  </>
+) : driveAberto ? (
+  <>
+    <div
+      style={{
+        height: "80px",
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        padding: "0 15px",
+      }}
+    >
+      <img
+        src={fechar}
+        alt=""
+        onClick={() => setDriveAberto(false)}
+        style={{
+          width: "40px",
+          height: "40px",
+          cursor: "pointer",
+        }}
+      />
+
+      <h2
+        style={{
+          color: "white",
+        }}
+      >
+        Meu Drive
+      </h2>
+    </div>
+
+    <div
+      style={{
+        padding: "20px",
+        overflowY: "auto",
+      }}
+    >
+      {arquivosDrive.map((arquivo) => (
+        <div
+          key={arquivo.id}
+          style={{
+            background: "rgba(255,255,255,.08)",
+            padding: "15px",
+            borderRadius: "12px",
+            marginBottom: "10px",
+            color: "white",
+          }}
+        >
+          🎬 {arquivo.name}
+        </div>
+      ))}
+    </div>
   </>
 ) : (
   <>

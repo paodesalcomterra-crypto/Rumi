@@ -58,6 +58,10 @@ const peersRef = useRef({});
 
   const [videoAtual, setVideoAtual] = useState("");
 
+  const [tipoVideo, setTipoVideo] = useState("youtube");
+
+  const [videoDriveUrl, setVideoDriveUrl] = useState("");
+  
 const [pesquisaYoutube, setPesquisaYoutube] = useState("");
 const [videosYoutube, setVideosYoutube] = useState([]);
 const [carregandoYoutube, setCarregandoYoutube] = useState(false);
@@ -370,52 +374,68 @@ return (
         boxShadow: "0 0 25px rgba(0,0,0,.5)",
       }}
     >
-     <YouTube
-  videoId={videoAtual}
-  opts={{
-    width: "100%",
-    height: "100%",
-    playerVars: {
-  autoplay: 1,
+      {tipoVideo === "youtube" && (
+        <YouTube
+          videoId={videoAtual}
+          opts={{
+            width: "100%",
+            height: "100%",
+            playerVars: {
+              autoplay: 1,
 
-  modestbranding: 1,
-  rel: 0,
-  iv_load_policy: 3,
-  fs: 1,
-  playsinline: 1,
-  disablekb: 1,
+              modestbranding: 1,
+              rel: 0,
+              iv_load_policy: 3,
+              fs: 1,
+              playsinline: 1,
+              disablekb: 1,
 
-  controls: 1,
-},
-  }}
-  onReady={(event) => {
-    playerRef.current = event.target;
+              controls: 1,
+            },
+          }}
+          onReady={(event) => {
+            playerRef.current = event.target;
 
-    window.playerTeste = event.target;
+            window.playerTeste = event.target;
 
-    console.log("PLAYER PRONTO");
-  }}
-  onPlay={() => {
-  if (ignorarEvento.current) return;
+            console.log("PLAYER PRONTO");
+          }}
+          onPlay={() => {
+            if (ignorarEvento.current) return;
 
-  socket.emit("playVideo", {
-    sala: salaAtual,
-    tempo: playerRef.current.getCurrentTime(),
-  });
-}}
-  onPause={() => {
-  if (ignorarEvento.current) return;
+            socket.emit("playVideo", {
+              sala: salaAtual,
+              tempo: playerRef.current.getCurrentTime(),
+            });
+          }}
+          onPause={() => {
+            if (ignorarEvento.current) return;
 
-  socket.emit("pauseVideo", {
-    sala: salaAtual,
-    tempo: playerRef.current.getCurrentTime(),
-  });
-}}
-  style={{
-    width: "100%",
-    height: "100%",
-  }}
-/>
+            socket.emit("pauseVideo", {
+              sala: salaAtual,
+              tempo: playerRef.current.getCurrentTime(),
+            });
+          }}
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      )}
+
+      {tipoVideo === "drive" && (
+        <video
+          ref={playerRef}
+          src={videoDriveUrl}
+          controls
+          autoPlay
+          style={{
+            width: "100%",
+            height: "100%",
+            background: "#000",
+          }}
+        />
+      )}
 
 </div>
 

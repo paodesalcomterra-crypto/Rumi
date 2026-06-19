@@ -391,37 +391,37 @@ return (
       overflow: "hidden",
     }}
   >
-    {/* VIDEO */}
+   {/* VIDEO */}
 
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        position: "absolute",
-        inset: 0,
-      }}
-    >
-      <img
-        src={helokat}
-        alt=""
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      />
+<div
+  style={{
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    inset: 0,
+  }}
+>
+  <img
+    src={helokat}
+    alt=""
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    }}
+  />
 
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.15))",
-        }}
-      />
-    </div>
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      background:
+        "linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.15))",
+    }}
+  />
+</div>
 
-      {videoAtual && (
+{(videoAtual || videoDriveUrl) && (
   <div
     style={{
       position: "absolute",
@@ -492,24 +492,23 @@ return (
       )}
 
       {tipoVideo === "drive" && (
-        <video
-          ref={playerRef}
+        <iframe
           src={videoDriveUrl}
-          controls
-          autoPlay
+          allow="autoplay"
+          allowFullScreen
           style={{
             width: "100%",
             height: "100%",
+            border: "none",
             background: "#000",
           }}
         />
       )}
+    </div>
 
-</div>
-
-<div
-  style={{
-    height: "33px",
+    <div
+      style={{
+        height: "33px",
         background: "rgba(0,0,0,.45)",
         backdropFilter: "blur(14px)",
         WebkitBackdropFilter: "blur(14px)",
@@ -959,18 +958,27 @@ overflowY: "auto",
   <div
     key={arquivo.id}
     onClick={() => {
+  const url =
+    `https://drive.google.com/file/d/${arquivo.id}/preview`;
+
   console.log("VIDEO CLICADO:", arquivo);
+  console.log("TIPO:", "drive");
+  console.log("URL NOVA:", url);
 
   setTipoVideo("drive");
+  setVideoDriveUrl(url);
 
-  setVideoDriveUrl(
-    arquivo.webContentLink
-  );
+  setTimeout(() => {
+    console.log(
+      "tipoVideo depois:",
+      tipoVideo
+    );
 
-  console.log(
-    "URL:",
-    arquivo.webContentLink
-  );
+    console.log(
+      "videoDriveUrl depois:",
+      videoDriveUrl
+    );
+  }, 1000);
 
   setDriveAberto(false);
   setBuscaAberta(false);

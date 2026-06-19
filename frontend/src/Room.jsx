@@ -56,12 +56,17 @@ function Room({
 
 const peersRef = useRef({});
 
-  const [videoAtual, setVideoAtual] = useState("");
+const [videoAtual, setVideoAtual] = useState("");
 
-  const [tipoVideo, setTipoVideo] = useState("youtube");
+const [tipoVideo, setTipoVideo] = useState("youtube");
 
-  const [videoDriveUrl, setVideoDriveUrl] = useState("");
-  
+const [videoDriveUrl, setVideoDriveUrl] = useState("");
+
+const [googleToken, setGoogleToken] = useState("");
+
+const CLIENT_ID =
+  "517167715767-t49svli06l2fg3gnrh3d3q29akfou2cc.apps.googleusercontent.com";
+
 const [pesquisaYoutube, setPesquisaYoutube] = useState("");
 const [videosYoutube, setVideosYoutube] = useState([]);
 const [carregandoYoutube, setCarregandoYoutube] = useState(false);
@@ -221,6 +226,28 @@ useEffect(() => {
   return () => clearInterval(intervalo);
 }, [salaAtual]);
 
+function loginGoogleDrive() {
+  const tokenClient =
+    google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+
+      scope:
+        "https://www.googleapis.com/auth/drive.readonly",
+
+      callback: (response) => {
+        setGoogleToken(
+          response.access_token
+        );
+
+        alert(
+          "Google Drive conectado com sucesso!"
+        );
+      },
+    });
+
+  tokenClient.requestAccessToken();
+}
+
 async function ativarMicrofone() {
   if (microfoneLigado) {
     if (localStreamRef.current) {
@@ -255,9 +282,9 @@ async function ativarMicrofone() {
 
     alert(
       "Erro: " +
-      erro.name +
-      " - " +
-      erro.message
+        erro.name +
+        " - " +
+        erro.message
     );
   }
 }
@@ -283,29 +310,33 @@ async function pesquisarYoutube() {
   try {
     setCarregandoYoutube(true);
 
-  const resposta = await fetch(
-  `https://rumi-backend-6j0l.onrender.com/youtube/search?q=${encodeURIComponent(
-    pesquisaYoutube
-  )}`
-);
+    const resposta = await fetch(
+      `https://rumi-backend-6j0l.onrender.com/youtube/search?q=${encodeURIComponent(
+        pesquisaYoutube
+      )}`
+    );
 
-    const dados = await resposta.json();
+    const dados =
+      await resposta.json();
 
-console.log("DADOS YOUTUBE:", dados);
+    console.log(
+      "DADOS YOUTUBE:",
+      dados
+    );
 
-setVideosYoutube(
-  Array.isArray(dados)
-    ? dados
-    : dados.items || []
-);
+    setVideosYoutube(
+      Array.isArray(dados)
+        ? dados
+        : dados.items || []
+    );
 
-console.log(dados);
+    console.log(dados);
 
-setVideosYoutube(
-  Array.isArray(dados)
-    ? dados
-    : dados.items || []
-);
+    setVideosYoutube(
+      Array.isArray(dados)
+        ? dados
+        : dados.items || []
+    );
   } catch (erro) {
     console.log(erro);
   } finally {
@@ -314,44 +345,44 @@ setVideosYoutube(
 }
 
 return (
+  <div
+    style={{
+      width: "100%",
+      height: "100vh",
+      backgroundColor: "#000",
+      position: "relative",
+      overflow: "hidden",
+    }}
+  >
+    {/* VIDEO */}
+
     <div
       style={{
         width: "100%",
-        height: "100vh",
-        backgroundColor: "#000",
-        position: "relative",
-        overflow: "hidden",
+        height: "100%",
+        position: "absolute",
+        inset: 0,
       }}
     >
-      {/* VIDEO */}
-
-      <div
+      <img
+        src={helokat}
+        alt=""
         style={{
           width: "100%",
           height: "100%",
+          objectFit: "cover",
+        }}
+      />
+
+      <div
+        style={{
           position: "absolute",
           inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.15))",
         }}
-      >
-        <img
-  src={helokat}
-  alt=""
-  style={{
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  }}
-/>
-
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.15))",
-          }}
-        />
-      </div>
+      />
+    </div>
 
       {videoAtual && (
   <div
@@ -936,7 +967,7 @@ overflowY: "auto",
 
 <button
   onClick={() => {
-    alert("Google Drive em desenvolvimento");
+    loginGoogleDrive();
   }}
   style={{
     width: "100%",

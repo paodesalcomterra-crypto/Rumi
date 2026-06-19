@@ -252,7 +252,7 @@ function loginGoogleDrive() {
           setCarregandoDrive(true);
 
           const resposta = await fetch(
-            "https://www.googleapis.com/drive/v3/files?q=mimeType contains 'video/'&fields=files(id,name,mimeType)",
+            "https://www.googleapis.com/drive/v3/files?q=mimeType contains 'video/'&fields=files(id,name,mimeType,webViewLink,webContentLink)",
             {
               headers: {
                 Authorization: `Bearer ${response.access_token}`,
@@ -261,11 +261,16 @@ function loginGoogleDrive() {
           );
 
           const dados =
-            await resposta.json();
+  await resposta.json();
 
-          setArquivosDrive(
-            dados.files || []
-          );
+console.log(
+  "ARQUIVOS DRIVE:",
+  dados.files
+);
+
+setArquivosDrive(
+  dados.files || []
+);
 
           setDriveAberto(true);
 
@@ -951,16 +956,27 @@ overflowY: "auto",
       }}
     >
       {arquivosDrive.map((arquivo) => (
-        <div
-          key={arquivo.id}
-          style={{
-            background: "rgba(255,255,255,.08)",
-            padding: "15px",
-            borderRadius: "12px",
-            marginBottom: "10px",
-            color: "white",
-          }}
-        >
+  <div
+    key={arquivo.id}
+    onClick={() => {
+      setTipoVideo("drive");
+
+      setVideoDriveUrl(
+        arquivo.webContentLink
+      );
+
+      setDriveAberto(false);
+      setBuscaAberta(false);
+    }}
+    style={{
+      background: "rgba(255,255,255,.08)",
+      padding: "15px",
+      borderRadius: "12px",
+      marginBottom: "10px",
+      color: "white",
+      cursor: "pointer",
+    }}
+  >
           🎬 {arquivo.name}
         </div>
       ))}

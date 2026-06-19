@@ -11,6 +11,12 @@ import cinamoroll from "./assets/cinamoroll.jpg";
 import Rumi from "./assets/Rumi.png";
 import pessoas from "./assets/pessoas.png";
 import manete from "./assets/manete.png";
+import play from "./assets/play.png";
+import pause from "./assets/pause.png";
+import avançar10segundos from "./assets/avançar10segundos.png";
+import voltar10segundos from "./assets/voltar10segundos.png";
+import telacheia from "./assets/telacheia.png";
+
 const socket = io("https://rumi-backend-6j0l.onrender.com");
 
 socket.on("connect", () => {
@@ -49,6 +55,8 @@ function Room({
   const playerRef = useRef(null);
 
   const ignorarEvento = useRef(false);
+
+  const videoDriveRef = useRef(null);
 
   const ultimoTempo = useRef(0);
 
@@ -492,18 +500,121 @@ return (
       )}
 
       {tipoVideo === "drive" && (
-        <iframe
-          src={videoDriveUrl}
-          allow="autoplay"
-          allowFullScreen
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "none",
-            background: "#000",
-          }}
-        />
-      )}
+  <>
+    <video
+      ref={videoDriveRef}
+      src={videoDriveUrl}
+      autoPlay
+      playsInline
+      style={{
+        width: "100%",
+        height: "115%",
+        objectFit: "cover",
+
+        position: "relative",
+        top: "-38px",
+
+        background: "#000",
+      }}
+    />
+
+    <div
+      style={{
+        position: "absolute",
+        bottom: "12px",
+        left: "50%",
+        transform: "translateX(-50%)",
+
+        display: "flex",
+        alignItems: "center",
+        gap: "18px",
+
+        background: "rgba(0,0,0,.65)",
+        backdropFilter: "blur(10px)",
+
+        padding: "10px 18px",
+        borderRadius: "999px",
+
+        zIndex: 9999,
+      }}
+    >
+      <img
+        src={voltar10segundos}
+        alt=""
+        onClick={() => {
+          if (videoDriveRef.current) {
+            videoDriveRef.current.currentTime -= 10;
+          }
+        }}
+        style={{
+          width: "28px",
+          height: "28px",
+          cursor: "pointer",
+        }}
+      />
+
+      <img
+        src={play}
+        alt=""
+        onClick={() => {
+          if (videoDriveRef.current) {
+            videoDriveRef.current.play();
+          }
+        }}
+        style={{
+          width: "34px",
+          height: "34px",
+          cursor: "pointer",
+        }}
+      />
+
+      <img
+        src={pause}
+        alt=""
+        onClick={() => {
+          if (videoDriveRef.current) {
+            videoDriveRef.current.pause();
+          }
+        }}
+        style={{
+          width: "34px",
+          height: "34px",
+          cursor: "pointer",
+        }}
+      />
+
+      <img
+        src={avançar10segundos}
+        alt=""
+        onClick={() => {
+          if (videoDriveRef.current) {
+            videoDriveRef.current.currentTime += 10;
+          }
+        }}
+        style={{
+          width: "28px",
+          height: "28px",
+          cursor: "pointer",
+        }}
+      />
+
+      <img
+        src={telacheia}
+        alt=""
+        onClick={() => {
+          if (videoDriveRef.current) {
+            videoDriveRef.current.requestFullscreen();
+          }
+        }}
+        style={{
+          width: "28px",
+          height: "28px",
+          cursor: "pointer",
+        }}
+      />
+    </div>
+  </>
+)}
     </div>
 
     <div
@@ -958,8 +1069,8 @@ overflowY: "auto",
   <div
     key={arquivo.id}
     onClick={() => {
-  const url =
-    `https://drive.google.com/file/d/${arquivo.id}/preview`;
+ const url =
+  `https://drive.google.com/uc?export=download&id=${arquivo.id}`;
 
   console.log("VIDEO CLICADO:", arquivo);
   console.log("TIPO:", "drive");

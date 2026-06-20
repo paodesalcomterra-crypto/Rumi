@@ -137,6 +137,81 @@ app.get(
     try {
       const fileId = req.params.id;
 
+      const meta =
+        await drive.files.get({
+          fileId,
+          fields: "size,mimeType",
+        });
+
+      const fileSize =
+        Number(meta.data.size);
+
+      const mimeType =
+        meta.data.mimeType;
+
+      const range =
+        req.headers.range;
+
+      if (!range) {
+        res.writeHead(200, {
+          "Content-Length":
+            fileSize,
+          "Content-Type":
+            mimeType,
+          "Accept-Ranges":
+            "bytes",
+        });
+
+        const resposta =
+          await drive.files.get(
+            {
+              fileId,
+              alt: "media",
+            },
+            {
+              responseType:
+                "stream",
+            }
+          );
+
+        resposta.data.pipe(res);
+
+        return;
+      }
+
+      const parts =
+        range.replace(
+          /bytes=/,
+          ""
+        ).split("-");
+
+      const start =
+        parseInt(parts[0], 10);
+
+      const end =
+        parts[1]
+          ? parseInt(
+              parts[1],
+              10
+            )
+          : fileSize - 1;
+
+      const chunkSize =
+        end -
+        start +
+        1;
+
+      res.writeHead(206, {
+        "Content-Range":
+          `bytes ${start}-${end}/${fileSize}`,
+        "Accept-Ranges":
+          "bytes",
+        "Content-Length":
+          chunkSize,
+        "Content-Type":
+          mimeType,
+      });
+
       const resposta =
         await drive.files.get(
           {
@@ -144,7 +219,12 @@ app.get(
             alt: "media",
           },
           {
-            responseType: "stream",
+            responseType:
+              "stream",
+            headers: {
+              Range:
+                `bytes=${start}-${end}`,
+            },
           }
         );
 
@@ -153,6 +233,7 @@ app.get(
       console.log(
         "ERRO STREAM DRIVE:"
       );
+
       console.log(erro);
 
       res.status(500).end();

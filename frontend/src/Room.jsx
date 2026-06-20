@@ -50,6 +50,12 @@ function Room({
   const [movimentoToque, setMovimentoToque] =
     useState(0);
 
+    const [overlayIcon, setOverlayIcon] =
+  useState(null);
+
+const [videoPausado, setVideoPausado] =
+  useState(false);
+
   const [youtubeAberto, setYoutubeAberto] = useState(false);
 
   const playerRef = useRef(null);
@@ -502,145 +508,253 @@ return (
       {tipoVideo === "drive" && (
   <>
     <video
-      ref={videoDriveRef}
-      src={videoDriveUrl}
-      autoPlay
-      playsInline
-      preload="auto"
-      controls={false}
-      style={{
-        width: "100%",
-        height: "115%",
-        objectFit: "cover",
+  ref={videoDriveRef}
+  src={videoDriveUrl}
+  autoPlay
+  playsInline
+  preload="auto"
+  controls={false}
+  onPlay={() => {
+    setVideoPausado(false);
+  }}
+ onPause={() => {
+  setVideoPausado(true);
+}}
+style={{
+  width: "100%",
+  height: "115%",
+  objectFit: "cover",
 
-        position: "relative",
-        top: "-38px",
+  position: "relative",
+  top: "-38px",
 
-        background: "#000",
-      }}
-    />
+  background: "#000",
+}}
+/>
 
-    <div
-      style={{
-        position: "absolute",
-        bottom: "12px",
-        left: "50%",
-        transform: "translateX(-50%)",
+<div
+  onClick={() => {
+    if (!videoDriveRef.current)
+      return;
 
-        display: "flex",
-        alignItems: "center",
-        gap: "18px",
+    if (
+  videoDriveRef.current.paused
+) {
+  setOverlayIcon("pause");
 
-        background: "rgba(0,0,0,.65)",
-        backdropFilter: "blur(10px)",
+  videoDriveRef.current.play();
 
-        padding: "10px 18px",
-        borderRadius: "999px",
+  setTimeout(() => {
+    if (
+      !videoDriveRef.current?.paused
+    ) {
+      setOverlayIcon(null);
+    }
+  }, 1200);
+} else {
+  videoDriveRef.current.pause();
 
-        zIndex: 9999,
-      }}
-    >
+  setOverlayIcon("play");
+}
+  }}
+  style={{
+    position: "absolute",
+    inset: 0,
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    zIndex: 8000,
+
+    cursor: "pointer",
+  }}
+>
+  <img
+    src={
+      overlayIcon === "play"
+        ? play
+        : pause
+    }
+    alt=""
+    style={{
+      width:
+  overlayIcon === "pause"
+    ? "260px"
+    : "46px",
+
+height:
+  overlayIcon === "pause"
+    ? "260px"
+    : "46px",
+
+opacity:
+  overlayIcon ? 1 : 0,
+
+transform: overlayIcon
+  ? "translateY(-22px) scale(1)"
+  : "translateY(-22px) scale(.65)",
+
+transition:
+  "opacity 0.1s cubic-bezier(.22,1,.36,1), transform 1.4s cubic-bezier(.22,1,.36,1)",
+      pointerEvents: "none",
+
+      userSelect: "none",
+
+      filter:
+        "drop-shadow(0 0 18px rgba(0,0,0,.45))",
+    }}
+  />
+</div>
+
+<div
+ style={{
+  position: "absolute",
+  bottom: "18px",
+  left: "50%",
+  transform: "translateX(-50%)",
+
+  display: "flex",
+  alignItems: "center",
+  gap: "116px",
+
+  background: "transparent",
+
+  padding: "0px",
+
+  zIndex: 9999,
+}}
+>
+  <img
+  src={voltar10segundos}
+  alt=""
+  onClick={(e) => {
+  e.stopPropagation();
+
+  const video =
+    document.querySelector("video");
+
+  console.log(
+    "TEMPO ANTES:",
+    video.currentTime
+  );
+
+  video.currentTime -= 10;
+
+  console.log(
+    "TEMPO DEPOIS:",
+    video.currentTime
+  );
+}}
+  style={{
+    width: "28px",
+    height: "28px",
+
+    position: "relative",
+    top: "-110px",
+
+    transform: "scale(2.0)",
+
+    cursor: "pointer",
+  }}
+/>
+
+  
+
+  
+
+ <img
+  src={avançar10segundos}
+  alt=""
+  onClick={(e) => {
+    e.stopPropagation();
+
+    console.log(
+      "VIDEO REF:",
+      videoDriveRef.current
+    );
+
+    if (!videoDriveRef.current)
+      return;
+
+    console.log(
+      "ANTES:",
+      videoDriveRef.current.currentTime
+    );
+
+    videoDriveRef.current.currentTime =
+      videoDriveRef.current.currentTime + 10;
+
+    console.log(
+      "DEPOIS:",
+      videoDriveRef.current.currentTime
+    );
+  }}
+  style={{
+    width: "28px",
+    height: "28px",
+
+    position: "relative",
+    top: "-110px",
+
+    transform: "scale(2.0)",
+
+    cursor: "pointer",
+  }}
+/>
       <img
-        src={voltar10segundos}
-        alt=""
-        onClick={() => {
-          if (videoDriveRef.current) {
-            videoDriveRef.current.currentTime -= 10;
-          }
-        }}
-        style={{
-          width: "28px",
-          height: "28px",
-          cursor: "pointer",
-        }}
-      />
+  src={telacheia}
+  alt=""
+  onClick={() => {
+    if (videoDriveRef.current?.requestFullscreen) {
+      videoDriveRef.current.requestFullscreen();
+    }
+  }}
+  style={{
+    width: "65px",
+    height: "65px",
 
-      <img
-        src={play}
-        alt=""
-        onClick={() => {
-          if (videoDriveRef.current) {
-            videoDriveRef.current.play();
-          }
-        }}
-        style={{
-          width: "34px",
-          height: "34px",
-          cursor: "pointer",
-        }}
-      />
+    position: "absolute",
+    top: "-43px",
+    right: "-120px",
 
-      <img
-        src={pause}
-        alt=""
-        onClick={() => {
-          if (videoDriveRef.current) {
-            videoDriveRef.current.pause();
-          }
-        }}
-        style={{
-          width: "34px",
-          height: "34px",
-          cursor: "pointer",
-        }}
-      />
+    opacity: videoPausado ? 1 : 0,
 
-      <img
-        src={avançar10segundos}
-        alt=""
-        onClick={() => {
-          if (videoDriveRef.current) {
-            videoDriveRef.current.currentTime += 10;
-          }
-        }}
-        style={{
-          width: "28px",
-          height: "28px",
-          cursor: "pointer",
-        }}
-      />
+    transition:
+      "opacity .45s ease",
 
-      <img
-        src={telacheia}
-        alt=""
-        onClick={() => {
-          if (videoDriveRef.current?.requestFullscreen) {
-            videoDriveRef.current.requestFullscreen();
-          }
-        }}
-        style={{
-          width: "28px",
-          height: "28px",
-          cursor: "pointer",
-        }}
-      />
-    </div>
-  </>
+    cursor: "pointer",
+
+    zIndex: 9999,
+  }}
+/>
+</div>
+</>
 )}
-    </div>
+</div>
 
-    <div
-      style={{
-        height: "33px",
-        background: "rgba(0,0,0,.45)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
+<div
+  style={{
+    height: "33px",
+    background: "rgba(0,0,0,.45)",
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
 
-        borderBottomLeftRadius: "2px",
-        borderBottomRightRadius: "2px",
+    borderBottomLeftRadius: "2px",
+    borderBottomRightRadius: "2px",
 
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
 
-        color: "white",
-        fontWeight: "bold",
-        fontSize: "14px",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "14px",
 
-        boxShadow:
-          "0 10px 25px rgba(0,0,0,.35)",
-      }}
-    >
+    boxShadow:
+      "0 10px 25px rgba(0,0,0,.35)",
+  }}
+>
       Sala: {salaAtual}
     </div>
   </div>

@@ -17,12 +17,12 @@ app.get("/", (req, res) => {
 
 app.use(cors());
 
+const serviceAccount = JSON.parse(
+  process.env.GOOGLE_SERVICE_ACCOUNT_JSON
+);
+
 const auth = new google.auth.GoogleAuth({
-  keyFile: path.join(
-    __dirname,
-    "credentials",
-    "drive-key.json"
-  ),
+  credentials: serviceAccount,
   scopes: [
     "https://www.googleapis.com/auth/drive.readonly",
   ],
@@ -50,17 +50,20 @@ app.get(
         resposta.data.files
       );
     } catch (erro) {
-  console.log("ERRO DRIVE:");
-  console.log(erro);
+      console.log("ERRO DRIVE:");
+      console.log(erro);
 
-  if (erro.response) {
-    console.log(erro.response.data);
-  }
+      if (erro.response) {
+        console.log(
+          erro.response.data
+        );
+      }
 
-  res.status(500).json({
-    erro: "Erro ao buscar vídeos",
-  });
-}
+      res.status(500).json({
+        erro:
+          "Erro ao buscar vídeos",
+      });
+    }
   }
 );
 

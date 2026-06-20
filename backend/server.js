@@ -3,6 +3,8 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const { google } = require("googleapis");
+const path = require("path");
 
 const YOUTUBE_KEY =
   "AIzaSyA-pCNWsoSxHjRNnAWpPbBeb-BYhO1JaHw";
@@ -14,6 +16,53 @@ app.get("/", (req, res) => {
 });
 
 app.use(cors());
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: path.join(
+    __dirname,
+    "credentials",
+    "drive-key.json"
+  ),
+  scopes: [
+    "https://www.googleapis.com/auth/drive.readonly",
+  ],
+});
+
+const drive = google.drive({
+  version: "v3",
+  auth,
+});
+
+app.get(
+  "/drive/videos",
+  async (req, res) => {
+    try {
+      const pastaId = req.query.folderId;
+
+      const resposta =
+        await drive.files.list({
+          q: `'${pastaId}' in parents and trashed=false`,
+          fields:
+            "files(id,name,mimeType)",
+        });
+
+      res.json(
+        resposta.data.files
+      );
+    } catch (erro) {
+  console.log("ERRO DRIVE:");
+  console.log(erro);
+
+  if (erro.response) {
+    console.log(erro.response.data);
+  }
+
+  res.status(500).json({
+    erro: "Erro ao buscar vídeos",
+  });
+}
+  }
+);
 
 const server = http.createServer(app);
 
@@ -56,6 +105,25 @@ app.get("/youtube/search", async (req, res) => {
 
     res.status(500).json({
       erro: "Erro ao buscar vídeos",
+    });
+  }
+});
+
+app.get("/drive/videos", async (req, res) => {
+  try {
+    const pastaId = req.query.pastaId;
+
+    const resposta = await drive.files.list({
+      q: `'${pastaId}' in parents and trashed=false`,
+      fields: "files(id,name,mimeType)",
+    });
+
+    res.json(resposta.data.files);
+  } catch (erro) {
+    console.log(erro);
+
+    res.status(500).json({
+      erro: "Erro ao buscar vídeos do Drive",
     });
   }
 });

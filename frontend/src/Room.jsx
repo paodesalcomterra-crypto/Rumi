@@ -506,6 +506,8 @@ return (
       src={videoDriveUrl}
       autoPlay
       playsInline
+      preload="auto"
+      controls={false}
       style={{
         width: "100%",
         height: "115%",
@@ -602,7 +604,7 @@ return (
         src={telacheia}
         alt=""
         onClick={() => {
-          if (videoDriveRef.current) {
+          if (videoDriveRef.current?.requestFullscreen) {
             videoDriveRef.current.requestFullscreen();
           }
         }}
@@ -1066,43 +1068,50 @@ overflowY: "auto",
       }}
     >
       {arquivosDrive.map((arquivo) => (
-  <div
-    key={arquivo.id}
-    onClick={() => {
- const url =
-  `https://drive.google.com/uc?export=download&id=${arquivo.id}`;
+        <div
+          key={arquivo.id}
+          onClick={() => {
+            console.log(
+              "ARQUIVO COMPLETO:",
+              arquivo
+            );
 
-  console.log("VIDEO CLICADO:", arquivo);
-  console.log("TIPO:", "drive");
-  console.log("URL NOVA:", url);
+            const url =
+  `https://drive.google.com/uc?export=view&id=${arquivo.id}`;
 
-  setTipoVideo("drive");
-  setVideoDriveUrl(url);
+            console.log(
+              "URL ESCOLHIDA:",
+              url
+            );
 
-  setTimeout(() => {
-    console.log(
-      "tipoVideo depois:",
-      tipoVideo
-    );
+            setTipoVideo("drive");
+            setVideoDriveUrl(url);
 
-    console.log(
-      "videoDriveUrl depois:",
-      videoDriveUrl
-    );
-  }, 1000);
+            setTimeout(() => {
+              console.log(
+                "tipoVideo depois:",
+                tipoVideo
+              );
 
-  setDriveAberto(false);
-  setBuscaAberta(false);
-}}
-    style={{
-      background: "rgba(255,255,255,.08)",
-      padding: "15px",
-      borderRadius: "12px",
-      marginBottom: "10px",
-      color: "white",
-      cursor: "pointer",
-    }}
-  >
+              console.log(
+                "videoDriveUrl depois:",
+                videoDriveUrl
+              );
+            }, 1000);
+
+            setDriveAberto(false);
+            setBuscaAberta(false);
+          }}
+          style={{
+            background:
+              "rgba(255,255,255,.08)",
+            padding: "15px",
+            borderRadius: "12px",
+            marginBottom: "10px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
           🎬 {arquivo.name}
         </div>
       ))}
@@ -1147,13 +1156,13 @@ overflowY: "auto",
     </div>
 
     <div
-  style={{
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "12px",
-  }}
->
+      style={{
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+    >
   <button
   onClick={() => setYoutubeAberto(true)}
   style={{

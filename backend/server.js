@@ -131,6 +131,35 @@ app.get("/drive/videos", async (req, res) => {
   }
 });
 
+app.get(
+  "/drive/stream/:id",
+  async (req, res) => {
+    try {
+      const fileId = req.params.id;
+
+      const resposta =
+        await drive.files.get(
+          {
+            fileId,
+            alt: "media",
+          },
+          {
+            responseType: "stream",
+          }
+        );
+
+      resposta.data.pipe(res);
+    } catch (erro) {
+      console.log(
+        "ERRO STREAM DRIVE:"
+      );
+      console.log(erro);
+
+      res.status(500).end();
+    }
+  }
+);
+
 io.on("connection", (socket) => {
   console.log("Usuário conectado");
 

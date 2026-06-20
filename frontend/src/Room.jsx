@@ -1077,7 +1077,7 @@ overflowY: "auto",
             );
 
             const url =
-  `https://drive.google.com/uc?export=view&id=${arquivo.id}`;
+`https://rumi-backend-6j0l.onrender.com/drive/stream/${arquivo.id}`;
 
             console.log(
               "URL ESCOLHIDA:",

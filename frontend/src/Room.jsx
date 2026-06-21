@@ -138,6 +138,9 @@ socket.on(
     if (!localStreamRef.current)
       return;
 
+    if (socket.id > socketId)
+      return;
+
     const peer =
       new RTCPeerConnection({
         iceServers: [

@@ -300,6 +300,12 @@ io.on("connection", (socket) => {
 
 socket.on("entrarCanalVoz", () => {
 
+  console.log(
+    "ENTRAR CANAL VOZ",
+    socket.id,
+    socket.codigoSala
+  );
+
   if (!socket.codigoSala) return;
 
   if (!global.canaisVoz[socket.codigoSala]) {
@@ -335,6 +341,11 @@ socket.on("entrarCanalVoz", () => {
     {
       socketId: socket.id,
     }
+  );
+
+  console.log(
+    "USUARIOS NO CANAL:",
+    global.canaisVoz[socket.codigoSala]
   );
 
 });

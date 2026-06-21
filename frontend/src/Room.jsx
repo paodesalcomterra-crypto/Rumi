@@ -510,110 +510,120 @@ return (
             },
           }}
           onReady={(event) => {
-            playerRef.current = event.target;
+  playerRef.current = event.target;
 
-            window.playerTeste = event.target;
+  window.playerTeste = event.target;
 
-            console.log("PLAYER PRONTO");
-          }}
-          onPlay={() => {
-            if (ignorarEvento.current) return;
+  console.log("PLAYER PRONTO");
+}}
+onPlay={() => {
+  if (ignorarEvento.current) return;
 
-            socket.emit("playVideo", {
-              sala: salaAtual,
-              tempo: playerRef.current.getCurrentTime(),
-            });
-          }}
-          onPause={() => {
-            if (ignorarEvento.current) return;
+  socket.emit("playVideo", {
+    sala: salaAtual,
+    tempo: playerRef.current.getCurrentTime(),
+  });
+}}
+onPause={() => {
+  if (ignorarEvento.current) return;
 
-            socket.emit("pauseVideo", {
-              sala: salaAtual,
-              tempo: playerRef.current.getCurrentTime(),
-            });
-          }}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        />
-      )}
-
-      {tipoVideo === "drive" && (
-  <>
-    <video
-  ref={videoDriveRef}
-  src={videoDriveUrl}
-  autoPlay
-  playsInline
-  preload="auto"
-  controls={false}
-  onPlay={() => {
-    setVideoPausado(false);
-  }}
- onPause={() => {
-  setVideoPausado(true);
+  socket.emit("pauseVideo", {
+    sala: salaAtual,
+    tempo: playerRef.current.getCurrentTime(),
+  });
 }}
 style={{
   width: "100%",
-  height: "115%",
-  objectFit: "cover",
-
-  position: "relative",
-  top: "-38px",
-
-  background: "#000",
+  height: "100%",
 }}
 />
+)}
 
-<div
- onClick={() => {
-  if (!videoDriveRef.current)
-    return;
+{tipoVideo === "drive" && (
+<>
+  <video
+    ref={videoDriveRef}
+    src={videoDriveUrl}
+    autoPlay
+    playsInline
+    preload="auto"
+    controls={false}
+    onPlay={() => {
+      setVideoPausado(false);
 
-  if (videoDriveRef.current.paused) {
+      socket.emit("playVideo", {
+        sala: salaAtual,
+        tempo: videoDriveRef.current.currentTime,
+      });
+    }}
+    onPause={() => {
+      setVideoPausado(true);
 
-    setOverlayIcon("pause");
+      socket.emit("pauseVideo", {
+        sala: salaAtual,
+        tempo: videoDriveRef.current.currentTime,
+      });
+    }}
+    style={{
+      width: "100%",
+      height: "115%",
+      objectFit: "cover",
 
-    videoDriveRef.current.play();
+      position: "relative",
+      top: "-38px",
 
-    setTimeout(() => {
-      if (
-        !videoDriveRef.current?.paused
-      ) {
-        setOverlayIcon(null);
+      background: "#000",
+    }}
+  />
+
+  <div
+    onClick={() => {
+      if (!videoDriveRef.current)
+        return;
+
+      if (videoDriveRef.current.paused) {
+
+        setOverlayIcon("pause");
+
+        videoDriveRef.current.play();
+
+        setTimeout(() => {
+          if (
+            !videoDriveRef.current?.paused
+          ) {
+            setOverlayIcon(null);
+          }
+        }, 700);
+
+      } else {
+
+        if (overlayIcon !== "pause") {
+
+          setOverlayIcon("pause");
+
+        } else {
+
+          videoDriveRef.current.pause();
+
+          setOverlayIcon("play");
+
+        }
+
       }
-    }, 700);
+    }}
+    style={{
+      position: "absolute",
+      inset: 0,
 
-  } else {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
 
-    if (overlayIcon !== "pause") {
+      zIndex: 8000,
 
-      setOverlayIcon("pause");
-
-    } else {
-
-      videoDriveRef.current.pause();
-
-      setOverlayIcon("play");
-
-    }
-
-  }
-}}
-style={{
-  position: "absolute",
-  inset: 0,
-
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-
-  zIndex: 8000,
-
-  cursor: "pointer",
-}}
->
+      cursor: "pointer",
+    }}
+  >
   <img
     src={
       overlayIcon === "play"
@@ -677,19 +687,16 @@ style={{
   e.stopPropagation();
 
   const video =
-    document.querySelector("video");
+    videoDriveRef.current;
 
-  console.log(
-    "TEMPO ANTES:",
-    video.currentTime
-  );
+  if (!video) return;
 
   video.currentTime -= 10;
 
-  console.log(
-    "TEMPO DEPOIS:",
-    video.currentTime
-  );
+  socket.emit("seekVideo", {
+    sala: salaAtual,
+    tempo: video.currentTime,
+  });
 }}
   style={{
   width: "28px",

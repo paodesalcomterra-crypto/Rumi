@@ -143,36 +143,58 @@ useEffect(() => {
     );
   });
 
-  socket.on("videoTrocado", (videoId) => {
+  socket.on("videoTrocado", ({ videoId, tipo }) => {
+  if (tipo === "youtube") {
+    setTipoVideo("youtube");
     setVideoAtual(videoId);
-  });
+  }
+
+  if (tipo === "drive") {
+    setTipoVideo("drive");
+
+    setVideoDriveUrl(
+      `https://rumi-backend-6j0l.onrender.com/drive/stream/${videoId}`
+    );
+  }
+});
 
   socket.on("estadoAtual", (estado) => {
-    if (estado.videoId) {
-      setVideoAtual(estado.videoId);
+  if (!estado.videoId) return;
+
+  if (estado.tipo === "youtube") {
+    setTipoVideo("youtube");
+    setVideoAtual(estado.videoId);
+
+    setTimeout(() => {
+      if (!playerRef.current) return;
+
+      ignorarEvento.current = true;
+
+      playerRef.current.seekTo(
+        estado.tempo || 0,
+        true
+      );
+
+      if (estado.pausado) {
+        playerRef.current.pauseVideo();
+      } else {
+        playerRef.current.playVideo();
+      }
 
       setTimeout(() => {
-        if (!playerRef.current) return;
+        ignorarEvento.current = false;
+      }, 500);
+    }, 1500);
+  }
 
-        ignorarEvento.current = true;
+  if (estado.tipo === "drive") {
+    setTipoVideo("drive");
 
-        playerRef.current.seekTo(
-          estado.tempo || 0,
-          true
-        );
-
-        if (estado.pausado) {
-          playerRef.current.pauseVideo();
-        } else {
-          playerRef.current.playVideo();
-        }
-
-        setTimeout(() => {
-          ignorarEvento.current = false;
-        }, 500);
-      }, 1500);
-    }
-  });
+    setVideoDriveUrl(
+      `https://rumi-backend-6j0l.onrender.com/drive/stream/${estado.videoId}`
+    );
+  }
+});
 
   socket.on("playVideo", ({ tempo }) => {
     if (!playerRef.current) return;
@@ -783,7 +805,7 @@ style={{
 
 <div
   style={{
-    height: "33px",
+    height: "32.2px",
 
     position: "relative",
     top: "-4.5px",
@@ -968,7 +990,7 @@ style={{
     width: "289px",
     maxWidth: "85vw",
 
-    height: "91%",
+    height: "90.8%",
 
     zIndex: 500,
 
@@ -1149,10 +1171,11 @@ overflowY: "auto",
   {videosYoutube.map((video) => (
   <div
     key={video.id.videoId}
-    onClick={() => {
+   onClick={() => {
   socket.emit("trocarVideo", {
     sala: salaAtual,
     videoId: video.id.videoId,
+    tipo: "youtube",
   });
 
   setYoutubeAberto(false);
@@ -1235,40 +1258,46 @@ overflowY: "auto",
       }}
     >
       {arquivosDrive.map((arquivo) => (
-        <div
-          key={arquivo.id}
-          onClick={() => {
-            console.log(
-              "ARQUIVO COMPLETO:",
-              arquivo
-            );
+  <div
+    key={arquivo.id}
+    onClick={() => {
+      console.log(
+        "ARQUIVO COMPLETO:",
+        arquivo
+      );
 
-            const url =
+      const url =
 `https://rumi-backend-6j0l.onrender.com/drive/stream/${arquivo.id}`;
 
-            console.log(
-              "URL ESCOLHIDA:",
-              url
-            );
+      console.log(
+        "URL ESCOLHIDA:",
+        url
+      );
 
-            setTipoVideo("drive");
-            setVideoDriveUrl(url);
+      socket.emit("trocarVideo", {
+        sala: salaAtual,
+        videoId: arquivo.id,
+        tipo: "drive",
+      });
 
-            setTimeout(() => {
-              console.log(
-                "tipoVideo depois:",
-                tipoVideo
-              );
+      setTipoVideo("drive");
+      setVideoDriveUrl(url);
 
-              console.log(
-                "videoDriveUrl depois:",
-                videoDriveUrl
-              );
-            }, 1000);
+      setTimeout(() => {
+        console.log(
+          "tipoVideo depois:",
+          tipoVideo
+        );
 
-            setDriveAberto(false);
-            setBuscaAberta(false);
-          }}
+        console.log(
+          "videoDriveUrl depois:",
+          videoDriveUrl
+        );
+      }, 1000);
+
+      setDriveAberto(false);
+      setBuscaAberta(false);
+    }}
           style={{
             background:
               "rgba(255,255,255,.08)",

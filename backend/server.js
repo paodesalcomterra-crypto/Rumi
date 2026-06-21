@@ -317,16 +317,20 @@ io.on("connection", (socket) => {
   });
 
   socket.on(
-    "trocarVideo",
-    ({ sala, videoId }) => {
-      salas[sala].videoId = videoId;
+  "trocarVideo",
+  ({ sala, videoId, tipo }) => {
+    salas[sala].videoId = videoId;
+    salas[sala].tipo = tipo;
 
-      io.to(sala).emit(
-        "videoTrocado",
-        videoId
-      );
-    }
-  );
+    io.to(sala).emit(
+      "videoTrocado",
+      {
+        videoId,
+        tipo,
+      }
+    );
+  }
+);
 
   socket.on(
     "playVideo",

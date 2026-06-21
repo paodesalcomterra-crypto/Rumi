@@ -294,27 +294,81 @@ io.on("connection", (socket) => {
     }
   );
 
-  socket.on("entrarCanalVoz", () => {
-    if (!socket.codigoSala) return;
+ if (!global.canaisVoz) {
+  global.canaisVoz = {};
+}
 
-    socket.to(socket.codigoSala).emit(
+socket.on("entrarCanalVoz", () => {
+
+  if (!socket.codigoSala) return;
+
+  if (!global.canaisVoz[socket.codigoSala]) {
+    global.canaisVoz[socket.codigoSala] = [];
+  }
+
+  const usuariosJaNoCanal =
+    global.canaisVoz[socket.codigoSala];
+
+  usuariosJaNoCanal.forEach((id) => {
+
+    io.to(socket.id).emit(
       "usuarioEntrouVoz",
       {
-        socketId: socket.id,
+        socketId: id,
       }
     );
+
   });
 
-  socket.on("sairCanalVoz", () => {
-    if (!socket.codigoSala) return;
-
-    socket.to(socket.codigoSala).emit(
-      "usuarioSaiuVoz",
-      {
-        socketId: socket.id,
-      }
+  if (
+    !global.canaisVoz[socket.codigoSala].includes(
+      socket.id
+    )
+  ) {
+    global.canaisVoz[socket.codigoSala].push(
+      socket.id
     );
-  });
+  }
+
+  socket.to(socket.codigoSala).emit(
+    "usuarioEntrouVoz",
+    {
+      socketId: socket.id,
+    }
+  );
+
+});
+
+socket.on("sairCanalVoz", () => {
+
+  if (!socket.codigoSala) return;
+
+  if (
+    global.canaisVoz?.[
+      socket.codigoSala
+    ]
+  ) {
+
+    global.canaisVoz[
+      socket.codigoSala
+    ] =
+      global.canaisVoz[
+        socket.codigoSala
+      ].filter(
+        (id) =>
+          id !== socket.id
+      );
+
+  }
+
+  socket.to(socket.codigoSala).emit(
+    "usuarioSaiuVoz",
+    {
+      socketId: socket.id,
+    }
+  );
+
+});
 
   socket.on(
   "offer",

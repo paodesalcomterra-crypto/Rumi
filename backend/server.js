@@ -377,6 +377,20 @@ io.on("connection", (socket) => {
   );
 
   socket.on(
+  "overlayVideo",
+  ({ sala, overlay }) => {
+
+    io.to(sala).emit(
+      "overlayVideo",
+      {
+        overlay,
+      }
+    );
+
+  }
+);
+
+  socket.on(
     "enviarMensagem",
     ({ sala, mensagem }) => {
       io.to(sala).emit(

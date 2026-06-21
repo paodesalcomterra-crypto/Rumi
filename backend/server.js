@@ -317,6 +317,51 @@ io.on("connection", (socket) => {
   });
 
   socket.on(
+  "offer",
+  ({ targetId, offer }) => {
+
+    io.to(targetId).emit(
+      "offer",
+      {
+        senderId: socket.id,
+        offer,
+      }
+    );
+
+  }
+);
+
+socket.on(
+  "answer",
+  ({ targetId, answer }) => {
+
+    io.to(targetId).emit(
+      "answer",
+      {
+        senderId: socket.id,
+        answer,
+      }
+    );
+
+  }
+);
+
+socket.on(
+  "iceCandidate",
+  ({ targetId, candidate }) => {
+
+    io.to(targetId).emit(
+      "iceCandidate",
+      {
+        senderId: socket.id,
+        candidate,
+      }
+    );
+
+  }
+);
+
+  socket.on(
   "trocarVideo",
   ({ sala, videoId, tipo }) => {
     salas[sala].videoId = videoId;

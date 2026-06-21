@@ -72,6 +72,8 @@ const [videoPausado, setVideoPausado] =
 
   const localStreamRef = useRef(null);
 
+  const peerConnectionsRef = useRef({});
+
 const peersRef = useRef({});
 
 const [videoAtual, setVideoAtual] = useState("");
@@ -126,22 +128,247 @@ useEffect(() => {
   });
 
   socket.on("atualizarPerfis", (usuarios) => {
-    setUsuariosSala(usuarios);
-  });
+  setUsuariosSala(usuarios);
+});
 
-  socket.on("usuarioEntrouVoz", ({ socketId }) => {
-    console.log(
-      "Entrou no canal de voz:",
-      socketId
-    );
-  });
+socket.on(
+  "usuarioEntrouVoz",
+  async ({ socketId }) => {
 
-  socket.on("usuarioSaiuVoz", ({ socketId }) => {
-    console.log(
-      "Saiu do canal de voz:",
+    if (!localStreamRef.current)
+      return;
+
+    const peer =
+      new RTCPeerConnection({
+        iceServers: [
+          {
+            urls:
+              "stun:stun.l.google.com:19302",
+          },
+        ],
+      });
+
+    peerConnectionsRef.current[
       socketId
+    ] = peer;
+
+    localStreamRef.current
+      .getTracks()
+      .forEach((track) => {
+        peer.addTrack(
+          track,
+          localStreamRef.current
+        );
+      });
+
+    peer.onicecandidate = (
+      event
+    ) => {
+
+      if (event.candidate) {
+
+        socket.emit(
+          "iceCandidate",
+          {
+            targetId: socketId,
+            candidate:
+              event.candidate,
+          }
+        );
+
+      }
+
+    };
+
+    peer.ontrack = (
+      event
+    ) => {
+
+      const audio =
+        new Audio();
+
+      audio.srcObject =
+        event.streams[0];
+
+      audio.play();
+
+    };
+
+    const offer =
+      await peer.createOffer();
+
+    await peer.setLocalDescription(
+      offer
     );
-  });
+
+    socket.emit("offer", {
+      targetId: socketId,
+      offer,
+    });
+
+  }
+);
+
+socket.on(
+  "usuarioSaiuVoz",
+  ({ socketId }) => {
+
+    if (
+      peerConnectionsRef.current[
+        socketId
+      ]
+    ) {
+
+      peerConnectionsRef.current[
+        socketId
+      ].close();
+
+      delete peerConnectionsRef.current[
+        socketId
+      ];
+
+    }
+
+  }
+);
+
+socket.on(
+  "offer",
+  async ({
+    senderId,
+    offer,
+  }) => {
+
+    if (!localStreamRef.current)
+      return;
+
+    const peer =
+      new RTCPeerConnection({
+        iceServers: [
+          {
+            urls:
+              "stun:stun.l.google.com:19302",
+          },
+        ],
+      });
+
+    peerConnectionsRef.current[
+      senderId
+    ] = peer;
+
+    localStreamRef.current
+      .getTracks()
+      .forEach((track) => {
+        peer.addTrack(
+          track,
+          localStreamRef.current
+        );
+      });
+
+    peer.onicecandidate = (
+      event
+    ) => {
+
+      if (event.candidate) {
+
+        socket.emit(
+          "iceCandidate",
+          {
+            targetId:
+              senderId,
+            candidate:
+              event.candidate,
+          }
+        );
+
+      }
+
+    };
+
+    peer.ontrack = (
+      event
+    ) => {
+
+      const audio =
+        new Audio();
+
+      audio.srcObject =
+        event.streams[0];
+
+      audio.play();
+
+    };
+
+    await peer.setRemoteDescription(
+      new RTCSessionDescription(
+        offer
+      )
+    );
+
+    const answer =
+      await peer.createAnswer();
+
+    await peer.setLocalDescription(
+      answer
+    );
+
+    socket.emit(
+      "answer",
+      {
+        targetId:
+          senderId,
+        answer,
+      }
+    );
+
+  }
+);
+
+socket.on(
+  "answer",
+  async ({
+    senderId,
+    answer,
+  }) => {
+
+    const peer =
+      peerConnectionsRef.current[
+        senderId
+      ];
+
+    if (!peer) return;
+
+    await peer.setRemoteDescription(
+      new RTCSessionDescription(
+        answer
+      )
+    );
+
+  }
+);
+
+socket.on(
+  "iceCandidate",
+  async ({
+    senderId,
+    candidate,
+  }) => {
+
+    const peer =
+      peerConnectionsRef.current[
+        senderId
+      ];
+
+    if (!peer) return;
+
+    await peer.addIceCandidate(
+      new RTCIceCandidate(
+        candidate
+      )
+    );
+
+  }
+);
 
   socket.on("videoTrocado", ({ videoId, tipo }) => {
   if (tipo === "youtube") {
@@ -280,6 +507,16 @@ socket.on("seekVideo", ({ tempo }) => {
 
   }
 });
+
+socket.on(
+  "overlayVideo",
+  ({ overlay }) => {
+
+    setOverlayIcon(overlay);
+
+  }
+);
+
   return () => {
   socket.off("novaMensagem");
   socket.off("atualizarQuantidade");
@@ -291,6 +528,7 @@ socket.on("seekVideo", ({ tempo }) => {
   socket.off("playVideo");
   socket.off("pauseVideo");
   socket.off("seekVideo");
+  socket.off("overlayVideo");
 };
 }, [salaAtual, tipoVideo]);
 
@@ -380,35 +618,62 @@ setArquivosDrive(
 }
 
 async function ativarMicrofone() {
+
   if (microfoneLigado) {
+
+    Object.values(
+      peerConnectionsRef.current
+    ).forEach((peer) => {
+      peer.close();
+    });
+
+    peerConnectionsRef.current = {};
+
     if (localStreamRef.current) {
+
       localStreamRef.current
         .getTracks()
-        .forEach((track) => track.stop());
+        .forEach((track) =>
+          track.stop()
+        );
 
-      localStreamRef.current = null;
+      localStreamRef.current =
+        null;
+
     }
 
-    socket.emit("sairCanalVoz");
+    socket.emit(
+      "sairCanalVoz"
+    );
 
     setMicrofoneLigado(false);
 
     return;
+
   }
 
   try {
+
     const stream =
       await navigator.mediaDevices.getUserMedia({
         audio: true,
       });
 
-    localStreamRef.current = stream;
+    localStreamRef.current =
+      stream;
 
-    socket.emit("entrarCanalVoz");
+    socket.emit(
+      "entrarCanalVoz"
+    );
 
     setMicrofoneLigado(true);
+
   } catch (erro) {
-    console.log("ERRO MICROFONE:");
+
+    console.log(
+      "ERRO MICROFONE:"
+    );
+
     console.log(erro);
 
     alert(
@@ -417,7 +682,9 @@ async function ativarMicrofone() {
         " - " +
         erro.message
     );
+
   }
+
 }
 
 function enviarMensagem() {
@@ -629,6 +896,11 @@ style={{
 
       if (videoDriveRef.current.paused) {
 
+        socket.emit("overlayVideo", {
+          sala: salaAtual,
+          overlay: "pause",
+        });
+
         setOverlayIcon("pause");
 
         videoDriveRef.current.play();
@@ -637,6 +909,12 @@ style={{
           if (
             !videoDriveRef.current?.paused
           ) {
+
+            socket.emit("overlayVideo", {
+              sala: salaAtual,
+              overlay: null,
+            });
+
             setOverlayIcon(null);
           }
         }, 700);
@@ -645,13 +923,23 @@ style={{
 
         if (overlayIcon !== "pause") {
 
+          socket.emit("overlayVideo", {
+            sala: salaAtual,
+            overlay: "pause",
+          });
+
           setOverlayIcon("pause");
 
         } else {
 
           videoDriveRef.current.pause();
 
-          setOverlayIcon("play");
+socket.emit("overlayVideo", {
+  sala: salaAtual,
+  overlay: "play",
+});
+
+setOverlayIcon("play");
 
         }
 

@@ -197,6 +197,15 @@ useEffect(() => {
 });
 
   socket.on("playVideo", ({ tempo }) => {
+
+  console.log(
+    "PLAY RECEBIDO",
+    tempo,
+    tipoVideo
+  );
+
+  if (tipoVideo === "youtube") {
+
     if (!playerRef.current) return;
 
     ignorarEvento.current = true;
@@ -207,9 +216,27 @@ useEffect(() => {
     setTimeout(() => {
       ignorarEvento.current = false;
     }, 500);
-  });
 
-  socket.on("pauseVideo", ({ tempo }) => {
+  } else {
+
+    if (!videoDriveRef.current) return;
+
+    videoDriveRef.current.currentTime = tempo;
+    videoDriveRef.current.play();
+
+  }
+});
+
+socket.on("pauseVideo", ({ tempo }) => {
+
+  console.log(
+    "PAUSE RECEBIDO",
+    tempo,
+    tipoVideo
+  );
+
+  if (tipoVideo === "youtube") {
+
     if (!playerRef.current) return;
 
     ignorarEvento.current = true;
@@ -220,9 +247,21 @@ useEffect(() => {
     setTimeout(() => {
       ignorarEvento.current = false;
     }, 500);
-  });
 
-  socket.on("seekVideo", ({ tempo }) => {
+  } else {
+
+    if (!videoDriveRef.current) return;
+
+    videoDriveRef.current.currentTime = tempo;
+    videoDriveRef.current.pause();
+
+  }
+});
+
+socket.on("seekVideo", ({ tempo }) => {
+
+  if (tipoVideo === "youtube") {
+
     if (!playerRef.current) return;
 
     ignorarEvento.current = true;
@@ -232,8 +271,15 @@ useEffect(() => {
     setTimeout(() => {
       ignorarEvento.current = false;
     }, 500);
-  });
 
+  } else {
+
+    if (!videoDriveRef.current) return;
+
+    videoDriveRef.current.currentTime = tempo;
+
+  }
+});
   return () => {
   socket.off("novaMensagem");
   socket.off("atualizarQuantidade");
@@ -246,7 +292,7 @@ useEffect(() => {
   socket.off("pauseVideo");
   socket.off("seekVideo");
 };
-}, [salaAtual]);
+}, [salaAtual, tipoVideo]);
 
 useEffect(() => {
   if (!chatRef.current) return;
@@ -732,49 +778,41 @@ style={{
   onClick={(e) => {
     e.stopPropagation();
 
-    console.log(
-      "VIDEO REF:",
-      videoDriveRef.current
-    );
+    const video =
+      videoDriveRef.current;
 
-    if (!videoDriveRef.current)
-      return;
+    if (!video) return;
 
-    console.log(
-      "ANTES:",
-      videoDriveRef.current.currentTime
-    );
+    video.currentTime += 10;
 
-    videoDriveRef.current.currentTime =
-      videoDriveRef.current.currentTime + 10;
-
-    console.log(
-      "DEPOIS:",
-      videoDriveRef.current.currentTime
-    );
+    socket.emit("seekVideo", {
+      sala: salaAtual,
+      tempo: video.currentTime,
+    });
   }}
   style={{
-  width: "28px",
-  height: "28px",
+    width: "28px",
+    height: "28px",
 
-  position: "relative",
-  top: "-110px",
+    position: "relative",
+    top: "-110px",
 
-  transform: "scale(2.0)",
+    transform: "scale(2.0)",
 
-  opacity:
-  videoPausado || overlayIcon === "pause"
-    ? 1
-    : 0,
+    opacity:
+      videoPausado ||
+      overlayIcon === "pause"
+        ? 1
+        : 0,
 
-  transition: "opacity .45s ease",
+    transition: "opacity .45s ease",
 
-  cursor: "pointer",
+    cursor: "pointer",
 
-  pointerEvents: videoPausado
-    ? "auto"
-    : "none",
-}}
+    pointerEvents: videoPausado
+      ? "auto"
+      : "none",
+  }}
 />
       <img
   src={telacheia}

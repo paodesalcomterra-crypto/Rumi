@@ -64,6 +64,8 @@ const [videoPausado, setVideoPausado] =
 
   const videoDriveRef = useRef(null);
 
+  const chatRef = useRef(null);
+
   const ultimoTempo = useRef(0);
 
   const localStreamRef = useRef(null);
@@ -209,18 +211,26 @@ useEffect(() => {
   });
 
   return () => {
-    socket.off("novaMensagem");
-    socket.off("atualizarQuantidade");
-    socket.off("atualizarPerfis");
-    socket.off("usuarioEntrouVoz");
-    socket.off("usuarioSaiuVoz");
-    socket.off("videoTrocado");
-    socket.off("estadoAtual");
-    socket.off("playVideo");
-    socket.off("pauseVideo");
-    socket.off("seekVideo");
-  };
+  socket.off("novaMensagem");
+  socket.off("atualizarQuantidade");
+  socket.off("atualizarPerfis");
+  socket.off("usuarioEntrouVoz");
+  socket.off("usuarioSaiuVoz");
+  socket.off("videoTrocado");
+  socket.off("estadoAtual");
+  socket.off("playVideo");
+  socket.off("pauseVideo");
+  socket.off("seekVideo");
+};
 }, [salaAtual]);
+
+useEffect(() => {
+  if (!chatRef.current) return;
+
+  chatRef.current.scrollTop =
+    chatRef.current.scrollHeight;
+}, [mensagens]);
+
 useEffect(() => {
   const intervalo = setInterval(() => {
     if (!playerRef.current) return;
@@ -550,7 +560,7 @@ style={{
     ) {
       setOverlayIcon(null);
     }
-  }, 1200);
+  }, 700);
 } else {
   videoDriveRef.current.pause();
 
@@ -647,16 +657,24 @@ transition:
   );
 }}
   style={{
-    width: "28px",
-    height: "28px",
+  width: "28px",
+  height: "28px",
 
-    position: "relative",
-    top: "-110px",
+  position: "relative",
+  top: "-110px",
 
-    transform: "scale(2.0)",
+  transform: "scale(2.0)",
 
-    cursor: "pointer",
-  }}
+  opacity: videoPausado ? 1 : 0,
+
+  transition: "opacity .45s ease",
+
+  cursor: "pointer",
+
+  pointerEvents: videoPausado
+    ? "auto"
+    : "none",
+}}
 />
 
   
@@ -691,16 +709,24 @@ transition:
     );
   }}
   style={{
-    width: "28px",
-    height: "28px",
+  width: "28px",
+  height: "28px",
 
-    position: "relative",
-    top: "-110px",
+  position: "relative",
+  top: "-110px",
 
-    transform: "scale(2.0)",
+  transform: "scale(2.0)",
 
-    cursor: "pointer",
-  }}
+  opacity: videoPausado ? 1 : 0,
+
+  transition: "opacity .45s ease",
+
+  cursor: "pointer",
+
+  pointerEvents: videoPausado
+    ? "auto"
+    : "none",
+}}
 />
       <img
   src={telacheia}
@@ -736,6 +762,10 @@ transition:
 <div
   style={{
     height: "33px",
+
+    position: "relative",
+    top: "-4.5px",
+
     background: "rgba(0,0,0,.45)",
     backdropFilter: "blur(14px)",
     WebkitBackdropFilter: "blur(14px)",
@@ -790,16 +820,17 @@ transition:
   />
 
   <img
-    src={manete}
-    alt=""
-    style={{
-      width: "46px",
-      height: "46px",
-      objectFit: "contain",
-      cursor: "pointer",
-      marginLeft: "28px",
-    }}
-  />
+  src={lupa}
+  alt=""
+  onClick={() => setBuscaAberta(true)}
+  style={{
+    width: "48px",
+    height: "48px",
+    objectFit: "contain",
+    cursor: "pointer",
+    marginLeft: "29px",
+  }}
+/>
 
 <div
   style={{
@@ -822,23 +853,23 @@ transition:
 </div>
 
   <img
-  src={lupa}
+  src={manete}
   alt=""
   onClick={() => setBuscaAberta(true)}
   style={{
-    width: "40px",
-    height: "40px",
+    width: "43px",
+    height: "43px",
     objectFit: "contain",
     cursor: "pointer",
-    marginRight: "20px",
+    marginRight: "23px",
   }}
 />
 
-  <div
+<div
   style={{
     position: "relative",
     width: "40px",
-    height: "40px",
+    height: "42px",
   }}
 >
   <img
@@ -850,8 +881,8 @@ transition:
     )
   }
   style={{
-    width: "42px",
-    height: "42px",
+    width: "41px",
+    height: "41px",
     objectFit: "contain",
     cursor: "pointer",
   }}
@@ -915,7 +946,7 @@ transition:
     width: "289px",
     maxWidth: "85vw",
 
-    height: "90.6%",
+    height: "91%",
 
     zIndex: 500,
 
@@ -1363,104 +1394,118 @@ overflowY: "auto",
 
       {/* CHAT FLUTUANTE */}
 
-      <div
+<div
+  ref={chatRef}
   style={{
     position: "absolute",
-    top: "333px",
+    top: "327px",
     left: 0,
     right: 0,
     bottom: "95px",
+
     overflowY: "auto",
+    overflowX: "hidden",
+
+    WebkitOverflowScrolling: "touch",
+
     padding: "5px",
     zIndex: 10,
 
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flex-end",
   }}
 >
-        {mensagens.map((msg, index) => {
-  const souEu = msg.nome === meuId;
+  <div
+    style={{
+      marginTop: "auto",
+    }}
+  >
+    {mensagens.map((msg, index) => {
+      const souEu = msg.nome === meuId;
 
-  return (
-    <div
-      key={index}
-      style={{
-        display: "flex",
-        justifyContent: souEu ? "flex-end" : "flex-start",
-        marginBottom: "18px",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: souEu ? "row-reverse" : "row",
-          alignItems: "flex-start",
-          gap: "10px",
-          maxWidth: "85%",
-        }}
-      >
-        <img
-  src={
-    msg.foto ||
-    "https://ui-avatars.com/api/?name=" +
-      encodeURIComponent(msg.nome)
-  }
-  alt=""
-  style={{
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    flexShrink: 0,
-
-    border: "2px solid white",
-    boxSizing: "border-box",
-
-    boxShadow: "0 0 10px rgba(0,0,0,.4)",
-  }}
-/>
-
+      return (
         <div
+          key={index}
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: souEu ? "flex-end" : "flex-start",
+            justifyContent: souEu ? "flex-end" : "flex-start",
+            marginBottom: "18px",
           }}
         >
-          {!souEu && (
-            <div
-              style={{
-                color: "#fff",
-                fontWeight: "bold",
-                marginBottom: "4px",
-                textShadow: "0 0 8px rgba(0,0,0,.8)",
-              }}
-            >
-              {msg.nome}
-            </div>
-          )}
-
           <div
             style={{
-              background: "rgba(0,0,0,.45)",
-              backdropFilter: "blur(8px)",
-              color: "#fff",
-              padding: "10px 14px",
-              borderRadius: "16px",
-              maxWidth: "100%",
-              wordBreak: "break-word",
-              textAlign: souEu ? "right" : "left",
+              display: "flex",
+              flexDirection: souEu ? "row-reverse" : "row",
+              alignItems: "flex-start",
+              gap: "10px",
+              maxWidth: "85%",
             }}
           >
-            {msg.texto}
+            <img
+              src={
+                msg.foto ||
+                "https://ui-avatars.com/api/?name=" +
+                  encodeURIComponent(msg.nome)
+              }
+              alt=""
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                flexShrink: 0,
+
+                border: "2px solid white",
+                boxSizing: "border-box",
+
+                boxShadow: "0 0 10px rgba(0,0,0,.4)",
+              }}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: souEu ? "flex-end" : "flex-start",
+              }}
+            >
+              {!souEu && (
+                <div
+                  style={{
+                    color: "#fff",
+                    fontWeight: "bold",
+                    marginBottom: "4px",
+                    textShadow:
+                      "0 0 8px rgba(0,0,0,.8)",
+                  }}
+                >
+                  {msg.nome}
+                </div>
+              )}
+
+              <div
+                style={{
+                  background: "rgba(0,0,0,.45)",
+                  backdropFilter: "blur(8px)",
+                  color: "#fff",
+                  padding: "10px 14px",
+                  borderRadius: "16px",
+                  maxWidth: "100%",
+                  wordBreak: "break-word",
+                  textAlign: souEu
+                    ? "right"
+                    : "left",
+                }}
+              >
+                {msg.texto}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-})}
-      </div>
+      );
+    })}
+  </div>
+</div>
 
       {/* BARRA INFERIOR */}
 

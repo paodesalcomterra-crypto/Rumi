@@ -622,6 +622,8 @@ setArquivosDrive(
 
 async function ativarMicrofone() {
 
+  console.log("CLICOU MICROFONE");
+
   if (microfoneLigado) {
 
     Object.values(
@@ -662,12 +664,14 @@ async function ativarMicrofone() {
         audio: true,
       });
 
+      console.log("MICROFONE LIBERADO");
+
     localStreamRef.current =
       stream;
 
-    socket.emit(
-      "entrarCanalVoz"
-    );
+    console.log("EMITINDO entrarCanalVoz");
+
+socket.emit("entrarCanalVoz");
 
     setMicrofoneLigado(true);
 

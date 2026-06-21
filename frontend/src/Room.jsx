@@ -66,6 +66,8 @@ const [videoPausado, setVideoPausado] =
 
   const chatRef = useRef(null);
 
+  const inputMensagemRef = useRef(null);
+
   const ultimoTempo = useRef(0);
 
   const localStreamRef = useRef(null);
@@ -543,42 +545,52 @@ style={{
 />
 
 <div
-  onClick={() => {
-    if (!videoDriveRef.current)
-      return;
+ onClick={() => {
+  if (!videoDriveRef.current)
+    return;
 
-    if (
-  videoDriveRef.current.paused
-) {
-  setOverlayIcon("pause");
+  if (videoDriveRef.current.paused) {
 
-  videoDriveRef.current.play();
+    setOverlayIcon("pause");
 
-  setTimeout(() => {
-    if (
-      !videoDriveRef.current?.paused
-    ) {
-      setOverlayIcon(null);
+    videoDriveRef.current.play();
+
+    setTimeout(() => {
+      if (
+        !videoDriveRef.current?.paused
+      ) {
+        setOverlayIcon(null);
+      }
+    }, 700);
+
+  } else {
+
+    if (overlayIcon !== "pause") {
+
+      setOverlayIcon("pause");
+
+    } else {
+
+      videoDriveRef.current.pause();
+
+      setOverlayIcon("play");
+
     }
-  }, 700);
-} else {
-  videoDriveRef.current.pause();
 
-  setOverlayIcon("play");
-}
-  }}
-  style={{
-    position: "absolute",
-    inset: 0,
+  }
+}}
+style={{
+  position: "absolute",
+  inset: 0,
 
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 
-    zIndex: 8000,
+  zIndex: 8000,
 
-    cursor: "pointer",
-  }}
+  cursor: "pointer",
+}}
 >
   <img
     src={
@@ -589,24 +601,25 @@ style={{
     alt=""
     style={{
       width:
-  overlayIcon === "pause"
-    ? "260px"
-    : "46px",
+        overlayIcon === "pause"
+          ? "260px"
+          : "46px",
 
-height:
-  overlayIcon === "pause"
-    ? "260px"
-    : "46px",
+      height:
+        overlayIcon === "pause"
+          ? "260px"
+          : "46px",
 
-opacity:
-  overlayIcon ? 1 : 0,
+      opacity:
+        overlayIcon ? 1 : 0,
 
-transform: overlayIcon
-  ? "translateY(-22px) scale(1)"
-  : "translateY(-22px) scale(.65)",
+      transform: overlayIcon
+        ? "translateY(-22px) scale(1)"
+        : "translateY(-22px) scale(.65)",
 
-transition:
-  "opacity 0.1s cubic-bezier(.22,1,.36,1), transform 1.4s cubic-bezier(.22,1,.36,1)",
+      transition:
+        "opacity 0.1s cubic-bezier(.22,1,.36,1), transform 1.4s cubic-bezier(.22,1,.36,1)",
+
       pointerEvents: "none",
 
       userSelect: "none",
@@ -665,7 +678,10 @@ transition:
 
   transform: "scale(2.0)",
 
-  opacity: videoPausado ? 1 : 0,
+  opacity:
+  videoPausado || overlayIcon === "pause"
+    ? 1
+    : 0,
 
   transition: "opacity .45s ease",
 
@@ -717,7 +733,10 @@ transition:
 
   transform: "scale(2.0)",
 
-  opacity: videoPausado ? 1 : 0,
+  opacity:
+  videoPausado || overlayIcon === "pause"
+    ? 1
+    : 0,
 
   transition: "opacity .45s ease",
 
@@ -744,7 +763,10 @@ transition:
     top: "-43px",
     right: "-120px",
 
-    opacity: videoPausado ? 1 : 0,
+    opacity:
+  videoPausado || overlayIcon === "pause"
+    ? 1
+    : 0,
 
     transition:
       "opacity .45s ease",
@@ -1562,44 +1584,57 @@ overflowY: "auto",
 </button>
 
         <input
-          value={novaMensagem}
-          onChange={(e) => setNovaMensagem(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              enviarMensagem();
-            }
-          }}
-          placeholder="Bate-papo..."
-          style={{
-            flex: 1,
-            border: "none",
-            outline: "none",
-            borderRadius: "999px",
-            padding: "14px 18px",
-            background: "rgba(255,255,255,.12)",
-            color: "#fff",
-            backdropFilter: "blur(10px)",
-          }}
-        />
+  ref={inputMensagemRef}
+  value={novaMensagem}
+  onChange={(e) => setNovaMensagem(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
 
-        <button
-          onClick={enviarMensagem}
-          style={{
-            width: "52px",
-            height: "52px",
-            borderRadius: "50%",
-            border: "none",
-            background: "#ff8edb",
-            color: "#fff",
-            fontSize: "18px",
-            cursor: "pointer",
-          }}
-        >
-          ➤
-        </button>
-      </div>
-    </div>
-  );
+      enviarMensagem();
+
+      setTimeout(() => {
+        inputMensagemRef.current?.focus();
+      }, 10);
+    }
+  }}
+  placeholder="Bate-papo..."
+  style={{
+    flex: 1,
+    border: "none",
+    outline: "none",
+    borderRadius: "999px",
+    padding: "14px 18px",
+    background: "rgba(255,255,255,.12)",
+    color: "#fff",
+    backdropFilter: "blur(10px)",
+  }}
+/>
+
+<button
+  onClick={() => {
+    enviarMensagem();
+
+    setTimeout(() => {
+      inputMensagemRef.current?.focus();
+    }, 10);
+  }}
+  style={{
+    width: "52px",
+    height: "52px",
+    borderRadius: "50%",
+    border: "none",
+    background: "#ff8edb",
+    color: "#fff",
+    fontSize: "18px",
+    cursor: "pointer",
+  }}
+>
+  ➤
+</button>
+</div>
+</div>
+);
 }
 
 export default Room;

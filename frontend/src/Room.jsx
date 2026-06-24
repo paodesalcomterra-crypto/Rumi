@@ -31,6 +31,10 @@ function Room({
   salaAtual,
   usuario,
 }) {
+
+  console.log("ROOM RENDERIZOU");
+console.log("SOCKET ID ATUAL:", socket.id);
+
   const [microfoneLigado, setMicrofoneLigado] = useState(false);
 
  const [mensagens, setMensagens] = useState([]);

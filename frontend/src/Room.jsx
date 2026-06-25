@@ -32,6 +32,12 @@ function Room({
   usuario,
 }) {
 
+  console.log(
+  "ROOM MONTADO",
+  salaAtual,
+  usuario?.displayName
+);
+
   console.log("ROOM RENDERIZOU");
 console.log("SOCKET ID ATUAL:", socket.id);
 

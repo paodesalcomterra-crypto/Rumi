@@ -465,12 +465,17 @@ socket.on(
 
     if (!videoDriveRef.current) return;
 
+    ignorarEvento.current = true;
+
     videoDriveRef.current.currentTime = tempo;
     videoDriveRef.current.play();
 
+    setTimeout(() => {
+      ignorarEvento.current = false;
+    }, 500);
+
   }
 });
-
 socket.on("pauseVideo", ({ tempo }) => {
 
   console.log(
@@ -496,8 +501,14 @@ socket.on("pauseVideo", ({ tempo }) => {
 
     if (!videoDriveRef.current) return;
 
+    ignorarEvento.current = true;
+
     videoDriveRef.current.currentTime = tempo;
     videoDriveRef.current.pause();
+
+    setTimeout(() => {
+      ignorarEvento.current = false;
+    }, 500);
 
   }
 });
@@ -883,20 +894,29 @@ style={{
     preload="auto"
     controls={false}
     onPlay={() => {
+
+      if (ignorarEvento.current) return;
+
       setVideoPausado(false);
 
       socket.emit("playVideo", {
         sala: salaAtual,
         tempo: videoDriveRef.current.currentTime,
       });
+
     }}
+
     onPause={() => {
+
+      if (ignorarEvento.current) return;
+
       setVideoPausado(true);
 
       socket.emit("pauseVideo", {
         sala: salaAtual,
         tempo: videoDriveRef.current.currentTime,
       });
+
     }}
     style={{
       width: "100%",

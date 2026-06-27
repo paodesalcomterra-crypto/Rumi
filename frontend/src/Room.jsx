@@ -17,7 +17,7 @@ import avançar10segundos from "./assets/avançar10segundos.png";
 import voltar10segundos from "./assets/voltar10segundos.png";
 import telacheia from "./assets/telacheia.png";
 
-const socket = io("https://rumi-backend-6j0l.onrender.com");
+const socket = io("https://rumi-production-3089.up.railway.app");
 
 socket.on("connect", () => {
   console.log("SOCKET CONECTADO:", socket.id);
@@ -397,7 +397,7 @@ socket.on(
     setTipoVideo("drive");
 
     setVideoDriveUrl(
-      `https://rumi-backend-6j0l.onrender.com/drive/stream/${videoId}`
+      `https://rumi-production-3089.up.railway.app/drive/stream/${videoId}`
     );
   }
 });
@@ -435,7 +435,7 @@ socket.on(
     setTipoVideo("drive");
 
     setVideoDriveUrl(
-      `https://rumi-backend-6j0l.onrender.com/drive/stream/${estado.videoId}`
+      `https://rumi-production-3089.up.railway.app/drive/stream/${estado.videoId}`
     );
   }
 });
@@ -741,7 +741,7 @@ async function pesquisarYoutube() {
     setCarregandoYoutube(true);
 
     const resposta = await fetch(
-      `https://rumi-backend-6j0l.onrender.com/youtube/search?q=${encodeURIComponent(
+      `https://rumi-production-3089.up.railway.app/youtube/search?q=${encodeURIComponent(
         pesquisaYoutube
       )}`
     );
@@ -1641,7 +1641,7 @@ overflowY: "auto",
       );
 
       const url =
-`https://rumi-backend-6j0l.onrender.com/drive/stream/${arquivo.id}`;
+`https://rumi-production-3089.up.railway.app/drive/stream/${arquivo.id}`;
 
       console.log(
         "URL ESCOLHIDA:",

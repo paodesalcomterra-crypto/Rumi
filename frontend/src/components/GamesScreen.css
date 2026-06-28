@@ -1,0 +1,73 @@
+.games-screen{
+    position:fixed;
+    inset:0;
+
+    background:#1d1d1d;
+
+    z-index:99999;
+
+    display:flex;
+    flex-direction:column;
+
+    animation:gamesEnter .25s ease;
+}
+
+.games-header{
+
+    height:65px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.games-close{
+
+    position:absolute;
+
+    left:15px;
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+}
+
+.games-title{
+
+    color:white;
+
+}
+
+@keyframes gamesEnter{
+
+from{
+
+opacity:0;
+
+transform:translateY(-20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}

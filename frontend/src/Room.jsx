@@ -16,6 +16,7 @@ import pause from "./assets/pause.png";
 import avançar10segundos from "./assets/avançar10segundos.png";
 import voltar10segundos from "./assets/voltar10segundos.png";
 import telacheia from "./assets/telacheia.png";
+import GamesScreen from "./components/GamesScreen/GamesScreen";
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 
@@ -103,6 +104,7 @@ const [driveAberto, setDriveAberto] =
 
 const [googleToken, setGoogleToken] = useState("");
 
+
 const CLIENT_ID =
   "517167715767-t49svli06l2fg3gnrh3d3q29akfou2cc.apps.googleusercontent.com";
 
@@ -110,6 +112,8 @@ const [pesquisaYoutube, setPesquisaYoutube] = useState("");
 const [videosYoutube, setVideosYoutube] = useState([]);
 const [carregandoYoutube, setCarregandoYoutube] = useState(false);
 const [usuariosSala, setUsuariosSala] = useState([]);
+
+const [activeScreen, setActiveScreen] = useState("room");
 
 const meuId =
   usuario?.displayName ||
@@ -784,6 +788,13 @@ return (
       overflow: "hidden",
     }}
   >
+
+  {activeScreen === "games" && (
+  <GamesScreen
+    onClose={() => setActiveScreen("room")}
+  />
+)}
+
    {/* VIDEO */}
 
 <div
@@ -1273,7 +1284,7 @@ setOverlayIcon("play");
   <img
   src={manete}
   alt=""
-  onClick={() => setBuscaAberta(true)}
+  onClick={() => setActiveScreen("games")}
   style={{
     width: "43px",
     height: "43px",

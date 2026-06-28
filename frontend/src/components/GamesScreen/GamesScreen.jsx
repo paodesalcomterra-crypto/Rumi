@@ -1,5 +1,6 @@
 import "./GamesScreen.css";
 import Rumi2 from "../../assets/Rumi2.png";
+import TraveDireita from "../../assets/travedireita.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -43,27 +44,75 @@ export default function GamesScreen({ onClose }) {
         <div className="games-vs">
 
           <div className="vs-row">
+
             <div className="circle"></div>
+
             <span>VS</span>
-            <div className="circle"></div>
+
+            <div className="circle-wrapper-right">
+              <div className="circle"></div>
+
+              <img
+                src={TraveDireita}
+                alt=""
+                className="trave-direita"
+              />
+            </div>
+
           </div>
 
           <div className="vs-row">
+
             <div className="circle"></div>
+
             <span>VS</span>
-            <div className="circle"></div>
+
+            <div className="circle-wrapper-right">
+              <div className="circle"></div>
+
+              <img
+                src={TraveDireita}
+                alt=""
+                className="trave-direita"
+              />
+            </div>
+
           </div>
 
           <div className="vs-row">
+
             <div className="circle"></div>
+
             <span>VS</span>
-            <div className="circle"></div>
+
+            <div className="circle-wrapper-right">
+              <div className="circle"></div>
+
+              <img
+                src={TraveDireita}
+                alt=""
+                className="trave-direita"
+              />
+            </div>
+
           </div>
 
           <div className="vs-row">
+
             <div className="circle"></div>
+
             <span>VS</span>
-            <div className="circle"></div>
+
+            <div className="circle-wrapper-right">
+              <div className="circle"></div>
+
+              <img
+                src={TraveDireita}
+                alt=""
+                className="trave-direita"
+              />
+            </div>
+
           </div>
 
           <div className="challenge-buttons">
@@ -85,9 +134,7 @@ export default function GamesScreen({ onClose }) {
         <div className="games-play">
 
           <button className="play-button">
-
             ▶
-
           </button>
 
         </div>

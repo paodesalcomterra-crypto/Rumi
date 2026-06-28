@@ -225,3 +225,42 @@ transform:translateY(0);
 }
 
 }
+
+.circle-wrapper-right{
+
+    position:relative;
+
+    width:54px;
+    height:54px;
+
+}
+
+.trave-direita{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+    pointer-events:none;
+
+}
+
+.circle-wrapper-right .circle{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+}

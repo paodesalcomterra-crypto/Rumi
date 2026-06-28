@@ -1,4 +1,5 @@
 import "./GamesScreen.css";
+import Rumi2 from "../../assets/Rumi2.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -13,7 +14,11 @@ export default function GamesScreen({ onClose }) {
           ✕
         </button>
 
-        <h2 className="games-title">Rumi</h2>
+        <img
+          src={Rumi2}
+          alt="Rumi"
+          className="games-title-logo"
+        />
 
       </div>
 

@@ -1,15 +1,15 @@
 .games-screen{
-    position:fixed;
-    inset:0;
+    position: fixed;
+    inset: 0;
 
-    background:#1d1d1d;
+    background: #1d1d1d;
 
-    z-index:99999;
+    z-index: 99999;
 
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
 
-    animation:gamesEnter .25s ease;
+    animation: gamesEnter .25s ease;
 }
 
 .games-header{
@@ -44,11 +44,20 @@
 
     cursor:pointer;
 
+    background:transparent;
+    color:white;
+    font-size:24px;
+
 }
 
-.games-title{
+.games-title-logo{
 
-    color:white;
+    height:120px;
+    width:auto;
+
+    object-fit:contain;
+
+    pointer-events:none;
 
 }
 

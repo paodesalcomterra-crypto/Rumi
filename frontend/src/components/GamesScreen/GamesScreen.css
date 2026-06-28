@@ -1,65 +1,210 @@
 .games-screen{
-    position: fixed;
-    inset: 0;
+    position:fixed;
+    inset:0;
 
-    background: #1d1d1d;
+    background:#1d1d1d;
 
-    z-index: 99999;
+    display:flex;
+    flex-direction:column;
 
-    display: flex;
-    flex-direction: column;
+    z-index:99999;
 
-    animation: gamesEnter .25s ease;
+    animation:gamesEnter .25s ease;
 }
+
+/* ---------------- HEADER ---------------- */
 
 .games-header{
 
-    height:65px;
+    height:70px;
 
     display:flex;
-
-    justify-content:center;
-
     align-items:center;
+    justify-content:center;
 
     position:relative;
 
-    border-bottom:1px solid rgba(255,255,255,.1);
+    border-bottom:2px solid rgba(255,255,255,.08);
 
 }
 
 .games-close{
 
     position:absolute;
-
     left:15px;
 
-    width:38px;
-
-    height:38px;
-
     border:none;
+    background:none;
 
-    border-radius:50%;
+    color:white;
+
+    font-size:28px;
 
     cursor:pointer;
-
-    background:transparent;
-    color:white;
-    font-size:24px;
 
 }
 
 .games-title-logo{
 
     height:120px;
-    width:auto;
 
     object-fit:contain;
 
-    pointer-events:none;
+}
+
+/* ---------------- USUÁRIOS ---------------- */
+
+.games-users{
+
+    padding:18px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+    border-bottom:2px solid rgba(255,255,255,.08);
 
 }
+
+.games-users button{
+
+    height:42px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#777;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+/* ---------------- PARTE DE BAIXO ---------------- */
+
+.games-bottom{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:2.3fr 1fr;
+
+}
+
+/* ---------------- ESQUERDA ---------------- */
+
+.games-vs{
+
+    padding:16px;
+
+    border-right:2px solid rgba(255,255,255,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.vs-row{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+}
+
+.circle{
+
+    width:54px;
+    height:54px;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+}
+
+.vs-row span{
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+/* ---------------- BOTÕES ---------------- */
+
+.challenge-buttons{
+
+    margin-top:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.challenge-buttons button{
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:18px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+}
+
+/* ---------------- PLAY ---------------- */
+
+.games-play{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.play-button{
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    border:none;
+
+    font-size:40px;
+
+    cursor:pointer;
+
+}
+
+/* ---------------- ANIMAÇÃO ---------------- */
 
 @keyframes gamesEnter{
 

@@ -22,6 +22,78 @@ export default function GamesScreen({ onClose }) {
 
       </div>
 
+      {/* USUÁRIOS */}
+
+      <div className="games-users">
+
+        <button>João</button>
+        <button>Maria</button>
+
+        <button>Pedro</button>
+        <button>Lucas</button>
+
+      </div>
+
+      {/* PARTE DE BAIXO */}
+
+      <div className="games-bottom">
+
+        {/* ESQUERDA */}
+
+        <div className="games-vs">
+
+          <div className="vs-row">
+            <div className="circle"></div>
+            <span>VS</span>
+            <div className="circle"></div>
+          </div>
+
+          <div className="vs-row">
+            <div className="circle"></div>
+            <span>VS</span>
+            <div className="circle"></div>
+          </div>
+
+          <div className="vs-row">
+            <div className="circle"></div>
+            <span>VS</span>
+            <div className="circle"></div>
+          </div>
+
+          <div className="vs-row">
+            <div className="circle"></div>
+            <span>VS</span>
+            <div className="circle"></div>
+          </div>
+
+          <div className="challenge-buttons">
+
+            <button>
+              Desafio Normal
+            </button>
+
+            <button>
+              Desafio Ranqueado
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* DIREITA */}
+
+        <div className="games-play">
+
+          <button className="play-button">
+
+            ▶
+
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
   );
 }

@@ -264,3 +264,42 @@ transform:translateY(0);
     z-index:1;
 
 }
+
+.circle-wrapper-left{
+
+    position:relative;
+
+    width:54px;
+    height:54px;
+
+}
+
+.trave-esquerda{
+
+    position:absolute;
+
+    top:46.5%;
+    left:70%;
+
+    transform:translate(-50%,-50%);
+
+    width:138%;
+    height:138%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+    pointer-events:none;
+
+}
+
+.circle-wrapper-left .circle{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+}

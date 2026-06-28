@@ -1,6 +1,7 @@
 import "./GamesScreen.css";
 import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";
+import TraveEsquerda from "../../assets/traveesquerda.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -45,7 +46,15 @@ export default function GamesScreen({ onClose }) {
 
           <div className="vs-row">
 
-            <div className="circle"></div>
+            <div className="circle-wrapper-left">
+              <div className="circle"></div>
+
+              <img
+                src={TraveEsquerda}
+                alt=""
+                className="trave-esquerda"
+              />
+            </div>
 
             <span>VS</span>
 
@@ -63,7 +72,15 @@ export default function GamesScreen({ onClose }) {
 
           <div className="vs-row">
 
-            <div className="circle"></div>
+            <div className="circle-wrapper-left">
+              <div className="circle"></div>
+
+              <img
+                src={TraveEsquerda}
+                alt=""
+                className="trave-esquerda"
+              />
+            </div>
 
             <span>VS</span>
 
@@ -81,7 +98,15 @@ export default function GamesScreen({ onClose }) {
 
           <div className="vs-row">
 
-            <div className="circle"></div>
+            <div className="circle-wrapper-left">
+              <div className="circle"></div>
+
+              <img
+                src={TraveEsquerda}
+                alt=""
+                className="trave-esquerda"
+              />
+            </div>
 
             <span>VS</span>
 
@@ -99,7 +124,15 @@ export default function GamesScreen({ onClose }) {
 
           <div className="vs-row">
 
-            <div className="circle"></div>
+            <div className="circle-wrapper-left">
+              <div className="circle"></div>
+
+              <img
+                src={TraveEsquerda}
+                alt=""
+                className="trave-esquerda"
+              />
+            </div>
 
             <span>VS</span>
 

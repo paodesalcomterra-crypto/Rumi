@@ -240,12 +240,12 @@ transform:translateY(0);
     position:absolute;
 
     top:50%;
-    left:53%;
+    left:50%;
 
     transform:translate(-50%,-50%);
 
-    width:150%;
-    height:150%;
+    width:140%;
+    height:140%;
 
     object-fit:contain;
 

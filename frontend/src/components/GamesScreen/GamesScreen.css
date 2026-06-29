@@ -404,3 +404,21 @@ transform:translateY(0);
     z-index:2;
 
 }
+
+.jogadores-esquerda-image{
+
+    position:absolute;
+
+    top:52.6%;
+    left:61.3%;
+
+    transform:translate(-50%,-50%);
+
+    width:78px;
+    height:auto;
+
+    z-index:0;
+
+    pointer-events:none;
+
+}

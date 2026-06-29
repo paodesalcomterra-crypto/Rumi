@@ -6,6 +6,7 @@ import Vs from "../../assets/vs.png";
 import PlayerBottom from "../../assets/playerbottom.png";
 import FundoBg from "../../assets/fundobg.png";
 import JogadoresDireita from "../../assets/jogadoresdireita.png";
+import JogadoresEsquerda from "../../assets/jogadoresesquerda.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -52,6 +53,13 @@ export default function GamesScreen({ onClose }) {
             <div className="vs-row" key={item}>
 
               <div className="circle-wrapper-left">
+
+                <img
+                  src={JogadoresEsquerda}
+                  alt=""
+                  className="jogadores-esquerda-image"
+                />
+
                 <div className="circle"></div>
 
                 <img
@@ -59,6 +67,7 @@ export default function GamesScreen({ onClose }) {
                   alt=""
                   className="trave-esquerda"
                 />
+
               </div>
 
               <img

@@ -2,6 +2,7 @@ import "./GamesScreen.css";
 import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";
 import TraveEsquerda from "../../assets/traveesquerda.png";
+import Vs from "../../assets/vs.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -56,7 +57,11 @@ export default function GamesScreen({ onClose }) {
               />
             </div>
 
-            <span>VS</span>
+            <img
+              src={Vs}
+              alt="VS"
+              className="vs-image"
+            />
 
             <div className="circle-wrapper-right">
               <div className="circle"></div>
@@ -82,7 +87,11 @@ export default function GamesScreen({ onClose }) {
               />
             </div>
 
-            <span>VS</span>
+            <img
+              src={Vs}
+              alt="VS"
+              className="vs-image"
+            />
 
             <div className="circle-wrapper-right">
               <div className="circle"></div>
@@ -108,7 +117,11 @@ export default function GamesScreen({ onClose }) {
               />
             </div>
 
-            <span>VS</span>
+            <img
+              src={Vs}
+              alt="VS"
+              className="vs-image"
+            />
 
             <div className="circle-wrapper-right">
               <div className="circle"></div>
@@ -134,7 +147,11 @@ export default function GamesScreen({ onClose }) {
               />
             </div>
 
-            <span>VS</span>
+            <img
+              src={Vs}
+              alt="VS"
+              className="vs-image"
+            />
 
             <div className="circle-wrapper-right">
               <div className="circle"></div>

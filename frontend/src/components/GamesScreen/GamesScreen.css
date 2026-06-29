@@ -303,3 +303,14 @@ transform:translateY(0);
     z-index:1;
 
 }
+
+.vs-image{
+
+    width:42px;
+    height:auto;
+
+    object-fit:contain;
+
+    pointer-events:none;
+
+}

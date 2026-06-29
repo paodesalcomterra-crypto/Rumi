@@ -1,0 +1,102 @@
+.choose-nick{
+
+    position:fixed;
+    inset:0;
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+}
+
+.nick-input{
+
+    position:absolute;
+
+    top:52%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:270px;
+    height:50px;
+
+    border:none;
+    outline:none;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.92);
+
+    color:#111;
+
+    font-size:18px;
+    text-align:center;
+
+    padding:0 18px;
+
+    box-sizing:border-box;
+
+}
+
+.nick-info{
+
+    position:absolute;
+
+    top:58%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:white;
+
+    font-size:15px;
+
+    text-shadow:0 0 8px rgba(0,0,0,.6);
+
+    white-space:nowrap;
+
+}
+
+.nick-confirm{
+
+    position:absolute;
+
+    top:66%;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:220px;
+    height:52px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:white;
+
+    color:#111;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.nick-confirm:hover{
+
+    transform:translateX(-50%) scale(1.03);
+
+}
+
+.nick-confirm:disabled{
+
+    opacity:.35;
+
+    cursor:default;
+
+}

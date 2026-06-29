@@ -3,6 +3,7 @@ import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";
 import TraveEsquerda from "../../assets/traveesquerda.png";
 import Vs from "../../assets/vs.png";
+import PlayerBottom from "../../assets/playerbottom.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -169,7 +170,15 @@ export default function GamesScreen({ onClose }) {
 
         {/* DIREITA */}
 
-        <div className="games-play"></div>
+        <div className="games-play">
+
+          <img
+            src={PlayerBottom}
+            alt="PlayerBottom"
+            className="play-bottom-image"
+          />
+
+        </div>
 
       </div>
 

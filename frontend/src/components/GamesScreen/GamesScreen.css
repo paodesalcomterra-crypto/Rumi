@@ -177,7 +177,7 @@
 
     display:grid;
 
-    grid-template-columns:2fr 2fr;
+    grid-template-columns:1fr 1fr;
 
     border-top:2px solid rgba(255,255,255,.08);
 
@@ -199,7 +199,25 @@
 
 .challenge-buttons button:first-child{
 
-    border-right:2px solid rgba(255,255,255,.08);
+    position:relative;
+
+}
+
+.challenge-buttons button:first-child::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:10px;
+
+    bottom:-15px;
+
+    right:0;
+
+    width:2px;
+
+    background:rgba(255,255,255,.08);
 
 }
 

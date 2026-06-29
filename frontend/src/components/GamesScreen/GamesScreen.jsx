@@ -174,8 +174,8 @@ export default function GamesScreen({ onClose }) {
 
           <img
             src={PlayerBottom}
-            alt="Play"
-            className="play-games-image"
+            alt="PlayerBottom"
+            className="play-bottom-image"
           />
 
         </div>

@@ -376,11 +376,11 @@ transform:translateY(0);
     position:absolute;
 
     top:50%;
-    left:40.3%;
+    left:40%;
 
     transform:translate(-50%,-50%);
 
-    width:81px;      /* ajuste depois */
+    width:80.4px;      /* ajuste depois */
     height:auto;
 
     z-index:0;

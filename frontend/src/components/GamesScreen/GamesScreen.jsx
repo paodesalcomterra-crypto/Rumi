@@ -3,7 +3,7 @@ import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";
 import TraveEsquerda from "../../assets/traveesquerda.png";
 import Vs from "../../assets/vs.png";
-import PlayGame from "../../assets/playgame.png";
+import PlayBottom from "../../assets/playbottom.png";
 
 export default function GamesScreen({ onClose }) {
   return (
@@ -173,9 +173,9 @@ export default function GamesScreen({ onClose }) {
         <div className="games-play">
 
           <img
-            src={PlayGame}
+            src={PlayBottom}
             alt="Play"
-            className="play-game-image"
+            className="play-bottom-image"
           />
 
         </div>

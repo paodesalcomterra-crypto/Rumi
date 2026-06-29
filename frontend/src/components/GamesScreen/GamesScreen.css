@@ -149,9 +149,13 @@
 
     overflow:hidden;
 
+    padding:0;
+
 }
 
-.play-game-image{
+.play-bottom-image{
+
+    display:block;
 
     width:100%;
 
@@ -159,13 +163,15 @@
 
     object-fit:cover;
 
+    object-position:center;
+
     cursor:pointer;
 
     transition:transform .2s ease;
 
 }
 
-.play-game-image:hover{
+.play-bottom-image:hover{
 
     transform:scale(1.02);
 

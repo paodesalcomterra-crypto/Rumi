@@ -5,25 +5,21 @@ import TraveEsquerda from "../../assets/traveesquerda.png";
 import Vs from "../../assets/vs.png";
 import PlayerBottom from "../../assets/playerbottom.png";
 import FundoBg from "../../assets/fundobg.png";
+import JogadoresDireita from "../../assets/jogadoresdireita.png";
 
 export default function GamesScreen({ onClose }) {
   return (
     <div
-  className="games-screen"
-  style={{
-    backgroundImage: `url(${FundoBg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat"
-  }}
->
-
+      className="games-screen"
+      style={{
+        backgroundImage: `url(${FundoBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <div className="games-header">
-
-        <button
-          className="games-close"
-          onClick={onClose}
-        >
+        <button className="games-close" onClick={onClose}>
           ✕
         </button>
 
@@ -32,19 +28,16 @@ export default function GamesScreen({ onClose }) {
           alt="Rumi"
           className="games-title-logo"
         />
-
       </div>
 
       {/* USUÁRIOS */}
 
       <div className="games-users">
-
         <button>João</button>
         <button>Maria</button>
 
         <button>Pedro</button>
         <button>Lucas</button>
-
       </div>
 
       {/* PARTE DE BAIXO */}
@@ -55,138 +48,56 @@ export default function GamesScreen({ onClose }) {
 
         <div className="games-vs">
 
-          <div className="vs-row">
+          {[1,2,3,4].map((item) => (
+            <div className="vs-row" key={item}>
 
-            <div className="circle-wrapper-left">
-              <div className="circle"></div>
+              <div className="circle-wrapper-left">
+                <div className="circle"></div>
 
-              <img
-                src={TraveEsquerda}
-                alt=""
-                className="trave-esquerda"
-              />
-            </div>
-
-            <img
-              src={Vs}
-              alt="VS"
-              className="vs-image"
-            />
-
-            <div className="circle-wrapper-right">
-              <div className="circle"></div>
+                <img
+                  src={TraveEsquerda}
+                  alt=""
+                  className="trave-esquerda"
+                />
+              </div>
 
               <img
-                src={TraveDireita}
-                alt=""
-                className="trave-direita"
+                src={Vs}
+                alt="VS"
+                className="vs-image"
               />
+
+              <div className="circle-wrapper-right">
+
+                <img
+                  src={JogadoresDireita}
+                  alt=""
+                  className="jogadores-direita-image"
+                />
+
+                <div className="circle"></div>
+
+                <img
+                  src={TraveDireita}
+                  alt=""
+                  className="trave-direita"
+                />
+
+              </div>
+
             </div>
-
-          </div>
-
-          <div className="vs-row">
-
-            <div className="circle-wrapper-left">
-              <div className="circle"></div>
-
-              <img
-                src={TraveEsquerda}
-                alt=""
-                className="trave-esquerda"
-              />
-            </div>
-
-            <img
-              src={Vs}
-              alt="VS"
-              className="vs-image"
-            />
-
-            <div className="circle-wrapper-right">
-              <div className="circle"></div>
-
-              <img
-                src={TraveDireita}
-                alt=""
-                className="trave-direita"
-              />
-            </div>
-
-          </div>
-
-          <div className="vs-row">
-
-            <div className="circle-wrapper-left">
-              <div className="circle"></div>
-
-              <img
-                src={TraveEsquerda}
-                alt=""
-                className="trave-esquerda"
-              />
-            </div>
-
-            <img
-              src={Vs}
-              alt="VS"
-              className="vs-image"
-            />
-
-            <div className="circle-wrapper-right">
-              <div className="circle"></div>
-
-              <img
-                src={TraveDireita}
-                alt=""
-                className="trave-direita"
-              />
-            </div>
-
-          </div>
-
-          <div className="vs-row">
-
-            <div className="circle-wrapper-left">
-              <div className="circle"></div>
-
-              <img
-                src={TraveEsquerda}
-                alt=""
-                className="trave-esquerda"
-              />
-            </div>
-
-            <img
-              src={Vs}
-              alt="VS"
-              className="vs-image"
-            />
-
-            <div className="circle-wrapper-right">
-              <div className="circle"></div>
-
-              <img
-                src={TraveDireita}
-                alt=""
-                className="trave-direita"
-              />
-            </div>
-
-          </div>
+          ))}
 
         </div>
 
         {/* DIREITA */}
 
         <div className="games-play">
-
           <img
             src={PlayerBottom}
             alt="PlayerBottom"
             className="play-bottom-image"
           />
-
         </div>
 
       </div>
@@ -194,15 +105,8 @@ export default function GamesScreen({ onClose }) {
       {/* BARRA INFERIOR */}
 
       <div className="challenge-buttons">
-
-        <button>
-          Normal
-        </button>
-
-        <button>
-          Ranqueada
-        </button>
-
+        <button>Normal</button>
+        <button>Ranqueada</button>
       </div>
 
     </div>

@@ -370,3 +370,37 @@ transform:translateY(0);
     pointer-events:none;
 
 }
+
+.jogadores-direita-image{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:120px;      /* ajuste depois */
+    height:auto;
+
+    z-index:0;
+
+    pointer-events:none;
+
+}
+
+.circle-wrapper-right .circle{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+}
+
+.trave-direita{
+
+    z-index:2;
+
+}

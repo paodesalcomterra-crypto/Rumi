@@ -4,10 +4,19 @@ import TraveDireita from "../../assets/travedireita.png";
 import TraveEsquerda from "../../assets/traveesquerda.png";
 import Vs from "../../assets/vs.png";
 import PlayerBottom from "../../assets/playerbottom.png";
+import FundoBg from "../../assets/fundobg.png";
 
 export default function GamesScreen({ onClose }) {
   return (
-    <div className="games-screen">
+    <div
+  className="games-screen"
+  style={{
+    backgroundImage: `url(${FundoBg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
 
       <div className="games-header">
 

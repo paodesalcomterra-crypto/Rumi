@@ -189,18 +189,23 @@
 
 }
 
-.play-button{
+.play-game-image{
 
-    width:90px;
-    height:90px;
+    width:120px;
 
-    border-radius:50%;
+    height:auto;
 
-    border:none;
-
-    font-size:40px;
+    object-fit:contain;
 
     cursor:pointer;
+
+    transition:transform .2s ease;
+
+}
+
+.play-game-image:hover{
+
+    transform:scale(1.05);
 
 }
 
@@ -225,6 +230,8 @@ transform:translateY(0);
 }
 
 }
+
+/* ---------------- TRAVE DIREITA ---------------- */
 
 .circle-wrapper-right{
 
@@ -265,6 +272,8 @@ transform:translateY(0);
 
 }
 
+/* ---------------- TRAVE ESQUERDA ---------------- */
+
 .circle-wrapper-left{
 
     position:relative;
@@ -304,9 +313,12 @@ transform:translateY(0);
 
 }
 
+/* ---------------- VS ---------------- */
+
 .vs-image{
 
     width:82px;
+
     height:auto;
 
     object-fit:contain;

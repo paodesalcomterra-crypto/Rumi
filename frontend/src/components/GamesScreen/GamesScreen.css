@@ -177,7 +177,7 @@
 
     display:grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:2fr 2fr;
 
     border-top:2px solid rgba(255,255,255,.08);
 

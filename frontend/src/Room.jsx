@@ -31,6 +31,7 @@ socket.on("connect_error", (erro) => {
 function Room({
   salaAtual,
   usuario,
+  avatarEscolhido,
 }) {
 
   console.log(
@@ -792,6 +793,9 @@ return (
   {activeScreen === "games" && (
   <GamesScreen
     onClose={() => setActiveScreen("room")}
+    avatarEscolhido={avatarEscolhido}
+    usuario={usuario}
+    usuariosSala={usuariosSala}
   />
 )}
 

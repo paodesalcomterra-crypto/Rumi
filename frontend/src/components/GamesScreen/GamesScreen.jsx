@@ -7,8 +7,25 @@ import PlayerBottom from "../../assets/playerbottom.png";
 import FundoBg from "../../assets/fundobg.png";
 import JogadoresDireita from "../../assets/jogadoresdireita.png";
 import JogadoresEsquerda from "../../assets/jogadoresesquerda.png";
+import UsuarioMenino from "../../assets/usuariomenino.png";
+import UsuarioMenina from "../../assets/usuariomenina.png";
 
-export default function GamesScreen({ onClose }) {
+export default function GamesScreen({
+  onClose,
+  avatarEscolhido,
+  usuario,
+  usuariosSala,
+}) {
+
+  const listaUsuarios =
+    usuariosSala && usuariosSala.length > 0
+      ? usuariosSala
+      : [
+          {
+            nome: usuario?.displayName || "Você",
+          },
+        ];
+
   return (
     <div
       className="games-screen"
@@ -20,7 +37,10 @@ export default function GamesScreen({ onClose }) {
       }}
     >
       <div className="games-header">
-        <button className="games-close" onClick={onClose}>
+        <button
+          className="games-close"
+          onClick={onClose}
+        >
           ✕
         </button>
 
@@ -34,11 +54,31 @@ export default function GamesScreen({ onClose }) {
       {/* USUÁRIOS */}
 
       <div className="games-users">
-        <button>João</button>
-        <button>Maria</button>
 
-        <button>Pedro</button>
-        <button>Lucas</button>
+        {listaUsuarios.map((pessoa, index) => (
+
+          <div
+            key={index}
+            className="user-card"
+            style={{
+              backgroundImage: `url(${
+                pessoa.nome === (usuario?.displayName || "Você")
+                  ? (
+                      avatarEscolhido === "menina"
+                        ? UsuarioMenina
+                        : UsuarioMenino
+                    )
+                  : UsuarioMenino
+              })`,
+            }}
+          >
+
+            <span>{pessoa.nome}</span>
+
+          </div>
+
+        ))}
+
       </div>
 
       {/* PARTE DE BAIXO */}
@@ -49,8 +89,11 @@ export default function GamesScreen({ onClose }) {
 
         <div className="games-vs">
 
-          {[1,2,3,4].map((item) => (
-            <div className="vs-row" key={item}>
+          {[1, 2, 3, 4].map((item) => (
+            <div
+              className="vs-row"
+              key={item}
+            >
 
               <div className="circle-wrapper-left">
 
@@ -102,11 +145,13 @@ export default function GamesScreen({ onClose }) {
         {/* DIREITA */}
 
         <div className="games-play">
+
           <img
             src={PlayerBottom}
             alt="PlayerBottom"
             className="play-bottom-image"
           />
+
         </div>
 
       </div>
@@ -114,8 +159,15 @@ export default function GamesScreen({ onClose }) {
       {/* BARRA INFERIOR */}
 
       <div className="challenge-buttons">
-        <button>Normal</button>
-        <button>Ranqueada</button>
+
+        <button>
+          Normal
+        </button>
+
+        <button>
+          Ranqueada
+        </button>
+
       </div>
 
     </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import Home from "./Home";
 import Room from "./Room";
+import ChooseAvatar from "./screens/ChooseAvatar";
 
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -11,15 +12,15 @@ function App() {
   const [salaAtual, setSalaAtual] = useState(null);
 
   const [usuario, setUsuario] = useState(null);
+  const [avatarEscolhido, setAvatarEscolhido] = useState(null);
 
   useEffect(() => {
-  const unsubscribe =
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUsuario(user);
     });
 
-  return () => unsubscribe();
-}, []);
+    return () => unsubscribe();
+  }, []);
 
   function criarSala() {
     const codigo = Math.random()
@@ -36,11 +37,20 @@ function App() {
     setSalaAtual(codigoSala.toUpperCase());
   }
 
+  if (!avatarEscolhido) {
+    return (
+      <ChooseAvatar
+        onChoose={(avatar) => setAvatarEscolhido(avatar)}
+      />
+    );
+  }
+
   if (salaAtual) {
     return (
       <Room
         salaAtual={salaAtual}
         usuario={usuario}
+        avatarEscolhido={avatarEscolhido}
       />
     );
   }
@@ -53,6 +63,7 @@ function App() {
       setCodigoSala={setCodigoSala}
       usuario={usuario}
       setUsuario={setUsuario}
+      avatarEscolhido={avatarEscolhido}
     />
   );
 }

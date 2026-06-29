@@ -422,3 +422,47 @@ transform:translateY(0);
     pointer-events:none;
 
 }
+
+.games-users{
+
+    padding:18px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+
+}
+
+.user-card{
+
+    height:56px;
+
+    background-size:100% 100%;
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.user-card span{
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    text-shadow:0 0 6px rgba(0,0,0,.7);
+
+    user-select:none;
+
+}

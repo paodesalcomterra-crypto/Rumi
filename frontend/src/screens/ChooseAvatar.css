@@ -1,0 +1,80 @@
+.choose-avatar{
+
+    position:fixed;
+    inset:0;
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:flex-end;
+    align-items:center;
+
+}
+
+.avatar-buttons{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:120px;
+
+    margin-bottom:110px;
+
+}
+
+.avatar-option{
+
+    cursor:pointer;
+
+}
+
+.avatar-circle{
+
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    transition:.25s;
+
+    box-shadow:0 0 15px rgba(255,255,255,.25);
+
+}
+
+.avatar-confirm{
+
+    width:240px;
+    height:55px;
+
+    margin-bottom:45px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:white;
+
+    color:#111;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.avatar-confirm:disabled{
+
+    opacity:.35;
+
+    cursor:default;
+
+}

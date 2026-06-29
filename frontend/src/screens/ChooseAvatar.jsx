@@ -16,21 +16,7 @@ export default function ChooseAvatar({ onChoose }) {
 
       <div className="avatar-buttons">
 
-        <div
-          className="avatar-option"
-          onClick={() => setSelecionado("menino")}
-        >
-          <div
-            className="avatar-circle"
-            style={{
-              background: "#0e4df9",
-              opacity:
-                selecionado === "menino"
-                  ? 1
-                  : 0.08,
-            }}
-          />
-        </div>
+        {/* BOLINHA ROSA (EM CIMA) */}
 
         <div
           className="avatar-option"
@@ -42,6 +28,27 @@ export default function ChooseAvatar({ onChoose }) {
               background: "#c04585",
               opacity:
                 selecionado === "menina"
+                  ? 1
+                  : 0.08,
+            }}
+          />
+        </div>
+
+        {/* BOLINHA AZUL (EMBAIXO) */}
+
+        <div
+          className="avatar-option"
+          onClick={() => setSelecionado("menino")}
+          style={{
+            marginTop: "30px", // aumente esse valor para descer só a azul
+          }}
+        >
+          <div
+            className="avatar-circle"
+            style={{
+              background: "#0e4df9",
+              opacity:
+                selecionado === "menino"
                   ? 1
                   : 0.08,
             }}

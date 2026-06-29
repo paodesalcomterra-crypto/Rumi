@@ -375,12 +375,12 @@ transform:translateY(0);
 
     position:absolute;
 
-    top:50%;
+    top:55%;
     left:38.7%;
 
     transform:translate(-50%,-50%);
 
-    width:77.4px;      /* ajuste depois */
+    width:78px;      /* ajuste depois */
     height:auto;
 
     z-index:0;

@@ -15,14 +15,20 @@ export default function GamesScreen({
   avatarEscolhido,
   usuario,
   usuariosSala,
+  nickEscolhido,
 }) {
+
+  const meuNome =
+    nickEscolhido ||
+    usuario?.displayName ||
+    "Você";
 
   const listaUsuarios =
     usuariosSala && usuariosSala.length > 0
       ? usuariosSala
       : [
           {
-            nome: usuario?.displayName || "Você",
+            nome: meuNome,
           },
         ];
 
@@ -55,29 +61,48 @@ export default function GamesScreen({
 
       <div className="games-users">
 
-        {listaUsuarios.map((pessoa, index) => (
+        {[0, 1, 2, 3].map((index) => {
 
-          <div
-            key={index}
-            className="user-card"
-            style={{
-              backgroundImage: `url(${
-                pessoa.nome === (usuario?.displayName || "Você")
-                  ? (
-                      avatarEscolhido === "menina"
-                        ? UsuarioMenina
-                        : UsuarioMenino
-                    )
-                  : UsuarioMenino
-              })`,
-            }}
-          >
+          const pessoa = listaUsuarios[index];
 
-            <span>{pessoa.nome}</span>
+          if (!pessoa) {
+            return (
+              <div
+                key={index}
+                className="user-card"
+                style={{
+                  opacity: 0,
+                  pointerEvents: "none",
+                }}
+              />
+            );
+          }
 
-          </div>
+          return (
 
-        ))}
+            <div
+              key={index}
+              className="user-card"
+              style={{
+                backgroundImage: `url(${
+                  pessoa.nome === meuNome
+                    ? (
+                        avatarEscolhido === "menina"
+                          ? UsuarioMenina
+                          : UsuarioMenino
+                      )
+                    : UsuarioMenino
+                })`,
+              }}
+            >
+
+              <span>{pessoa.nome}</span>
+
+            </div>
+
+          );
+
+        })}
 
       </div>
 

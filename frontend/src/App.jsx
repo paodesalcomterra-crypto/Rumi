@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Home from "./Home";
 import Room from "./Room";
 import ChooseAvatar from "./screens/ChooseAvatar";
+import ChooseNick from "./screens/ChooseNick";
 
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,6 +14,7 @@ function App() {
 
   const [usuario, setUsuario] = useState(null);
   const [avatarEscolhido, setAvatarEscolhido] = useState(null);
+  const [nickEscolhido, setNickEscolhido] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,12 +47,21 @@ function App() {
     );
   }
 
+  if (!nickEscolhido) {
+    return (
+      <ChooseNick
+        onConfirm={(nick) => setNickEscolhido(nick)}
+      />
+    );
+  }
+
   if (salaAtual) {
     return (
       <Room
         salaAtual={salaAtual}
         usuario={usuario}
         avatarEscolhido={avatarEscolhido}
+        nickEscolhido={nickEscolhido}
       />
     );
   }
@@ -64,6 +75,7 @@ function App() {
       usuario={usuario}
       setUsuario={setUsuario}
       avatarEscolhido={avatarEscolhido}
+      nickEscolhido={nickEscolhido}
     />
   );
 }

@@ -32,6 +32,7 @@ function Room({
   salaAtual,
   usuario,
   avatarEscolhido,
+  nickEscolhido,
 }) {
 
   console.log(
@@ -117,6 +118,7 @@ const [usuariosSala, setUsuariosSala] = useState([]);
 const [activeScreen, setActiveScreen] = useState("room");
 
 const meuId =
+  nickEscolhido ||
   usuario?.displayName ||
   "Usuario_" + Math.floor(Math.random() * 10000);
 
@@ -124,9 +126,9 @@ useEffect(() => {
   socket.emit("entrarSala", {
     sala: salaAtual,
     usuario: {
-      nome: usuario?.displayName || meuId,
-      foto: usuario?.photoURL || "",
-    },
+  nome: nickEscolhido,
+  foto: usuario?.photoURL || "",
+},
   });
 
   socket.on("novaMensagem", (mensagem) => {
@@ -794,6 +796,7 @@ return (
   <GamesScreen
     onClose={() => setActiveScreen("room")}
     avatarEscolhido={avatarEscolhido}
+    nickEscolhido={nickEscolhido}
     usuario={usuario}
     usuariosSala={usuariosSala}
   />

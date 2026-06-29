@@ -166,31 +166,33 @@ export default function GamesScreen({ onClose }) {
 
           </div>
 
-          <div className="challenge-buttons">
-
-            <button>
-              Desafio Normal
-            </button>
-
-            <button>
-              Desafio Ranqueado
-            </button>
-
-          </div>
-
         </div>
 
         {/* DIREITA */}
 
         <div className="games-play">
 
-  <img
-    src={PlayGame}
-    alt="Play"
-    className="play-game-image"
-  />
+          <img
+            src={PlayGame}
+            alt="Play"
+            className="play-game-image"
+          />
 
-</div>
+        </div>
+
+      </div>
+
+      {/* BARRA INFERIOR */}
+
+      <div className="challenge-buttons">
+
+        <button>
+          Normal
+        </button>
+
+        <button>
+          Ranqueada
+        </button>
 
       </div>
 

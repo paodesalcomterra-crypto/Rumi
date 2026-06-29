@@ -29,6 +29,8 @@
 
     margin-bottom:200px;
 
+     transform:translateX(-50px);
+
 }
 
 .avatar-option{
@@ -39,8 +41,8 @@
 
 .avatar-circle{
 
-    width:24px;
-    height:24px;
+    width:29.3px;
+    height:29.3px;
 
     border-radius:50%;
 

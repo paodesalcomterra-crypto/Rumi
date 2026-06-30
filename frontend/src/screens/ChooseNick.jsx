@@ -1,6 +1,6 @@
 import "./ChooseNick.css";
 import { useState } from "react";
-import Escolha from "../assets/escolha.png";
+import Background from "../assets/background.png";
 
 export default function ChooseNick({ onConfirm }) {
 
@@ -10,7 +10,7 @@ export default function ChooseNick({ onConfirm }) {
     <div
       className="choose-nick"
       style={{
-        backgroundImage: `url(${Escolha})`,
+        backgroundImage: `url(${Background})`,
       }}
     >
 

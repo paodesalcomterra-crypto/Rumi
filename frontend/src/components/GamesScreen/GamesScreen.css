@@ -464,3 +464,41 @@ transform:translateY(0);
     pointer-events:none;
 
 }
+
+.player-photo{
+
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.user-card{
+
+    cursor:pointer;
+
+    transition:transform .12s ease;
+
+}
+
+.user-card:active{
+
+    transform:scale(.97);
+
+}
+
+.player-photo{
+
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./GamesScreen.css";
 import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";
@@ -34,6 +35,52 @@ export default function GamesScreen({
           },
         ];
 
+        const [jogadoresSelecionados, setJogadoresSelecionados] =
+  useState([
+    {
+      lado: "esquerda",
+      foto: usuario?.photoURL || "",
+      nome: meuNome,
+    },
+  ]);
+
+function selecionarJogador(pessoa) {
+
+  if (pessoa.nome === meuNome) return;
+
+  const existe =
+    jogadoresSelecionados.find(
+      j => j.nome === pessoa.nome
+    );
+
+  if (existe) return;
+
+  const esquerda =
+    jogadoresSelecionados.filter(
+      j => j.lado === "esquerda"
+    ).length;
+
+  const direita =
+    jogadoresSelecionados.filter(
+      j => j.lado === "direita"
+    ).length;
+
+  const lado =
+    direita < esquerda
+      ? "direita"
+      : "esquerda";
+
+  setJogadoresSelecionados([
+    ...jogadoresSelecionados,
+    {
+      lado,
+      nome:pessoa.nome,
+      foto:pessoa.foto || "",
+    }
+  ]);
+
+}
+
   return (
     <div
       className="games-screen"
@@ -67,36 +114,54 @@ export default function GamesScreen({
 
           const pessoa = listaUsuarios[index];
 
-          if (!pessoa) {
-            return (
-              <div
-                key={index}
-                className="user-card"
-                style={{
-                  opacity: 0,
-                  pointerEvents: "none",
-                }}
-              />
-            );
-          }
+if (!pessoa) {
+  return (
+    <div
+      key={index}
+      className="user-card"
+      style={{
+        opacity: 0,
+        pointerEvents: "none",
+      }}
+    />
+  );
+}
 
-          return (
+const selecionado =
+  jogadoresSelecionados.some(
+    j => j.nome === pessoa.nome
+  );
 
-            <div
-              key={index}
-              className="user-card"
-              style={{
-                backgroundImage: `url(${
-                  pessoa.nome === meuNome
-                    ? (
-                        avatarEscolhido === "menina"
-                          ? UsuarioMenina
-                          : UsuarioMenino
-                      )
-                    : UsuarioMenino
-                })`,
-              }}
-            >
+return (
+
+  <div
+    key={index}
+    onClick={() => selecionarJogador(pessoa)}
+    className="user-card"
+    style={{
+      cursor:
+        pessoa.nome === meuNome
+          ? "default"
+          : "pointer",
+
+      transform:
+        selecionado
+          ? "scale(.97)"
+          : "scale(1)",
+
+      transition: "transform .12s",
+
+      backgroundImage: `url(${
+        pessoa.nome === meuNome
+          ? (
+              avatarEscolhido === "menina"
+                ? UsuarioMenina
+                : UsuarioMenino
+            )
+          : UsuarioMenino
+      })`,
+    }}
+  >
 
               <span>{pessoa.nome}</span>
 
@@ -117,55 +182,83 @@ export default function GamesScreen({
         <div className="games-vs">
 
           {[1, 2, 3, 4, 5].map((item) => (
-            <div
-              className="vs-row"
-              key={item}
-            >
+  <div
+    className="vs-row"
+    key={item}
+  >
 
-              <div className="circle-wrapper-left">
+    <div className="circle-wrapper-left">
 
-                <img
-                  src={JogadoresEsquerda}
-                  alt=""
-                  className="jogadores-esquerda-image"
-                />
+      <img
+        src={JogadoresEsquerda}
+        alt=""
+        className="jogadores-esquerda-image"
+      />
 
-                <div className="circle"></div>
+      <div className="circle">
 
-                <img
-                  src={TraveEsquerda}
-                  alt=""
-                  className="trave-esquerda"
-                />
+        {jogadoresSelecionados
+          .filter(j => j.lado === "esquerda")[item - 1]?.foto && (
+          <img
+            src={
+              jogadoresSelecionados
+                .filter(j => j.lado === "esquerda")[item - 1].foto
+            }
+            alt=""
+            className="player-photo"
+          />
+        )}
 
-              </div>
+      </div>
 
-              <img
-                src={Vs}
-                alt="VS"
-                className="vs-image"
-              />
+      <img
+        src={TraveEsquerda}
+        alt=""
+        className="trave-esquerda"
+      />
 
-              <div className="circle-wrapper-right">
+    </div>
 
-                <img
-                  src={JogadoresDireita}
-                  alt=""
-                  className="jogadores-direita-image"
-                />
+    <img
+      src={Vs}
+      alt="VS"
+      className="vs-image"
+    />
 
-                <div className="circle"></div>
+    <div className="circle-wrapper-right">
 
-                <img
-                  src={TraveDireita}
-                  alt=""
-                  className="trave-direita"
-                />
+      <img
+        src={JogadoresDireita}
+        alt=""
+        className="jogadores-direita-image"
+      />
 
-              </div>
+      <div className="circle">
 
-            </div>
-          ))}
+        {jogadoresSelecionados
+          .filter(j => j.lado === "direita")[item - 1]?.foto && (
+          <img
+            src={
+              jogadoresSelecionados
+                .filter(j => j.lado === "direita")[item - 1].foto
+            }
+            alt=""
+            className="player-photo"
+          />
+        )}
+
+      </div>
+
+      <img
+        src={TraveDireita}
+        alt=""
+        className="trave-direita"
+      />
+
+    </div>
+
+  </div>
+))}
 
         </div>
 

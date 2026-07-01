@@ -12,6 +12,8 @@ import UsuarioMenino from "../../assets/usuariomenino.png";
 import UsuarioMenina from "../../assets/usuariomenina.png";
 import Normal from "../../assets/normal.png";
 import Ranqueada from "../../assets/ranqueada.png";
+import NormalRanqueada from "../../assets/normalranqueada.mp3";
+import SoundStart from "../../assets/soundstart.mp3";
 
 export default function GamesScreen({
   onClose,
@@ -34,6 +36,19 @@ export default function GamesScreen({
             nome: meuNome,
           },
         ];
+
+        const normalRanqueadaAudio = new Audio(NormalRanqueada);
+const startAudio = new Audio(SoundStart);
+
+function tocarNormalRanqueada() {
+  normalRanqueadaAudio.currentTime = 0;
+  normalRanqueadaAudio.play();
+}
+
+function tocarStart() {
+  startAudio.currentTime = 0;
+  startAudio.play();
+}
 
         const [jogadoresSelecionados, setJogadoresSelecionados] =
   useState([
@@ -267,10 +282,11 @@ return (
         <div className="games-play">
 
           <img
-            src={PlayerBottom}
-            alt="PlayerBottom"
-            className="play-bottom-image"
-          />
+  src={PlayerBottom}
+  alt="PlayerBottom"
+  className="play-bottom-image"
+  onClick={tocarStart}
+/>
 
         </div>
 
@@ -278,29 +294,29 @@ return (
 
       {/* BARRA INFERIOR */}
 
-      <div className="challenge-buttons">
+<div className="challenge-buttons">
 
-        <button>
+  <button onClick={tocarNormalRanqueada}>
 
-          <img
-            src={Normal}
-            alt="Normal"
-            className="challenge-image"
-          />
+    <img
+      src={Normal}
+      alt="Normal"
+      className="challenge-image"
+    />
 
-        </button>
+  </button>
 
-        <button>
+  <button onClick={tocarNormalRanqueada}>
 
-          <img
-            src={Ranqueada}
-            alt="Ranqueada"
-            className="challenge-image"
-          />
+    <img
+      src={Ranqueada}
+      alt="Ranqueada"
+      className="challenge-image"
+    />
 
-        </button>
+  </button>
 
-      </div>
+</div>
 
     </div>
   );

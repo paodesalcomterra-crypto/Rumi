@@ -89,143 +89,149 @@ function selecionarJogador(pessoa) {
     ...jogadoresSelecionados,
     {
       lado,
-      nome:pessoa.nome,
-      foto:pessoa.foto || "",
+      nome: pessoa.nome,
+      foto: pessoa.foto || "",
     }
   ]);
 
 }
 
-  return (
-    <div
-      className="games-screen"
-      style={{
-        backgroundImage: `url(${FundoBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="games-header">
-        <button
-          className="games-close"
-          onClick={onClose}
-        >
-          ✕
-        </button>
-
-        <img
-          src={Rumi2}
-          alt="Rumi"
-          className="games-title-logo"
-        />
-      </div>
-
-      {/* USUÁRIOS */}
-
-      <div className="games-users">
-
-        {[0, 1, 2, 3].map((index) => {
-
-          const pessoa = listaUsuarios[index];
-
-if (!pessoa) {
-  return (
-    <div
-      key={index}
-      className="user-card"
-      style={{
-        opacity: 0,
-        pointerEvents: "none",
-      }}
-    />
-  );
-}
-
-const selecionado =
-  jogadoresSelecionados.some(
-    j => j.nome === pessoa.nome
-  );
+const quantidadeCards =
+  listaUsuarios.length <= 2
+    ? 2
+    : listaUsuarios.length <= 4
+      ? 4
+      : listaUsuarios.length;
 
 return (
-
   <div
-    key={index}
-    onClick={() => selecionarJogador(pessoa)}
-    className="user-card"
+    className="games-screen"
     style={{
-      cursor:
-        pessoa.nome === meuNome
-          ? "default"
-          : "pointer",
-
-      transform:
-        selecionado
-          ? "scale(.97)"
-          : "scale(1)",
-
-      transition: "transform .12s",
-
-      backgroundImage: `url(${
-        pessoa.nome === meuNome
-          ? (
-              avatarEscolhido === "menina"
-                ? UsuarioMenina
-                : UsuarioMenino
-            )
-          : UsuarioMenino
-      })`,
+      backgroundImage: `url(${FundoBg})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
     }}
   >
-
-              <span>{pessoa.nome}</span>
-
-            </div>
-
-          );
-
-        })}
-
-      </div>
-
-      {/* PARTE DE BAIXO */}
-
-      <div className="games-bottom">
-
-        {/* ESQUERDA */}
-
-        <div className="games-vs">
-
-          {[1, 2, 3, 4].map((item) => (
-  <div
-    className="vs-row"
-    key={item}
-  >
-
-    <div className="circle-wrapper-left">
+    <div className="games-header">
+      <button
+        className="games-close"
+        onClick={onClose}
+      >
+        ✕
+      </button>
 
       <img
-        src={JogadoresEsquerda}
-        alt=""
-        className="jogadores-esquerda-image"
+        src={Rumi2}
+        alt="Rumi"
+        className="games-title-logo"
       />
+    </div>
 
-      <div className="circle">
+    {/* USUÁRIOS */}
 
-        {jogadoresSelecionados
-          .filter(j => j.lado === "esquerda")[item - 1]?.foto && (
-          <img
-            src={
-              jogadoresSelecionados
-                .filter(j => j.lado === "esquerda")[item - 1].foto
-            }
-            alt=""
-            className="player-photo"
-          />
-        )}
+    <div className="games-users">
 
-      </div>
+      {Array.from({ length: quantidadeCards }).map((_, index) => {
 
+        const pessoa = listaUsuarios[index];
+
+        if (!pessoa) {
+          return (
+            <div
+              key={index}
+              className="user-card"
+              style={{
+                opacity: 0,
+                pointerEvents: "none",
+              }}
+            />
+          );
+        }
+
+        const selecionado =
+          jogadoresSelecionados.some(
+            j => j.nome === pessoa.nome
+          );
+
+        return (
+
+          <div
+            key={index}
+            onClick={() => selecionarJogador(pessoa)}
+            className="user-card"
+            style={{
+              cursor:
+                pessoa.nome === meuNome
+                  ? "default"
+                  : "pointer",
+
+              transform:
+                selecionado
+                  ? "scale(.97)"
+                  : "scale(1)",
+
+              transition: "transform .12s",
+
+              backgroundImage: `url(${
+                pessoa.nome === meuNome
+                  ? (
+                      avatarEscolhido === "menina"
+                        ? UsuarioMenina
+                        : UsuarioMenino
+                    )
+                  : UsuarioMenino
+              })`,
+            }}
+          >
+
+            <span>{pessoa.nome}</span>
+
+          </div>
+
+        );
+
+      })}
+
+    </div>
+
+    {/* PARTE DE BAIXO */}
+
+    <div className="games-bottom">
+
+      {/* ESQUERDA */}
+
+      <div className="games-vs">
+
+        {[1, 2, 3, 4, 5].map((item) => (
+          <div
+            className="vs-row"
+            key={item}
+          >
+
+            <div className="circle-wrapper-left">
+
+              <img
+                src={JogadoresEsquerda}
+                alt=""
+                className="jogadores-esquerda-image"
+              />
+
+              <div className="circle">
+
+                {jogadoresSelecionados
+                  .filter(j => j.lado === "esquerda")[item - 1]?.foto && (
+                  <img
+                    src={
+                      jogadoresSelecionados
+                        .filter(j => j.lado === "esquerda")[item - 1].foto
+                    }
+                    alt=""
+                    className="player-photo"
+                  />
+                )}
+
+              </div>
       <img
         src={TraveEsquerda}
         alt=""

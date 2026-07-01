@@ -417,6 +417,16 @@ transform:translateY(0);
 
     gap:14px;
 
+    border-bottom:2px solid rgba(255,255,255,.08);
+
+    align-content:start;
+
+    max-height:150px;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
 }
 
 .user-card{
@@ -500,5 +510,17 @@ transform:translateY(0);
     border-radius:50%;
 
     object-fit:cover;
+
+}
+
+.games-users::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.games-users{
+
+    scrollbar-width:none;
 
 }

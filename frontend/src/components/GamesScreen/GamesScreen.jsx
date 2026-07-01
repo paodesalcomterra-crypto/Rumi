@@ -9,6 +9,8 @@ import JogadoresDireita from "../../assets/jogadoresdireita.png";
 import JogadoresEsquerda from "../../assets/jogadoresesquerda.png";
 import UsuarioMenino from "../../assets/usuariomenino.png";
 import UsuarioMenina from "../../assets/usuariomenina.png";
+import Normal from "../../assets/normal.png";
+import Ranqueada from "../../assets/ranqueada.png";
 
 export default function GamesScreen({
   onClose,
@@ -186,11 +188,23 @@ export default function GamesScreen({
       <div className="challenge-buttons">
 
         <button>
-          Normal
+
+          <img
+            src={Normal}
+            alt="Normal"
+            className="challenge-image"
+          />
+
         </button>
 
         <button>
-          Ranqueada
+
+          <img
+            src={Ranqueada}
+            alt="Ranqueada"
+            className="challenge-image"
+          />
+
         </button>
 
       </div>

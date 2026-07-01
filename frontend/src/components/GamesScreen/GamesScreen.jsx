@@ -63,7 +63,7 @@ export default function GamesScreen({
 
       <div className="games-users">
 
-        {[0, 1, 2, 3].map((index) => {
+        {[1, 2, 3, 4].map((index) => {
 
           const pessoa = listaUsuarios[index];
 

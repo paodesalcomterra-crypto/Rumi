@@ -203,33 +203,15 @@
 
     border:none;
 
-    color:white;
+    background:transparent;
 
-    font-size:18px;
+    padding:0;
+
+    margin:0;
+
+    overflow:hidden;
 
     cursor:pointer;
-
-}
-
-/* NORMAL */
-
-.challenge-buttons button:first-child{
-
-    background:#5b86f3;
-
-    position:relative;
-
-}
-
-/* RANQUEADA */
-
-.challenge-buttons button:last-child{
-
-    background:#e54f4f;
-
-}
-
-.challenge-buttons button:first-child{
 
     position:relative;
 
@@ -241,15 +223,17 @@
 
     position:absolute;
 
-    top:0.4px;
+    top:0;
 
-    bottom:-15px;
+    bottom:0;
 
     right:0;
 
     width:2px;
 
     background:rgba(255,255,255,.08);
+
+    z-index:2;
 
 }
 
@@ -469,11 +453,11 @@ transform:translateY(0);
 
 .challenge-image{
 
-    width:140%;
+    width:100%;
 
-    height:140%;
+    height:100%;
 
-    object-fit:contain;
+    object-fit:cover;
 
     display:block;
 

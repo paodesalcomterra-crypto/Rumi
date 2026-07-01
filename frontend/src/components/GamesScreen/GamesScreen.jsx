@@ -116,7 +116,7 @@ export default function GamesScreen({
 
         <div className="games-vs">
 
-          {[1, 2, 3, 4, 5].map((item) => (
+          {[1, 2, 3].map((item) => (
             <div
               className="vs-row"
               key={item}

@@ -13,7 +13,7 @@ import UsuarioMenina from "../../assets/usuariomenina.png";
 import Normal from "../../assets/normal.png";
 import Ranqueada from "../../assets/ranqueada.png";
 import NormalRanqueada from "../../assets/normalranqueada.mp3";
-import SoundStart from "../../assets/soundstart.mp3";
+import SoundStart from "../../assets/soundstart.m4a";
 
 export default function GamesScreen({
   onClose,

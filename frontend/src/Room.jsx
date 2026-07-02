@@ -1978,7 +1978,7 @@ overflowY: "auto",
                   src={msg.figurinha}
                   alt=""
                   style={{
-                    width: "140px",
+                    width: "110px",
                     maxWidth: "35vw",
                     borderRadius: "14px",
                     display: "block",

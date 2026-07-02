@@ -754,7 +754,6 @@ socket.emit("entrarCanalVoz");
   }
 
 }
-
 function enviarMensagem() {
   if (!novaMensagem.trim()) return;
 
@@ -764,10 +763,27 @@ function enviarMensagem() {
       nome: meuId,
       foto: usuario?.photoURL || "",
       texto: novaMensagem,
+      figurinha: null,
     },
   });
 
   setNovaMensagem("");
+}
+
+function enviarFigurinha(fig) {
+
+  socket.emit("enviarMensagem", {
+    sala: salaAtual,
+    mensagem: {
+      nome: meuId,
+      foto: usuario?.photoURL || "",
+      texto: "",
+      figurinha: fig,
+    },
+  });
+
+  setMostrarFigurinhas(false);
+
 }
 
 async function pesquisarYoutube() {
@@ -1955,22 +1971,37 @@ overflowY: "auto",
                 </div>
               )}
 
-              <div
-                style={{
-                  background: "rgba(0,0,0,.45)",
-                  backdropFilter: "blur(8px)",
-                  color: "#fff",
-                  padding: "10px 14px",
-                  borderRadius: "16px",
-                  maxWidth: "100%",
-                  wordBreak: "break-word",
-                  textAlign: souEu
-                    ? "right"
-                    : "left",
-                }}
-              >
-                {msg.texto}
-              </div>
+              {msg.tipo === "figurinha" ? (
+                <img
+                  src={msg.figura}
+                  alt=""
+                  style={{
+                    width: "140px",
+                    maxWidth: "35vw",
+                    borderRadius: "14px",
+                    display: "block",
+                    userSelect: "none",
+                  }}
+                />
+              ) : (
+                <div
+                  style={{
+                    background: "rgba(0,0,0,.45)",
+                    backdropFilter: "blur(8px)",
+                    color: "#fff",
+                    padding: "10px 14px",
+                    borderRadius: "16px",
+                    maxWidth: "100%",
+                    wordBreak: "break-word",
+                    textAlign: souEu
+                      ? "right"
+                      : "left",
+                  }}
+                >
+                  {msg.texto}
+                </div>
+              )}
+
             </div>
           </div>
         </div>
@@ -2017,11 +2048,9 @@ overflowY: "auto",
         alt=""
         onClick={() => {
 
-          console.log("Figurinha:", fig);
+  enviarFigurinha(fig);
 
-          setPainelFigurinhasAberto(false);
-
-        }}
+}}
         style={{
           width: "100%",
           aspectRatio: "1",

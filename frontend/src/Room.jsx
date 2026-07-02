@@ -127,24 +127,9 @@ const [videosYoutube, setVideosYoutube] = useState([]);
 const [carregandoYoutube, setCarregandoYoutube] = useState(false);
 const [usuariosSala, setUsuariosSala] = useState([]);
 
-const [painelFigurinhasAberto, setPainelFigurinhasAberto] =
-  useState(false);
-
-const figurinhas = [
-  miranha_fig,
-  hellokitty_fig,
-  velho_fig,
-  davi_fig,
-  cabeloroxo_fig,
-  sonic_fig,
-  cachorro_triste_fig,
-  cachorro_fig,
-  chorando_fig,
-];
-
 const [activeScreen, setActiveScreen] = useState("room");
 
-const [mostrarFigurinhas, setMostrarFigurinhas] =
+const [painelFigurinhasAberto, setPainelFigurinhasAberto] =
   useState(false);
 
 const figurinhas = [

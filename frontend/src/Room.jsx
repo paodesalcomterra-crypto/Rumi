@@ -30,7 +30,6 @@ import cachorro_fig from "./assets/Imagens_Figurinhas/cachorro_fig.png";
 import chorando_fig from "./assets/Imagens_Figurinhas/chorando_fig.png";
 import figurinha1 from "./assets/Imagens_Figurinhas/figurinha1.png";
 import figurinha2 from "./assets/Imagens_Figurinhas/figurinha2.png";
-import figurinha3 from "./assets/Imagens_Figurinhas/figurinha3.png";
 import figurinha4 from "./assets/Imagens_Figurinhas/figurinha4.png";
 import figurinha5 from "./assets/Imagens_Figurinhas/figurinha5.png";
 import figurinha6 from "./assets/Imagens_Figurinhas/figurinha6.png";
@@ -181,7 +180,6 @@ const figurinhas = [
 
   figurinha1,
   figurinha2,
-  figurinha3,
   figurinha4,
   figurinha5,
   figurinha6,

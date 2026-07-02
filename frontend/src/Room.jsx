@@ -780,7 +780,7 @@ function enviarFigurinha(fig) {
     },
   });
 
-  setMostrarFigurinhas(false);
+  setPainelFigurinhasAberto(false);
 
 }
 

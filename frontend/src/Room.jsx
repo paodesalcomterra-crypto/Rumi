@@ -2260,8 +2260,8 @@ overflowY: "auto",
       src={figurinha}
       alt="Figurinha"
       style={{
-        width: "58px",
-        height: "58px",
+        width: "42px",
+        height: "42px",
         objectFit: "contain",
       }}
     />

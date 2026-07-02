@@ -2211,32 +2211,35 @@ overflowY: "auto",
   </button>
 
   <input
-    ref={inputMensagemRef}
-    value={novaMensagem}
-    onChange={(e) => setNovaMensagem(e.target.value)}
-    onKeyDown={(e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
+  ref={inputMensagemRef}
+  value={novaMensagem}
+  onChange={(e) => setNovaMensagem(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
 
-        enviarMensagem();
+      enviarMensagem();
 
-        setTimeout(() => {
-          inputMensagemRef.current?.focus();
-        }, 10);
-      }
-    }}
-    placeholder="Bate-papo..."
-    style={{
-      flex: 1,
-      border: "none",
-      outline: "none",
-      borderRadius: "999px",
-      padding: "14px 18px",
-      background: "rgba(255,255,255,.12)",
-      color: "#fff",
-      backdropFilter: "blur(10px)",
-    }}
-  />
+      setTimeout(() => {
+        inputMensagemRef.current?.focus();
+      }, 10);
+    }
+  }}
+  placeholder="Bate-papo..."
+  style={{
+    width: "225px",
+    minWidth: "225px",
+    maxWidth: "225px",
+
+    border: "none",
+    outline: "none",
+    borderRadius: "999px",
+    padding: "14px 18px",
+    background: "rgba(255,255,255,.12)",
+    color: "#fff",
+    backdropFilter: "blur(10px)",
+  }}
+/>
 
   <button
     onClick={() =>

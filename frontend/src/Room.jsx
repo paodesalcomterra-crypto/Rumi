@@ -129,7 +129,7 @@ const [usuariosSala, setUsuariosSala] = useState([]);
 
 const [activeScreen, setActiveScreen] = useState("room");
 
-const [painelFigurinhasAberto, setPainelFigurinhasAberto] =
+const [mostrarFigurinhas, setMostrarFigurinhas] =
   useState(false);
 
 const figurinhas = [

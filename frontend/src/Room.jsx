@@ -2227,9 +2227,9 @@ overflowY: "auto",
   }}
   placeholder="Bate-papo..."
   style={{
-    width: "225px",
-    minWidth: "225px",
-    maxWidth: "225px",
+    width: "170px",
+    minWidth: "170px",
+    maxWidth: "170px",
 
     border: "none",
     outline: "none",

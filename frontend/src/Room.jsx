@@ -28,6 +28,42 @@ import sonic_fig from "./assets/Imagens_Figurinhas/sonic_fig.png";
 import cachorro_triste_fig from "./assets/Imagens_Figurinhas/cachorro_triste_fig.png";
 import cachorro_fig from "./assets/Imagens_Figurinhas/cachorro_fig.png";
 import chorando_fig from "./assets/Imagens_Figurinhas/chorando_fig.png";
+import figurinha1 from "./assets/Imagens_Figurinhas/figurinha1.png";
+import figurinha2 from "./assets/Imagens_Figurinhas/figurinha2.png";
+import figurinha3 from "./assets/Imagens_Figurinhas/figurinha3.png";
+import figurinha4 from "./assets/Imagens_Figurinhas/figurinha4.png";
+import figurinha5 from "./assets/Imagens_Figurinhas/figurinha5.png";
+import figurinha6 from "./assets/Imagens_Figurinhas/figurinha6.png";
+import figurinha7 from "./assets/Imagens_Figurinhas/figurinha7.png";
+import figurinha8 from "./assets/Imagens_Figurinhas/figurinha8.png";
+import figurinha9 from "./assets/Imagens_Figurinhas/figurinha9.png";
+import figurinha10 from "./assets/Imagens_Figurinhas/figurinha10.png";
+import figurinha11 from "./assets/Imagens_Figurinhas/figurinha11.png";
+import figurinha12 from "./assets/Imagens_Figurinhas/figurinha12.png";
+import figurinha13 from "./assets/Imagens_Figurinhas/figurinha13.png";
+import figurinha14 from "./assets/Imagens_Figurinhas/figurinha14.png";
+import figurinha15 from "./assets/Imagens_Figurinhas/figurinha15.png";
+import figurinha16 from "./assets/Imagens_Figurinhas/figurinha16.png";
+import figurinha17 from "./assets/Imagens_Figurinhas/figurinha17.png";
+import figurinha18 from "./assets/Imagens_Figurinhas/figurinha18.png";
+import figurinha19 from "./assets/Imagens_Figurinhas/figurinha19.png";
+import figurinha20 from "./assets/Imagens_Figurinhas/figurinha20.png";
+import figurinha21 from "./assets/Imagens_Figurinhas/figurinha21.png";
+import figurinha22 from "./assets/Imagens_Figurinhas/figurinha22.png";
+import figurinha23 from "./assets/Imagens_Figurinhas/figurinha23.png";
+import figurinha24 from "./assets/Imagens_Figurinhas/figurinha24.png";
+import figurinha25 from "./assets/Imagens_Figurinhas/figurinha25.png";
+import figurinha26 from "./assets/Imagens_Figurinhas/figurinha26.png";
+import figurinha27 from "./assets/Imagens_Figurinhas/figurinha27.png";
+import figurinha28 from "./assets/Imagens_Figurinhas/figurinha28.png";
+import figurinha29 from "./assets/Imagens_Figurinhas/figurinha29.png";
+import figurinha30 from "./assets/Imagens_Figurinhas/figurinha30.png";
+import figurinha31 from "./assets/Imagens_Figurinhas/figurinha31.png";
+import figurinha32 from "./assets/Imagens_Figurinhas/figurinha32.png";
+import figurinha33 from "./assets/Imagens_Figurinhas/figurinha33.png";
+import figurinha34 from "./assets/Imagens_Figurinhas/figurinha34.png";
+import figurinha35 from "./assets/Imagens_Figurinhas/figurinha35.png";
+import figurinha36 from "./assets/Imagens_Figurinhas/figurinha36.png";
 
 
 const socket = io("https://rumi-production-3089.up.railway.app");
@@ -142,6 +178,43 @@ const figurinhas = [
   cachorro_triste_fig,
   cachorro_fig,
   chorando_fig,
+
+  figurinha1,
+  figurinha2,
+  figurinha3,
+  figurinha4,
+  figurinha5,
+  figurinha6,
+  figurinha7,
+  figurinha8,
+  figurinha9,
+  figurinha10,
+  figurinha11,
+  figurinha12,
+  figurinha13,
+  figurinha14,
+  figurinha15,
+  figurinha16,
+  figurinha17,
+  figurinha18,
+  figurinha19,
+  figurinha20,
+  figurinha21,
+  figurinha22,
+  figurinha23,
+  figurinha24,
+  figurinha25,
+  figurinha26,
+  figurinha27,
+  figurinha28,
+  figurinha29,
+  figurinha30,
+  figurinha31,
+  figurinha32,
+  figurinha33,
+  figurinha34,
+  figurinha35,
+  figurinha36,
 ];
 
 const meuId =

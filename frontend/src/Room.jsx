@@ -1973,9 +1973,9 @@ overflowY: "auto",
                 </div>
               )}
 
-              {msg.tipo === "figurinha" ? (
+              {msg.figurinha ? (
                 <img
-                  src={msg.figura}
+                  src={msg.figurinha}
                   alt=""
                   style={{
                     width: "140px",

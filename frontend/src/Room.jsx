@@ -28,7 +28,6 @@ import sonic_fig from "./assets/Imagens_Figurinhas/sonic_fig.png";
 import cachorro_triste_fig from "./assets/Imagens_Figurinhas/cachorro_triste_fig.png";
 import cachorro_fig from "./assets/Imagens_Figurinhas/cachorro_fig.png";
 import chorando_fig from "./assets/Imagens_Figurinhas/chorando_fig.png";
-import menino_fig from "./assets/Imagens_Figurinhas/menino_fig.gif";
 
 
 const socket = io("https://rumi-production-3089.up.railway.app");

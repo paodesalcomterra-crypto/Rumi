@@ -17,6 +17,19 @@ import avançar10segundos from "./assets/avançar10segundos.png";
 import voltar10segundos from "./assets/voltar10segundos.png";
 import telacheia from "./assets/telacheia.png";
 import GamesScreen from "./components/GamesScreen/GamesScreen";
+import figurinha from "./assets/figurinha.png";
+
+import miranha_fig from "./assets/Imagens_Figurinhas/miranha_fig.jpeg";
+import hellokitty_fig from "./assets/Imagens_Figurinhas/hellokitty_fig.jpeg";
+import velho_fig from "./assets/Imagens_Figurinhas/velho_fig.png";
+import davi_fig from "./assets/Imagens_Figurinhas/davi_fig.png";
+import cabeloroxo_fig from "./assets/Imagens_Figurinhas/cabeloroxo_fig.jpeg";
+import sonic_fig from "./assets/Imagens_Figurinhas/sonic_fig.png";
+import cachorro_triste_fig from "./assets/Imagens_Figurinhas/cachorro_triste_fig.png";
+import cachorro_fig from "./assets/Imagens_Figurinhas/cachorro_fig.png";
+import chorando_fig from "./assets/Imagens_Figurinhas/chorando_fig.png";
+import menino_fig from "./assets/Imagens_Figurinhas/menino_fig.gif";
+
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 
@@ -116,6 +129,22 @@ const [carregandoYoutube, setCarregandoYoutube] = useState(false);
 const [usuariosSala, setUsuariosSala] = useState([]);
 
 const [activeScreen, setActiveScreen] = useState("room");
+
+const [painelFigurinhasAberto, setPainelFigurinhasAberto] =
+  useState(false);
+
+const figurinhas = [
+  miranha_fig,
+  hellokitty_fig,
+  velho_fig,
+  davi_fig,
+  cabeloroxo_fig,
+  sonic_fig,
+  cachorro_triste_fig,
+  cachorro_fig,
+  chorando_fig,
+  menino_fig,
+];
 
 const meuId =
   nickEscolhido ||
@@ -1950,110 +1979,212 @@ overflowY: "auto",
   </div>
 </div>
 
+{painelFigurinhasAberto && (
+
+  <div
+    style={{
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: "84px",
+
+      height: "260px",
+
+      background: "rgba(22,22,22,.97)",
+
+      backdropFilter: "blur(10px)",
+
+      borderTopLeftRadius: "18px",
+      borderTopRightRadius: "18px",
+
+      overflowY: "auto",
+
+      padding: "14px",
+
+      display: "grid",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gap: "12px",
+
+      zIndex: 30,
+    }}
+  >
+
+    {figurinhas.map((fig, index) => (
+
+      <img
+        key={index}
+        src={fig}
+        alt=""
+        onClick={() => {
+
+          console.log("Figurinha:", fig);
+
+          setPainelFigurinhasAberto(false);
+
+        }}
+        style={{
+          width: "100%",
+          aspectRatio: "1",
+
+          objectFit: "contain",
+
+          cursor: "pointer",
+
+          transition: ".15s",
+
+          borderRadius: "12px",
+        }}
+        onMouseDown={(e)=>{
+          e.currentTarget.style.transform="scale(.94)";
+        }}
+        onMouseUp={(e)=>{
+          e.currentTarget.style.transform="scale(1)";
+        }}
+        onMouseLeave={(e)=>{
+          e.currentTarget.style.transform="scale(1)";
+        }}
+      />
+
+    ))}
+
+  </div>
+
+)}
+
       {/* BARRA INFERIOR */}
 
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 20,
-          padding: "12px",
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          background:
-            "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
-        }}
-      >
-        <button
-  onClick={ativarMicrofone}
+<div
   style={{
-    width: "60px",
-    height: "60px",
-    border: "none",
-    background: "transparent",
-    padding: 0,
-    cursor: "pointer",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 20,
+    padding: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    background:
+      "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
   }}
 >
-  <img
-    src={
-      microfoneLigado
-        ? microfoneativo
-        : microfone
-    }
-    alt="Microfone"
+  <button
+    onClick={ativarMicrofone}
     style={{
       width: "60px",
       height: "60px",
-      borderRadius: "20%",
+      border: "none",
+      background: "transparent",
+      padding: 0,
+      cursor: "pointer",
+    }}
+  >
+    <img
+      src={
+        microfoneLigado
+          ? microfoneativo
+          : microfone
+      }
+      alt="Microfone"
+      style={{
+        width: "60px",
+        height: "60px",
+        borderRadius: "20%",
 
-      filter: microfoneLigado
-        ? `
+        filter: microfoneLigado
+          ? `
           drop-shadow(0 0 3px #ff91de)
           drop-shadow(0 0 6px #f588bf)
           drop-shadow(0 0 11px #fc89ae)
           drop-shadow(0 0 14px #42121c)
         `
-        : "none",
+          : "none",
 
-      transition: "0.3s ease",
+        transition: "0.3s ease",
+      }}
+    />
+  </button>
+
+  <input
+    ref={inputMensagemRef}
+    value={novaMensagem}
+    onChange={(e) => setNovaMensagem(e.target.value)}
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+
+        enviarMensagem();
+
+        setTimeout(() => {
+          inputMensagemRef.current?.focus();
+        }, 10);
+      }
+    }}
+    placeholder="Bate-papo..."
+    style={{
+      flex: 1,
+      border: "none",
+      outline: "none",
+      borderRadius: "999px",
+      padding: "14px 18px",
+      background: "rgba(255,255,255,.12)",
+      color: "#fff",
+      backdropFilter: "blur(10px)",
     }}
   />
-</button>
 
-        <input
-  ref={inputMensagemRef}
-  value={novaMensagem}
-  onChange={(e) => setNovaMensagem(e.target.value)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
+  <button
+    onClick={() =>
+      setPainelFigurinhasAberto(
+        !painelFigurinhasAberto
+      )
+    }
+    style={{
+      width: "52px",
+      height: "52px",
+      border: "none",
+      background: "transparent",
+      cursor: "pointer",
+      padding: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <img
+      src={figurinha}
+      alt="Figurinha"
+      style={{
+        width: "42px",
+        height: "42px",
+        objectFit: "contain",
+      }}
+    />
+  </button>
 
+  <button
+    onClick={() => {
       enviarMensagem();
 
       setTimeout(() => {
         inputMensagemRef.current?.focus();
       }, 10);
-    }
-  }}
-  placeholder="Bate-papo..."
-  style={{
-    flex: 1,
-    border: "none",
-    outline: "none",
-    borderRadius: "999px",
-    padding: "14px 18px",
-    background: "rgba(255,255,255,.12)",
-    color: "#fff",
-    backdropFilter: "blur(10px)",
-  }}
-/>
-
-<button
-  onClick={() => {
-    enviarMensagem();
-
-    setTimeout(() => {
-      inputMensagemRef.current?.focus();
-    }, 10);
-  }}
-  style={{
-    width: "52px",
-    height: "52px",
-    borderRadius: "50%",
-    border: "none",
-    background: "#ff8edb",
-    color: "#fff",
-    fontSize: "18px",
-    cursor: "pointer",
-  }}
->
-  ➤
-</button>
+    }}
+    style={{
+      width: "52px",
+      height: "52px",
+      borderRadius: "50%",
+      border: "none",
+      background: "#ff8edb",
+      color: "#fff",
+      fontSize: "18px",
+      cursor: "pointer",
+    }}
+  >
+    ➤
+  </button>
 </div>
+
 </div>
 );
 }

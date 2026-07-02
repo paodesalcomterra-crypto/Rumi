@@ -158,12 +158,16 @@ useEffect(() => {
 },
   });
 
-  socket.on("novaMensagem", (mensagem) => {
-    setMensagens((anterior) => [
-      ...anterior,
-      mensagem,
-    ]);
-  });
+ socket.on("novaMensagem", (mensagem) => {
+
+  console.log("MENSAGEM RECEBIDA:", mensagem);
+
+  setMensagens((anterior) => [
+    ...anterior,
+    mensagem,
+  ]);
+
+});
 
   console.log("Entrou na sala:", salaAtual);
 

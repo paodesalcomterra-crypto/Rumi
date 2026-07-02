@@ -2049,7 +2049,7 @@ overflowY: "auto",
                   src={msg.figurinha}
                   alt=""
                   style={{
-                    width: "110px",
+                    width: "90px",
                     maxWidth: "35vw",
                     borderRadius: "14px",
                     display: "block",

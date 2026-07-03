@@ -67,6 +67,7 @@ import figurinha37 from "./assets/Imagens_Figurinhas/figurinha37.png";
 import figurinha40 from "./assets/Imagens_Figurinhas/figurinha40.png";
 import figurinha50 from "./assets/Imagens_Figurinhas/figurinha50.png";
 import menino_gif from "./assets/Imagens_Figurinhas/menino_gif.gif";
+import coracao_fig from "./assets/Imagens_Figurinhas/coracao_fig.gif";
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 
@@ -220,6 +221,7 @@ const figurinhas = [
   figurinha40,
   figurinha50,
   menino_gif,
+  coracao_fig,
 ];
 
 const meuId =

@@ -1287,7 +1287,7 @@ setOverlayIcon("play");
       pointerEvents: "auto",
     }}
   >
-    <input
+    '<input
       type="range"
       min={0}
       max={duracaoVideo || 0}
@@ -1307,25 +1307,15 @@ setOverlayIcon("play");
         }
       }}
       style={{
-        width: "100%",
-        height: "3px",
+  width: "100%",
+  cursor: "pointer",
 
-        cursor: "pointer",
+  appearance: "none",
+  WebkitAppearance: "none",
 
-        appearance: "none",
-        WebkitAppearance: "none",
-
-        background: `linear-gradient(
-          to right,
-          #E50914 0%,
-          #E50914 ${(tempoVideo / (duracaoVideo || 1)) * 100}%,
-          #6b6b6b ${(tempoVideo / (duracaoVideo || 1)) * 100}%,
-          #6b6b6b 100%
-        )`,
-
-        borderRadius: "0px",
-        outline: "none",
-      }}
+  background: "transparent",
+  height: "14px",
+}}
     />
   </div>
 )}

@@ -1280,7 +1280,7 @@ setOverlayIcon("play");
   left: "38px",     // aumenta a largura e vai mais para a esquerda
   right: "42px",    // continua sem encostar no botão de tela cheia
 
-  bottom: "58.4px",   // sobe um pouco
+  bottom: "49.4px",   // sobe um pouco
 
 
       zIndex: 9000,

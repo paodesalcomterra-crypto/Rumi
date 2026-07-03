@@ -1289,30 +1289,30 @@ setOverlayIcon("play");
     }}
   >
     <input
-    className="netflix-slider"
-      type="range"
-      min={0}
-      max={duracaoVideo || 0}
-      value={tempoVideo}
-      onChange={(e) => {
-        const tempo = Number(e.target.value);
+  className="netflix-slider"
+  type="range"
+  min={0}
+  max={duracaoVideo || 0}
+  value={tempoVideo}
+  onChange={(e) => {
+    const tempo = Number(e.target.value);
 
-        setTempoVideo(tempo);
+    setTempoVideo(tempo);
 
-        if (videoDriveRef.current) {
-          videoDriveRef.current.currentTime = tempo;
+    if (videoDriveRef.current) {
+      videoDriveRef.current.currentTime = tempo;
 
-          socket.emit("seekVideo", {
-            sala: salaAtual,
-            tempo,
-          });
-        }
-      }}
-      style={{
-        width: "100%",
-        cursor: "pointer",
-      }}
-    />
+      socket.emit("seekVideo", {
+        sala: salaAtual,
+        tempo,
+      });
+    }
+  }}
+  style={{
+    width: "100%",
+    cursor: "pointer",
+  }}
+/>
   </div>
 )}
 

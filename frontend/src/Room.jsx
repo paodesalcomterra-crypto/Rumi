@@ -183,6 +183,10 @@ const [googleToken, setGoogleToken] = useState("");
 const [tempoVideo, setTempoVideo] = useState(0);
 const [duracaoVideo, setDuracaoVideo] = useState(0);
 
+const [mostrarBarra, setMostrarBarra] = useState(false);
+
+const timerBarraRef = useRef(null);
+
 const CLIENT_ID =
   "517167715767-t49svli06l2fg3gnrh3d3q29akfou2cc.apps.googleusercontent.com";
 
@@ -906,15 +910,26 @@ function enviarFigurinha(fig) {
   socket.emit("enviarMensagem", {
     sala: salaAtual,
     mensagem: {
-  nome: meuId,
-  foto: usuario?.photoURL || "",
-  texto: "",
-  figurinha: fig + "?v=" + Date.now(),
-},
+      nome: meuId,
+      foto: usuario?.photoURL || "",
+      texto: "",
+      figurinha: fig + "?v=" + Date.now(),
+    },
   });
 
   setPainelFigurinhasAberto(false);
+}
 
+function mostrarControlesVideo() {
+  setMostrarBarra(true);
+
+  if (timerBarraRef.current) {
+    clearTimeout(timerBarraRef.current);
+  }
+
+  timerBarraRef.current = setTimeout(() => {
+    setMostrarBarra(false);
+  }, 2500);
 }
 
 async function pesquisarYoutube() {
@@ -929,13 +944,9 @@ async function pesquisarYoutube() {
       )}`
     );
 
-    const dados =
-      await resposta.json();
+    const dados = await resposta.json();
 
-    console.log(
-      "DADOS YOUTUBE:",
-      dados
-    );
+    console.log("DADOS YOUTUBE:", dados);
 
     setVideosYoutube(
       Array.isArray(dados)
@@ -1138,6 +1149,7 @@ style={{
 
   <div
     onClick={() => {
+      mostrarControlesVideo();
       if (!videoDriveRef.current)
         return;
 
@@ -1206,42 +1218,85 @@ setOverlayIcon("play");
     }}
   >
   <img
-    src={
-      overlayIcon === "play"
-        ? play
-        : pause
-    }
-    alt=""
-    style={{
-      width:
-        overlayIcon === "pause"
-          ? "260px"
-          : "46px",
+  src={
+    overlayIcon === "play"
+      ? play
+      : pause
+  }
+  alt=""
+  style={{
+    width:
+      overlayIcon === "pause"
+        ? "260px"
+        : "46px",
 
-      height:
-        overlayIcon === "pause"
-          ? "260px"
-          : "46px",
+    height:
+      overlayIcon === "pause"
+        ? "260px"
+        : "46px",
 
-      opacity:
-        overlayIcon ? 1 : 0,
+    opacity:
+      overlayIcon ? 1 : 0,
 
-      transform: overlayIcon
-        ? "translateY(-22px) scale(1)"
-        : "translateY(-22px) scale(.65)",
+    transform: overlayIcon
+      ? "translateY(-22px) scale(1)"
+      : "translateY(-22px) scale(.65)",
 
-      transition:
-        "opacity 0.1s cubic-bezier(.22,1,.36,1), transform 1.4s cubic-bezier(.22,1,.36,1)",
+    transition:
+      "opacity 0.1s cubic-bezier(.22,1,.36,1), transform 1.4s cubic-bezier(.22,1,.36,1)",
 
-      pointerEvents: "none",
+    pointerEvents: "none",
 
-      userSelect: "none",
+    userSelect: "none",
 
-      filter:
-        "drop-shadow(0 0 18px rgba(0,0,0,.45))",
-    }}
-  />
+    filter:
+      "drop-shadow(0 0 18px rgba(0,0,0,.45))",
+  }}
+/>
 </div>
+
+{mostrarBarra && (
+  <div
+    style={{
+      position: "absolute",
+      left: "26px",
+      right: "26px",
+      bottom: "66px",
+
+      zIndex: 9000,
+
+      opacity: 1,
+      transition: ".25s",
+
+      pointerEvents: "auto",
+    }}
+  >
+    <input
+      type="range"
+      min={0}
+      max={duracaoVideo || 0}
+      value={tempoVideo}
+      onChange={(e) => {
+        const tempo = Number(e.target.value);
+
+        setTempoVideo(tempo);
+
+        if (videoDriveRef.current) {
+          videoDriveRef.current.currentTime = tempo;
+
+          socket.emit("seekVideo", {
+            sala: salaAtual,
+            tempo,
+          });
+        }
+      }}
+      style={{
+        width: "100%",
+        cursor: "pointer",
+      }}
+    />
+  </div>
+)}
 
 <div
  style={{

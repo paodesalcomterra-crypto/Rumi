@@ -1179,19 +1179,23 @@ style={{
 
         videoDriveRef.current.play();
 
-        setTimeout(() => {
-          if (
-            !videoDriveRef.current?.paused
-          ) {
+mostrarControlesVideo();
 
-            socket.emit("overlayVideo", {
-              sala: salaAtual,
-              overlay: null,
-            });
+setTimeout(() => {
+  if (
+    !videoDriveRef.current?.paused
+  ) {
 
-            setOverlayIcon(null);
-          }
-        }, 700);
+    socket.emit("overlayVideo", {
+      sala: salaAtual,
+      overlay: null,
+    });
+
+    setOverlayIcon(null);
+
+    mostrarControlesVideo();
+  }
+}, 700);
 
       } else {
 

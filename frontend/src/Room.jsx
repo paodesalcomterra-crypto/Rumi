@@ -1276,8 +1276,8 @@ setOverlayIcon("play");
   <div
     style={{
       position: "absolute",
-      left: "45px",
-      right: "45px",
+      left: "40.4px",
+      right: "40.4px",
       bottom: "44px",
 
       zIndex: 9000,

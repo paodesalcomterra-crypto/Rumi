@@ -180,6 +180,8 @@ const [driveAberto, setDriveAberto] =
 
 const [googleToken, setGoogleToken] = useState("");
 
+const [tempoVideo, setTempoVideo] = useState(0);
+const [duracaoVideo, setDuracaoVideo] = useState(0);
 
 const CLIENT_ID =
   "517167715767-t49svli06l2fg3gnrh3d3q29akfou2cc.apps.googleusercontent.com";
@@ -1085,6 +1087,17 @@ style={{
     playsInline
     preload="auto"
     controls={false}
+
+    onTimeUpdate={() => {
+      if (!videoDriveRef.current) return;
+      setTempoVideo(videoDriveRef.current.currentTime);
+    }}
+
+    onLoadedMetadata={() => {
+      if (!videoDriveRef.current) return;
+      setDuracaoVideo(videoDriveRef.current.duration);
+    }}
+
     onPlay={() => {
 
       if (ignorarEvento.current) return;
@@ -1110,6 +1123,7 @@ style={{
       });
 
     }}
+
     style={{
       width: "100%",
       height: "115%",

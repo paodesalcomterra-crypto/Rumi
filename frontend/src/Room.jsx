@@ -929,7 +929,7 @@ function mostrarControlesVideo() {
 
   timerBarraRef.current = setTimeout(() => {
     setMostrarBarra(false);
-  }, 860);
+  }, 1000);
 }
 
 async function pesquisarYoutube() {

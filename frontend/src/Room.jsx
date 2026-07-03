@@ -1277,10 +1277,10 @@ setOverlayIcon("play");
     style={{
   position: "absolute",
 
-  left: "37.4px",     // aumenta a largura e vai mais para a esquerda
+  left: "38px",     // aumenta a largura e vai mais para a esquerda
   right: "42px",    // continua sem encostar no botão de tela cheia
 
-  bottom: "54px",   // sobe um pouco
+  bottom: "58.4px",   // sobe um pouco
 
 
       zIndex: 9000,

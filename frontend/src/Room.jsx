@@ -923,22 +923,19 @@ function enviarFigurinha(fig) {
 function mostrarControlesVideo() {
   setMostrarBarra(true);
 
-  if (videoDriveRef.current?.paused) {
-    setVideoPausado(true);
-  } else {
-    setVideoPausado(true);
-  }
-
   if (timerBarraRef.current) {
     clearTimeout(timerBarraRef.current);
   }
 
+  // Se o vídeo estiver pausado, deixa os controles sempre visíveis.
+  if (videoDriveRef.current?.paused) {
+    setVideoPausado(true);
+    return;
+  }
+
   timerBarraRef.current = setTimeout(() => {
     setMostrarBarra(false);
-
-    if (!videoDriveRef.current?.paused) {
-      setVideoPausado(false);
-    }
+    setVideoPausado(false);
 
     socket.emit("overlayVideo", {
       sala: salaAtual,

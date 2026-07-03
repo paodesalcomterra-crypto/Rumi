@@ -1287,7 +1287,7 @@ setOverlayIcon("play");
       pointerEvents: "auto",
     }}
   >
-    '<input
+    <input
       type="range"
       min={0}
       max={duracaoVideo || 0}
@@ -1372,7 +1372,7 @@ setOverlayIcon("play");
     ? "auto"
     : "none",
 }}
-/>'
+/>
 
   
 

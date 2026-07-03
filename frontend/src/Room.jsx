@@ -68,6 +68,23 @@ import figurinha40 from "./assets/Imagens_Figurinhas/figurinha40.png";
 import figurinha50 from "./assets/Imagens_Figurinhas/figurinha50.png";
 import menino_gif from "./assets/Imagens_Figurinhas/menino_gif.gif";
 import coracao_fig from "./assets/Imagens_Figurinhas/coracao_fig.gif";
+import fig61 from "./assets/Imagens_Figurinhas/fig61.png";
+import fig62 from "./assets/Imagens_Figurinhas/fig62.png";
+import fig63 from "./assets/Imagens_Figurinhas/fig63.png";
+import fig64 from "./assets/Imagens_Figurinhas/fig64.png";
+import fig65 from "./assets/Imagens_Figurinhas/fig65.png";
+import fig66 from "./assets/Imagens_Figurinhas/fig66.png";
+import fig67 from "./assets/Imagens_Figurinhas/fig67.png";
+import fig68 from "./assets/Imagens_Figurinhas/fig68.png";
+import fig69 from "./assets/Imagens_Figurinhas/fig69.png";
+import fig70 from "./assets/Imagens_Figurinhas/fig70.png";
+import fig71 from "./assets/Imagens_Figurinhas/fig71.png";
+import fig72 from "./assets/Imagens_Figurinhas/fig72.png";
+import fig73 from "./assets/Imagens_Figurinhas/fig73.png";
+import fig74 from "./assets/Imagens_Figurinhas/fig74.png";
+import fig75 from "./assets/Imagens_Figurinhas/fig75.png";
+import fig76 from "./assets/Imagens_Figurinhas/fig76.png";
+import fig77 from "./assets/Imagens_Figurinhas/fig77.png";
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 
@@ -222,6 +239,23 @@ const figurinhas = [
   figurinha50,
   menino_gif,
   coracao_fig,
+  fig61,
+  fig62,
+  fig63,
+  fig64,
+  fig65,
+  fig66,
+  fig67,
+  fig68,
+  fig69,
+  fig70,
+  fig71,
+  fig72,
+  fig73,
+  fig74,
+  fig75,
+  fig76,
+  fig77,
 ];
 
 const meuId =

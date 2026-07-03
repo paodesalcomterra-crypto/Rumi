@@ -58,10 +58,10 @@
 
     border-radius:50%;
 
-    background:#E50914;
+    background:#e01160;
 }
 
 .netflix-slider::-moz-range-progress{
-    background:#E50914;
+    background:#e5095d;
     height:3px;
 }

@@ -947,7 +947,7 @@ function mostrarControlesVideo() {
 
     setOverlayIcon(null);
 
-  }, 1600);
+  }, 2750);
 }
 
 async function pesquisarYoutube() {

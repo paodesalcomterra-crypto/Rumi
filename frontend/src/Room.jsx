@@ -858,11 +858,11 @@ function enviarFigurinha(fig) {
   socket.emit("enviarMensagem", {
     sala: salaAtual,
     mensagem: {
-      nome: meuId,
-      foto: usuario?.photoURL || "",
-      texto: "",
-      figurinha: fig,
-    },
+  nome: meuId,
+  foto: usuario?.photoURL || "",
+  texto: "",
+  figurinha: fig + "?v=" + Date.now(),
+},
   });
 
   setPainelFigurinhasAberto(false);
@@ -2056,7 +2056,8 @@ overflowY: "auto",
 
               {msg.figurinha ? (
                 <img
-                  src={msg.figurinha}
+  key={msg.figurinha}
+  src={msg.figurinha}
                   alt=""
                   style={{
                     width: "115px",

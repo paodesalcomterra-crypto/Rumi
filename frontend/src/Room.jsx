@@ -1277,7 +1277,7 @@ setOverlayIcon("play");
       position: "absolute",
       left: "26px",
       right: "26px",
-      bottom: "66px",
+      bottom: "44px",
 
       zIndex: 9000,
 

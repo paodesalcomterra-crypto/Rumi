@@ -239,6 +239,7 @@ useEffect(() => {
   });
 
  socket.on("novaMensagem", (mensagem) => {
+  console.log(mensagem.figurinha);
 
   console.log("MENSAGEM RECEBIDA:", mensagem);
 

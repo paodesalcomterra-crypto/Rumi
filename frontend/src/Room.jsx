@@ -1288,86 +1288,46 @@ setOverlayIcon("play");
     }}
   >
     <input
-  type="range"
-  min={0}
-  max={duracaoVideo || 0}
-  value={tempoVideo}
-  onChange={(e) => {
-    const tempo = Number(e.target.value);
+      type="range"
+      min={0}
+      max={duracaoVideo || 0}
+      value={tempoVideo}
+      onChange={(e) => {
+        const tempo = Number(e.target.value);
 
-    setTempoVideo(tempo);
+        setTempoVideo(tempo);
 
-    if (videoDriveRef.current) {
-      videoDriveRef.current.currentTime = tempo;
+        if (videoDriveRef.current) {
+          videoDriveRef.current.currentTime = tempo;
 
-      socket.emit("seekVideo", {
-        sala: salaAtual,
-        tempo,
-      });
-    }
-  }}
-  style={{
-    width: "100%",
-    cursor: "pointer",
+          socket.emit("seekVideo", {
+            sala: salaAtual,
+            tempo,
+          });
+        }
+      }}
+      style={{
+        width: "100%",
+        height: "3px",
 
-    appearance: "none",
-    WebkitAppearance: "none",
+        cursor: "pointer",
 
-    background: "transparent",
-    height: "14px",
-  }}
-/>
+        appearance: "none",
+        WebkitAppearance: "none",
 
-<style>{`
-input[type=range]::-webkit-slider-runnable-track{
-  height:3px;
-  background:linear-gradient(
-    to right,
-    #E50914 0%,
-    #E50914 ${(tempoVideo / (duracaoVideo || 1)) * 100}%,
-    #6b6b6b ${(tempoVideo / (duracaoVideo || 1)) * 100}%,
-    #6b6b6b 100%
-  );
-  border:none;
-  border-radius:0;
-}
+        background: `linear-gradient(
+          to right,
+          #E50914 0%,
+          #E50914 ${(tempoVideo / (duracaoVideo || 1)) * 100}%,
+          #6b6b6b ${(tempoVideo / (duracaoVideo || 1)) * 100}%,
+          #6b6b6b 100%
+        )`,
 
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  appearance:none;
-
-  width:10px;
-  height:10px;
-
-  border-radius:50%;
-  background:#E50914;
-
-  margin-top:-3.5px;
-
-  border:none;
-}
-
-input[type=range]::-moz-range-track{
-  height:3px;
-  background:#6b6b6b;
-  border:none;
-}
-
-input[type=range]::-moz-range-progress{
-  background:#E50914;
-  height:3px;
-}
-
-input[type=range]::-moz-range-thumb{
-  width:10px;
-  height:10px;
-  border:none;
-  border-radius:50%;
-  background:#E50914;
-}
-`}</style>
-
-</div>
+        borderRadius: "0px",
+        outline: "none",
+      }}
+    />
+  </div>
 )}
 
 <div
@@ -1428,7 +1388,7 @@ input[type=range]::-moz-range-thumb{
     ? "auto"
     : "none",
 }}
-/>
+/>'
 
   
 

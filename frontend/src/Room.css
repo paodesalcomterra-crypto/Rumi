@@ -1,0 +1,67 @@
+/* Barra do vídeo */
+
+.netflix-slider{
+    -webkit-appearance:none;
+    appearance:none;
+
+    width:100%;
+    height:3px;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    outline:none;
+}
+
+/* Linha cinza */
+
+.netflix-slider::-webkit-slider-runnable-track{
+    height:3px;
+    background:#555;
+
+    border:none;
+    border-radius:0;
+}
+
+/* Bolinha */
+
+.netflix-slider::-webkit-slider-thumb{
+
+    -webkit-appearance:none;
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#E50914;
+
+    margin-top:-4.5px;
+
+    border:none;
+}
+
+/* Firefox */
+
+.netflix-slider::-moz-range-track{
+    height:3px;
+    background:#555;
+}
+
+.netflix-slider::-moz-range-thumb{
+
+    width:12px;
+    height:12px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#E50914;
+}
+
+.netflix-slider::-moz-range-progress{
+    background:#E50914;
+    height:3px;
+}

@@ -1307,15 +1307,9 @@ setOverlayIcon("play");
         }
       }}
       style={{
-  width: "100%",
-  cursor: "pointer",
-
-  appearance: "none",
-  WebkitAppearance: "none",
-
-  background: "transparent",
-  height: "14px",
-}}
+        width: "100%",
+        cursor: "pointer",
+      }}
     />
   </div>
 )}

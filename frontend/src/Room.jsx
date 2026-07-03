@@ -66,7 +66,7 @@ import figurinha36 from "./assets/Imagens_Figurinhas/figurinha36.png";
 import figurinha37 from "./assets/Imagens_Figurinhas/figurinha37.png";
 import figurinha40 from "./assets/Imagens_Figurinhas/figurinha40.png";
 import figurinha50 from "./assets/Imagens_Figurinhas/figurinha50.png";
-import menino_gif from "./assets/Imagens_Figurinhas/menino_gif";
+import menino_gif from "./assets/Imagens_Figurinhas/menino_gif.gif";
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 

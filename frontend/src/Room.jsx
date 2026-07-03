@@ -89,6 +89,8 @@ import fig78 from "./assets/Imagens_Figurinhas/fig78.png";
 import fig79 from "./assets/Imagens_Figurinhas/fig79.png";
 import fig80 from "./assets/Imagens_Figurinhas/fig80.png";
 import fig81 from "./assets/Imagens_Figurinhas/fig81.png";
+import fig85 from "./assets/Imagens_Figurinhas/fig85.gif";
+import fig86 from "./assets/Imagens_Figurinhas/fig86.gif";
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 
@@ -263,7 +265,9 @@ const figurinhas = [
   fig78,
   fig79,
   fig80,
-  fig81
+  fig81,
+  fig85,
+  fig86,
 ];
 
 const meuId =

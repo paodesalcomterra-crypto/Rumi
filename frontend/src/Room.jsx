@@ -923,13 +923,31 @@ function enviarFigurinha(fig) {
 function mostrarControlesVideo() {
   setMostrarBarra(true);
 
+  if (videoDriveRef.current?.paused) {
+    setVideoPausado(true);
+  } else {
+    setVideoPausado(true);
+  }
+
   if (timerBarraRef.current) {
     clearTimeout(timerBarraRef.current);
   }
 
   timerBarraRef.current = setTimeout(() => {
     setMostrarBarra(false);
-  }, 1000);
+
+    if (!videoDriveRef.current?.paused) {
+      setVideoPausado(false);
+    }
+
+    socket.emit("overlayVideo", {
+      sala: salaAtual,
+      overlay: null,
+    });
+
+    setOverlayIcon(null);
+
+  }, 1600);
 }
 
 async function pesquisarYoutube() {

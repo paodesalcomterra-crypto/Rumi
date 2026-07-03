@@ -920,15 +920,15 @@ function enviarFigurinha(fig) {
   setPainelFigurinhasAberto(false);
 }
 
-function mostrarControlesVideo() {
+function mostrarControlesVideo(forcarTimer = false) {
   setMostrarBarra(true);
 
   if (timerBarraRef.current) {
     clearTimeout(timerBarraRef.current);
   }
 
-  // Se o vídeo estiver pausado, deixa os controles sempre visíveis.
-  if (videoDriveRef.current?.paused) {
+  // Se estiver pausado, só mantém visível quando NÃO forçado.
+  if (!forcarTimer && videoDriveRef.current?.paused) {
     setVideoPausado(true);
     return;
   }
@@ -1164,9 +1164,11 @@ style={{
 
   <div
     onClick={() => {
-      mostrarControlesVideo();
-      if (!videoDriveRef.current)
-        return;
+
+  if (!videoDriveRef.current)
+    return;
+
+  mostrarControlesVideo(videoDriveRef.current.paused);
 
       if (videoDriveRef.current.paused) {
 
@@ -1179,22 +1181,17 @@ style={{
 
         videoDriveRef.current.play();
 
-mostrarControlesVideo();
+mostrarControlesVideo(true);
 
 setTimeout(() => {
-  if (
-    !videoDriveRef.current?.paused
-  ) {
 
-    socket.emit("overlayVideo", {
-      sala: salaAtual,
-      overlay: null,
-    });
+  socket.emit("overlayVideo", {
+    sala: salaAtual,
+    overlay: null,
+  });
 
-    setOverlayIcon(null);
+  setOverlayIcon(null);
 
-    mostrarControlesVideo();
-  }
 }, 700);
 
       } else {

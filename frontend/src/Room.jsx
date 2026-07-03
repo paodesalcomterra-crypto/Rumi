@@ -1996,7 +1996,7 @@ overflowY: "auto",
 
       return (
         <div
-          key={index}
+          key={`${msg.nome}-${msg.figurinha || msg.texto}-${index}`}
           style={{
             display: "flex",
             justifyContent: souEu ? "flex-end" : "flex-start",

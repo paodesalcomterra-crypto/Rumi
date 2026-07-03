@@ -1275,10 +1275,13 @@ setOverlayIcon("play");
 {mostrarBarra && (
   <div
     style={{
-      position: "absolute",
-      left: "40.4px",
-      right: "40.4px",
-      bottom: "44px",
+  position: "absolute",
+
+  left: "34px",     // aumenta a largura e vai mais para a esquerda
+  right: "42px",    // continua sem encostar no botão de tela cheia
+
+  bottom: "54px",   // sobe um pouco
+
 
       zIndex: 9000,
 

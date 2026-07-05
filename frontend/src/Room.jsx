@@ -93,7 +93,7 @@ import fig85 from "./assets/Imagens_Figurinhas/fig85.gif";
 import fig86 from "./assets/Imagens_Figurinhas/fig86.gif";
 import fig87 from "./assets/Imagens_Figurinhas/fig87.png";
 import "./Room.css";
-import GameSelectScreen from "./GameSelectScreen";
+
 
 const socket = io("https://rumi-production-3089.up.railway.app");
 
@@ -199,8 +199,6 @@ const [carregandoYoutube, setCarregandoYoutube] = useState(false);
 const [usuariosSala, setUsuariosSala] = useState([]);
 
 const [activeScreen, setActiveScreen] = useState("room");
-
-const [mostrarTelaJogos, setMostrarTelaJogos] = useState(false);
 
 const [painelFigurinhasAberto, setPainelFigurinhasAberto] =
   useState(false);

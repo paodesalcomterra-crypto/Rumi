@@ -32,15 +32,15 @@ export default function GamesScreen({
     "Você";
 
   const listaUsuarios =
-    usuariosSala && usuariosSala.length > 0
-      ? usuariosSala
-      : [
-          {
-            nome: meuNome,
-          },
-        ];
+  usuariosSala && usuariosSala.length > 0
+    ? usuariosSala
+    : [
+        {
+          nome: meuNome,
+        },
+      ];
 
-        const normalRanqueadaAudio = new Audio(NormalRanqueada);
+const normalRanqueadaAudio = new Audio(NormalRanqueada);
 const startAudio = new Audio(SoundStart);
 
 function tocarNormalRanqueada() {
@@ -53,7 +53,7 @@ function tocarStart() {
   startAudio.play();
 }
 
-        const [jogadoresSelecionados, setJogadoresSelecionados] =
+const [jogadoresSelecionados, setJogadoresSelecionados] =
   useState([
     {
       lado: "esquerda",
@@ -62,10 +62,9 @@ function tocarStart() {
     },
   ]);
 
-  const [mostrarGameSelect, setMostrarGameSelect] = useState(false);
+const [mostrarGameSelect, setMostrarGameSelect] = useState(false);
 
 function selecionarJogador(pessoa) {
-
   if (pessoa.nome === meuNome) return;
 
   const existe =
@@ -96,9 +95,8 @@ function selecionarJogador(pessoa) {
       lado,
       nome: pessoa.nome,
       foto: pessoa.foto || "",
-    }
+    },
   ]);
-
 }
 
 const quantidadeCards =
@@ -107,6 +105,14 @@ const quantidadeCards =
     : listaUsuarios.length <= 4
       ? 4
       : listaUsuarios.length;
+
+if (mostrarGameSelect) {
+  return (
+    <GameSelectScreen
+      onClose={() => setMostrarGameSelect(false)}
+    />
+  );
+}
 
 return (
   <div
@@ -296,7 +302,10 @@ return (
   src={PlayerBottom}
   alt="PlayerBottom"
   className="play-bottom-image"
-  onClick={tocarStart}
+  onClick={() => {
+    tocarStart();
+    setMostrarGameSelect(true);
+  }}
 />
 
         </div>

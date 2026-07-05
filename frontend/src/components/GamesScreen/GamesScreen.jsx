@@ -17,6 +17,13 @@ import Normal from "../../assets/normal.png";
 import Ranqueada from "../../assets/ranqueada.png";
 import NormalRanqueada from "../../assets/normalranqueada.mp3";
 import SoundStart from "../../assets/soundstart.m4a";
+import jokenpo from "../../assets/jokenpo.png";
+import quizhellokitty from "../../assets/quizhellokitty.png";
+import domino from "../../assets/domino.png";
+import pintar from "../../assets/pintar.png";
+import quemsoueu from "../../assets/quemsoueu.png";
+import pembolim from "../../assets/pembolim.png";
+import sinuca from "../../assets/sinuca.png";
 
 export default function GamesScreen({
   onClose,

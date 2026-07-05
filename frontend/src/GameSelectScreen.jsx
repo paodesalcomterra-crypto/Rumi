@@ -1,13 +1,39 @@
+import { useEffect, useState } from "react";
+
 import Rumi from "./assets/Rumi.png";
 
 import jokenpo from "./assets/jokenpo.png";
 import quizhellokitty from "./assets/quizhellokitty.png";
+import domino from "./assets/domino.png";
+import pintar from "./assets/pintar.png";
+import quemsoueu from "./assets/quemsoueu.png";
+import pembolim from "./assets/pembolim.png";
+import sinuca from "./assets/sinuca.png";
 
 import fechar from "./assets/fechar.png";
 
 export default function GameSelectScreen({
   onClose,
 }) {
+
+  const [mostrar, setMostrar] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMostrar(true);
+    }, 40);
+  }, []);
+
+  const jogos = [
+    jokenpo,
+    quizhellokitty,
+    domino,
+    pintar,
+    quemsoueu,
+    pembolim,
+    sinuca,
+  ];
+
   return (
     <div
       style={{
@@ -63,7 +89,7 @@ export default function GameSelectScreen({
         />
       </div>
 
-      {/* CARDS */}
+      {/* JOGOS */}
 
       <div
         style={{
@@ -74,7 +100,8 @@ export default function GameSelectScreen({
 
           display: "flex",
           flexDirection: "column",
-          gap: "16px",
+
+          gap: "14px",
 
           padding: "0 22px",
           boxSizing: "border-box",
@@ -82,96 +109,194 @@ export default function GameSelectScreen({
       >
         {/* JOKENPO */}
 
-        <div
-          style={{
-            height: "86px",
+<img
+  src={jokenpo}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "0ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
 
-            background: "#358A15",
+{/* QUIZ */}
 
-            borderRadius: "22px",
+<img
+  src={quizhellokitty}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "90ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
 
-            display: "flex",
-            alignItems: "center",
+{/* DOMINO */}
 
-            cursor: "pointer",
-          }}
-        >
-          <img
-            src={jokenpo}
-            alt=""
-            style={{
-              width: "96px",
-              height: "96px",
+<img
+  src={domino}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "180ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
 
-              objectFit: "contain",
+{/* PINTAR */}
 
-              marginLeft: "14px",
-            }}
-          />
+<img
+  src={pintar}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "270ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
 
-          <span
-            style={{
-              color: "#fff",
+{/* QUEM SOU EU */}
 
-              fontSize: "27px",
-              fontWeight: 700,
+<img
+  src={quemsoueu}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "360ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
 
-              marginLeft: "18px",
+{/* PEBOLIM */}
 
-              textShadow:
-                "0 1px 2px rgba(0,0,0,.18)",
-            }}
-          >
-            Jokenpo
-          </span>
-        </div>
+<img
+  src={pembolim}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "450ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
 
-        {/* QUIZ */}
+{/* SINUCA */}
 
-        <div
-          style={{
-            height: "86px",
-
-            background: "#FFECF7",
-
-            borderRadius: "22px",
-
-            display: "flex",
-            alignItems: "center",
-
-            cursor: "pointer",
-          }}
-        >
-          <img
-            src={quizhellokitty}
-            alt=""
-            style={{
-              width: "96px",
-              height: "96px",
-
-              objectFit: "contain",
-
-              marginLeft: "14px",
-            }}
-          />
-
-          <span
-            style={{
-              color: "#fff",
-
-              fontSize: "27px",
-              fontWeight: 700,
-
-              marginLeft: "18px",
-
-              textShadow:
-                "0 1px 3px rgba(0,0,0,.28)",
-            }}
-          >
-            Quiz
-          </span>
-        </div>
+<img
+  src={sinuca}
+  alt=""
+  onClick={() => {}}
+  onMouseDown={(e) => e.currentTarget.style.scale = ".97"}
+  onMouseUp={(e) => e.currentTarget.style.scale = "1"}
+  onMouseLeave={(e) => e.currentTarget.style.scale = "1"}
+  onTouchStart={(e) => e.currentTarget.style.scale = ".97"}
+  onTouchEnd={(e) => e.currentTarget.style.scale = "1"}
+  style={{
+    width: "100%",
+    height: "auto",
+    marginTop: "0px",
+    marginLeft: "0px",
+    cursor: "pointer",
+    userSelect: "none",
+    scale: "1",
+    transition: "transform .18s ease, opacity .35s cubic-bezier(.22,1,.36,1)",
+    opacity: mostrar ? 1 : 0,
+    transform: mostrar ? "translateY(0)" : "translateY(26px)",
+    transitionDelay: "540ms",
+    filter: "drop-shadow(0 8px 18px rgba(0,0,0,.22))",
+  }}
+/>
       </div>
+
     </div>
   );
 }

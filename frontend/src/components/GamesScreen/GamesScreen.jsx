@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./GamesScreen.css";
+
+import GameSelectScreen from "../GameSelectScreen";
+
 import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";
 import TraveEsquerda from "../../assets/traveesquerda.png";
@@ -58,6 +61,8 @@ function tocarStart() {
       nome: meuNome,
     },
   ]);
+
+  const [mostrarGameSelect, setMostrarGameSelect] = useState(false);
 
 function selecionarJogador(pessoa) {
 

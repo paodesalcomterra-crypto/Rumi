@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./GamesScreen.css";
 
-import GameSelectScreen from "../GameSelectScreen";
+import GameSelectScreen from "../../GameSelectScreen";
 
 import Rumi2 from "../../assets/Rumi2.png";
 import TraveDireita from "../../assets/travedireita.png";

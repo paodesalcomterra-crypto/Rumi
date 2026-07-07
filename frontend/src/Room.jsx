@@ -2365,7 +2365,7 @@ overflowY: "auto",
     }}
   />
 
-  {/* Sombra MUITO sutil acima da linha */}
+  {/* Sombra muito sutil */}
   <div
     style={{
       position: "absolute",
@@ -2405,11 +2405,11 @@ overflowY: "auto",
 
         filter: microfoneLigado
           ? `
-          drop-shadow(0 0 3px #ff91de)
-          drop-shadow(0 0 6px #f588bf)
-          drop-shadow(0 0 11px #fc89ae)
-          drop-shadow(0 0 14px #42121c)
-        `
+            drop-shadow(0 0 3px #ff91de)
+            drop-shadow(0 0 6px #f588bf)
+            drop-shadow(0 0 11px #fc89ae)
+            drop-shadow(0 0 14px #42121c)
+          `
           : "none",
 
         transition: "0.3s ease",
@@ -2419,7 +2419,6 @@ overflowY: "auto",
 
   <div
     style={{
-      position: "relative",
       flex: 1,
       minWidth: 0,
     }}
@@ -2448,7 +2447,7 @@ overflowY: "auto",
         outline: "none",
         borderRadius: "999px",
 
-        padding: "14px 56px 14px 18px",
+        padding: "14px 18px",
 
         background: "rgba(255,255,255,.12)",
         color: "#fff",
@@ -2456,32 +2455,28 @@ overflowY: "auto",
         backdropFilter: "blur(10px)",
       }}
     />
-
-    <img
-      src={figurinha}
-      alt="Figurinha"
-      onClick={() =>
-        setPainelFigurinhasAberto(
-          !painelFigurinhasAberto
-        )
-      }
-      style={{
-        position: "absolute",
-
-        right: "14px",
-        top: "50%",
-
-        transform: "translateY(-50%)",
-
-        width: "34px",
-        height: "34px",
-
-        objectFit: "contain",
-
-        cursor: "pointer",
-      }}
-    />
   </div>
+
+  {/* Figurinha separada */}
+  <img
+    src={figurinha}
+    alt="Figurinha"
+    onClick={() =>
+      setPainelFigurinhasAberto(
+        !painelFigurinhasAberto
+      )
+    }
+    style={{
+      width: "34px",
+      height: "34px",
+
+      objectFit: "contain",
+
+      cursor: "pointer",
+
+      flexShrink: 0,
+    }}
+  />
 
   <button
     onClick={() => {

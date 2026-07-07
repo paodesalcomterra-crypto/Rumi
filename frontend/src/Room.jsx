@@ -1474,7 +1474,7 @@ setOverlayIcon("play");
     height: "32.2px",
 
     position: "relative",
-    top: "0px",
+    top: "100px",
 
     background: "rgba(0,0,0,.45)",
     backdropFilter: "blur(14px)",

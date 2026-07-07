@@ -2350,10 +2350,20 @@ overflowY: "auto",
 
     background:
       "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
-
-    borderTop: "1px solid rgba(255,255,255,.08)",
   }}
 >
+  <div
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      height: "1px",
+      background: "rgba(255,255,255,.08)",
+      pointerEvents: "none",
+    }}
+  />
+
   <button
     onClick={ativarMicrofone}
     style={{

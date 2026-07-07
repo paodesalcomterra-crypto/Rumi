@@ -2391,7 +2391,7 @@ overflowY: "auto",
       }}
       placeholder="Bate-papo..."
       style={{
-        width: "100%",
+        width: "150%",
         boxSizing: "border-box",
 
         border: "none",

@@ -1469,7 +1469,6 @@ setOverlayIcon("play");
 </>
 )}
 </div>
-
 <div
   style={{
     height: "32.2px",
@@ -1496,12 +1495,28 @@ setOverlayIcon("play");
       "0 10px 25px rgba(0,0,0,.35)",
   }}
 >
-      Sala: {salaAtual}
-    </div>
-  </div>
+  Sala: {salaAtual}
+
+  {/* Sombrinha muito sutil descendo para o chat */}
+  <div
+    style={{
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: "100%",
+      height: "8px",
+
+      background:
+        "linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,0))",
+
+      pointerEvents: "none",
+    }}
+  />
+</div>
+</div>
 )}
 
-     {/* TOPO */}
+{/* TOPO */}
 
 <div
   style={{

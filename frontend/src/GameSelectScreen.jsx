@@ -40,7 +40,7 @@ export default function GameSelectScreen({
         position: "fixed",
         inset: 0,
 
-        background: "#0f0f0f",
+        background: "#010107",
 
         zIndex: 999999,
 

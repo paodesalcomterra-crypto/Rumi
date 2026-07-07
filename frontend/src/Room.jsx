@@ -1474,7 +1474,7 @@ setOverlayIcon("play");
     height: "32.2px",
 
     position: "relative",
-    top: "-4.5px",
+    top: "0px",
 
     background: "rgba(0,0,0,.45)",
     backdropFilter: "blur(14px)",
@@ -2364,7 +2364,7 @@ overflowY: "auto",
     gap: "10px",
 
     background:
-      "linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.3))",
+      "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
   }}
 >
   {/* Linha divisória */}

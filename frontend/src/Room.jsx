@@ -2337,6 +2337,7 @@ overflowY: "auto",
       background: "transparent",
       padding: 0,
       cursor: "pointer",
+      flexShrink: 0,
     }}
   >
     <img
@@ -2369,9 +2370,8 @@ overflowY: "auto",
     style={{
       position: "relative",
 
-      width: "130px",
-      minWidth: "130px",
-      maxWidth: "130px",
+      flex: 1,
+      minWidth: 0,
     }}
   >
     <input
@@ -2391,7 +2391,7 @@ overflowY: "auto",
       }}
       placeholder="Bate-papo..."
       style={{
-        width: "150%",
+        width: "100%",
         boxSizing: "border-box",
 
         border: "none",
@@ -2418,7 +2418,7 @@ overflowY: "auto",
       style={{
         position: "absolute",
 
-        right: "12px",
+        right: "14px",
         top: "50%",
 
         transform: "translateY(-50%)",
@@ -2442,8 +2442,10 @@ overflowY: "auto",
       }, 10);
     }}
     style={{
-      width: "52px",
-      height: "52px",
+      width: "58px",
+      height: "58px",
+
+      flexShrink: 0,
 
       borderRadius: "50%",
       border: "none",
@@ -2452,7 +2454,7 @@ overflowY: "auto",
 
       color: "#fff",
 
-      fontSize: "18px",
+      fontSize: "20px",
 
       cursor: "pointer",
     }}

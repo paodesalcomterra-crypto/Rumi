@@ -1531,7 +1531,7 @@ setOverlayIcon("play");
     alignItems: "center",
 
     background:
-      "linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.15))",
+      "linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.15))",
   }}
 >
   <img

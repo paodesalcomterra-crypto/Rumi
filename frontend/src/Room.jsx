@@ -1504,7 +1504,7 @@ setOverlayIcon("play");
       left: 0,
       right: 0,
       top: "100%",
-      height: "3.8px",
+      height: "4px",
 
       background:
         "linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,0))",

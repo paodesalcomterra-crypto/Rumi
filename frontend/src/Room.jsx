@@ -1531,7 +1531,7 @@ setOverlayIcon("play");
     alignItems: "center",
 
     background:
-      "linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.0))",
+      "linear-gradient(to bottom, rgba(0,0,0,.75), rgba(0,0,0,.15))",
   }}
 >
   <img
@@ -2364,7 +2364,7 @@ overflowY: "auto",
     gap: "10px",
 
     background:
-      "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
+      "linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.3))",
   }}
 >
   {/* Linha divisória */}

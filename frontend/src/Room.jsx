@@ -2352,6 +2352,7 @@ overflowY: "auto",
       "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
   }}
 >
+  {/* Linha divisória */}
   <div
     style={{
       position: "absolute",
@@ -2360,6 +2361,20 @@ overflowY: "auto",
       right: 0,
       height: "1px",
       background: "rgba(255,255,255,.08)",
+      pointerEvents: "none",
+    }}
+  />
+
+  {/* Sombra MUITO sutil acima da linha */}
+  <div
+    style={{
+      position: "absolute",
+      top: "-8px",
+      left: 0,
+      right: 0,
+      height: "8px",
+      background:
+        "linear-gradient(to top, rgba(0,0,0,.10), rgba(0,0,0,0))",
       pointerEvents: "none",
     }}
   />

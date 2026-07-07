@@ -2311,7 +2311,28 @@ overflowY: "auto",
 
 )}
 
-      {/* BARRA INFERIOR */}
+     {/* DIVISÓRIA SUPERIOR */}
+
+<div
+  style={{
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: "82px",
+
+    height: "1px",
+
+    background:
+      "linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent)",
+
+    boxShadow:
+      "0 1px 2px rgba(0,0,0,.45)",
+
+    zIndex: 21,
+  }}
+/>
+
+{/* BARRA INFERIOR */}
 
 <div
   style={{
@@ -2319,13 +2340,23 @@ overflowY: "auto",
     bottom: 0,
     left: 0,
     right: 0,
+
     zIndex: 20,
+
     padding: "12px",
+
     display: "flex",
     alignItems: "center",
     gap: "10px",
+
     background:
-      "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
+      "linear-gradient(to top, rgba(8,8,10,.96), rgba(12,12,15,.78))",
+
+    borderTop:
+      "1px solid rgba(255,255,255,.05)",
+
+    boxShadow:
+      "0 -16px 40px rgba(0,0,0,.42)",
   }}
 >
   <button
@@ -2400,10 +2431,10 @@ overflowY: "auto",
 
         padding: "14px 56px 14px 18px",
 
-        background: "rgba(255,255,255,.12)",
+        background: "rgba(255,255,255,.10)",
         color: "#fff",
 
-        backdropFilter: "blur(10px)",
+        backdropFilter: "blur(12px)",
       }}
     />
 

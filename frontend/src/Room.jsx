@@ -2340,7 +2340,6 @@ overflowY: "auto",
     bottom: 0,
     left: 0,
     right: 0,
-
     zIndex: 20,
 
     padding: "12px",
@@ -2350,31 +2349,11 @@ overflowY: "auto",
     gap: "10px",
 
     background:
-      "linear-gradient(to top, rgba(8,8,10,.96), rgba(12,12,15,.78))",
+      "linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.3))",
 
-    borderTop:
-      "1px solid rgba(255,255,255,.05)",
-
-    boxShadow:
-      "0 -16px 40px rgba(0,0,0,.42)",
+    borderTop: "1px solid rgba(255,255,255,.08)",
   }}
 >
-
-  {/* SOMBRA SUAVE SUBINDO PARA O CHAT */}
-  <div
-    style={{
-      position: "absolute",
-      top: "-24px",
-      left: 0,
-      right: 0,
-      height: "24px",
-      pointerEvents: "none",
-
-      background:
-        "linear-gradient(to top, rgba(0,0,0,.16), rgba(0,0,0,0))",
-    }}
-  />
-
   <button
     onClick={ativarMicrofone}
     style={{
@@ -2416,7 +2395,6 @@ overflowY: "auto",
   <div
     style={{
       position: "relative",
-
       flex: 1,
       minWidth: 0,
     }}
@@ -2447,10 +2425,10 @@ overflowY: "auto",
 
         padding: "14px 56px 14px 18px",
 
-        background: "rgba(255,255,255,.10)",
+        background: "rgba(255,255,255,.12)",
         color: "#fff",
 
-        backdropFilter: "blur(12px)",
+        backdropFilter: "blur(10px)",
       }}
     />
 

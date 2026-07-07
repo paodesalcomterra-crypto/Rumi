@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import YouTube from "react-youtube";
 import microfone from "./assets/microfone.png";
 import microfoneativo from "./assets/microfoneativo.png";
-import helokat from "./assets/helokat.jfif";
+import helokat from "./assets/helokat.png";
 import fechar from "./assets/fechar.png";
 import lupa from "./assets/lupa.png";
 import helloKittyYoutube from "./assets/hello kitty youtube.jpg";

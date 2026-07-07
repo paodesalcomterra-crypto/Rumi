@@ -2365,65 +2365,73 @@ overflowY: "auto",
     />
   </button>
 
-  <input
-  ref={inputMensagemRef}
-  value={novaMensagem}
-  onChange={(e) => setNovaMensagem(e.target.value)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-
-      enviarMensagem();
-
-      setTimeout(() => {
-        inputMensagemRef.current?.focus();
-      }, 10);
-    }
-  }}
-  placeholder="Bate-papo..."
-  style={{
-    width: "130px",
-    minWidth: "130px",
-    maxWidth: "130px",
-
-    border: "none",
-    outline: "none",
-    borderRadius: "999px",
-    padding: "14px 18px",
-    background: "rgba(255,255,255,.12)",
-    color: "#fff",
-    backdropFilter: "blur(10px)",
-  }}
-/>
-
-  <button
-    onClick={() =>
-      setPainelFigurinhasAberto(
-        !painelFigurinhasAberto
-      )
-    }
+  <div
     style={{
-      width: "52px",
-      height: "52px",
-      border: "none",
-      background: "transparent",
-      cursor: "pointer",
-      padding: 0,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      position: "relative",
+
+      width: "130px",
+      minWidth: "130px",
+      maxWidth: "130px",
     }}
   >
+    <input
+      ref={inputMensagemRef}
+      value={novaMensagem}
+      onChange={(e) => setNovaMensagem(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+
+          enviarMensagem();
+
+          setTimeout(() => {
+            inputMensagemRef.current?.focus();
+          }, 10);
+        }
+      }}
+      placeholder="Bate-papo..."
+      style={{
+        width: "100%",
+        boxSizing: "border-box",
+
+        border: "none",
+        outline: "none",
+        borderRadius: "999px",
+
+        padding: "14px 56px 14px 18px",
+
+        background: "rgba(255,255,255,.12)",
+        color: "#fff",
+
+        backdropFilter: "blur(10px)",
+      }}
+    />
+
     <img
       src={figurinha}
       alt="Figurinha"
+      onClick={() =>
+        setPainelFigurinhasAberto(
+          !painelFigurinhasAberto
+        )
+      }
       style={{
-        width: "42px",
-        height: "42px",
+        position: "absolute",
+
+        right: "12px",
+        top: "50%",
+
+        transform: "translateY(-50%)",
+
+        width: "34px",
+        height: "34px",
+
         objectFit: "contain",
+
+        cursor: "pointer",
       }}
     />
-  </button>
+  </div>
 
   <button
     onClick={() => {
@@ -2436,11 +2444,16 @@ overflowY: "auto",
     style={{
       width: "52px",
       height: "52px",
+
       borderRadius: "50%",
       border: "none",
+
       background: "#ff8edb",
+
       color: "#fff",
+
       fontSize: "18px",
+
       cursor: "pointer",
     }}
   >

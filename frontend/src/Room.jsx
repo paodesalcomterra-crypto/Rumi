@@ -1024,6 +1024,7 @@ return (
     height: "100%",
     position: "absolute",
     inset: 0,
+    background: "#4B4B4B", // cinza base
   }}
 >
   <img
@@ -1033,6 +1034,9 @@ return (
       width: "100%",
       height: "100%",
       objectFit: "cover",
+
+      opacity: 0.28,          // controla quanto da textura aparece
+      mixBlendMode: "overlay", // mistura a textura com o cinza
     }}
   />
 

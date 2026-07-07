@@ -2359,6 +2359,22 @@ overflowY: "auto",
       "0 -16px 40px rgba(0,0,0,.42)",
   }}
 >
+
+  {/* SOMBRA SUAVE SUBINDO PARA O CHAT */}
+  <div
+    style={{
+      position: "absolute",
+      top: "-24px",
+      left: 0,
+      right: 0,
+      height: "24px",
+      pointerEvents: "none",
+
+      background:
+        "linear-gradient(to top, rgba(0,0,0,.16), rgba(0,0,0,0))",
+    }}
+  />
+
   <button
     onClick={ativarMicrofone}
     style={{
